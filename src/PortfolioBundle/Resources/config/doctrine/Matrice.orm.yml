@@ -1,0 +1,15 @@
+PortfolioBundle\Entity\Matrice:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\MatriceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        flagActif:
+            type: integer
+            column: flag_actif
+    lifecycleCallbacks: {  }

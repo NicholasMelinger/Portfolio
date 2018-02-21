@@ -1,0 +1,19 @@
+PortfolioBundle\Entity\Alertes:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\AlertesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateCreationAlerte:
+            type: datetime
+            column: date_creation_alerte
+        commentaire:
+            type: string
+            nullable: true
+            length: 255
+    lifecycleCallbacks: {  }

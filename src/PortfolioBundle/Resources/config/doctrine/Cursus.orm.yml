@@ -1,0 +1,23 @@
+PortfolioBundle\Entity\Cursus:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\CursusRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        libelleFormation:
+            type: string
+            length: 255
+            column: libelle_formation
+        anneeFormation:
+            type: integer
+            column: annee_formation
+        descriptionFormation:
+            type: string
+            length: '500'
+            column: description_formation
+    lifecycleCallbacks: {  }

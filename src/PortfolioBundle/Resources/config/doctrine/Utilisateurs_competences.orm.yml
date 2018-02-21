@@ -1,0 +1,20 @@
+PortfolioBundle\Entity\Utilisateurs_competences:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\Utilisateurs_competencesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        niveauCompetence:
+            type: string
+            length: 255
+            column: niveau_competence
+        detailCompetence:
+            type: string
+            length: '500'
+            column: detail_competence
+    lifecycleCallbacks: {  }

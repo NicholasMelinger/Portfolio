@@ -1,0 +1,23 @@
+PortfolioBundle\Entity\Competences:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\CompetencesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        libelleCompetence:
+            type: string
+            length: 255
+            column: libelle_competence
+        dateCreation:
+            type: datetime
+            column: date_creation
+        dateMaj:
+            type: datetime
+            nullable: true
+            column: date_maj
+    lifecycleCallbacks: {  }

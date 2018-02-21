@@ -1,0 +1,14 @@
+PortfolioBundle\Entity\Cursus_utilisateurs_competences:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\Cursus_utilisateurs_competencesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        diplome:
+            type: integer
+    lifecycleCallbacks: {  }

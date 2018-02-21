@@ -1,0 +1,65 @@
+PortfolioBundle\Entity\Utilisateurs:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\UtilisateursRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nomUtilisateur:
+            type: string
+            length: 255
+            column: nom_utilisateur
+        prenomUtilisateur:
+            type: string
+            length: 255
+            column: prenom_utilisateur
+        mailUtilisateur:
+            type: string
+            length: 255
+            unique: true
+            column: mail_utilisateur
+        loginUtilisateur:
+            type: string
+            length: 255
+            unique: true
+            column: login_utilisateur
+        mdpUtilisateur:
+            type: string
+            length: 255
+            column: mdp_utilisateur
+        numeroMobile:
+            type: string
+            length: '15'
+            nullable: true
+            column: numero_mobile
+        numeroFixe:
+            type: string
+            length: '15'
+            nullable: true
+            column: numero_fixe
+        dateInscription:
+            type: datetime
+            column: date_inscription
+        dateMajProfil:
+            type: datetime
+            nullable: true
+            column: date_maj_profil
+        adressePostale:
+            type: string
+            length: 255
+            nullable: true
+            column: adresse_postale
+        ville:
+            type: string
+            length: 255
+            nullable: true
+        codePostal:
+            type: string
+            length: '10'
+            nullable: true
+            column: code_postal
+    lifecycleCallbacks: {  }

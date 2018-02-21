@@ -1,0 +1,17 @@
+PortfolioBundle\Entity\Themes:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\ThemesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        libelleTheme:
+            type: string
+            length: 255
+            unique: true
+            column: libelle_theme
+    lifecycleCallbacks: {  }

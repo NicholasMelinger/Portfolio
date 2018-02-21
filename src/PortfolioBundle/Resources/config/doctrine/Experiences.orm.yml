@@ -1,0 +1,28 @@
+PortfolioBundle\Entity\Experiences:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\ExperiencesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        typeExperience:
+            type: string
+            length: 255
+            column: type_experience
+        anneeDebutExperience:
+            type: integer
+            column: date_debut_experience
+        anneeFinExperience:
+            type: integer
+            nullable: true
+            column: annee_fin_experience
+        descriptionExperience:
+            type: string
+            length: '500'
+            nullable: true
+            column: description_experience
+    lifecycleCallbacks: {  }

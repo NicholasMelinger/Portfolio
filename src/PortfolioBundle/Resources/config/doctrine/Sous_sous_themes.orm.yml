@@ -1,0 +1,17 @@
+PortfolioBundle\Entity\Sous_sous_themes:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\Sous_sous_themesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        libelleSousSousTheme:
+            type: string
+            length: 255
+            unique: true
+            column: libelle_sous_sous_theme
+    lifecycleCallbacks: {  }

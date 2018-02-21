@@ -1,0 +1,18 @@
+PortfolioBundle\Entity\Validations:
+    type: entity
+    table: null
+    repositoryClass: PortfolioBundle\Repository\ValidationsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateValidation:
+            type: datetime
+            column: date_validation
+        commentaire:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
