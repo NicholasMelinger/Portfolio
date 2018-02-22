@@ -21,3 +21,22 @@ PortfolioBundle\Entity\Competences:
             nullable: true
             column: date_maj
     lifecycleCallbacks: {  }
+
+    manyToOne:
+        experiences_comp:
+            targetEntity: Experiences
+            inversedBy: competences
+            cascade: [ Persist ]
+        cursus_comp:
+            targetEntity: Cursus
+            inversedBy: competences
+            cascade: [ Persist ]
+        matrice_comp:
+            targetEntity: Matrice
+            inversedBy: competences
+            cascade: [ Persist ]
+
+    oneToMany:
+        user_competences:
+            targetEntity: Utilisateurs_competences
+            mappedBy: competences

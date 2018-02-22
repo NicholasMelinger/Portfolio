@@ -18,3 +18,17 @@ PortfolioBundle\Entity\Utilisateurs_competences:
             length: '500'
             column: detail_competence
     lifecycleCallbacks: {  }
+
+    manyToOne:
+        utilisateurs:
+            targetEntity: Utilisateurs
+            inversedBy: user_competences
+            cascade: [ Persist ]
+        competences:
+            targetEntity: Competences
+            inversedBy: user_competences
+            cascade: [ Persist ]
+        validations:
+            targetEntity: Validations
+            inversedBy: user_competences
+            cascade: [ Persist ]

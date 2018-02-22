@@ -21,3 +21,11 @@ PortfolioBundle\Entity\Cursus:
             length: '500'
             column: description_formation
     lifecycleCallbacks: {  }
+
+    oneToMany:
+        experiences:
+            targetEntity: Experiences
+            mappedBy: cursus_exp
+        competences:
+            targetEntity: Competences
+            mappedBy: cursus_comp

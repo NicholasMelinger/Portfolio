@@ -26,3 +26,18 @@ PortfolioBundle\Entity\Experiences:
             nullable: true
             column: description_experience
     lifecycleCallbacks: {  }
+
+    manyToOne:
+        utilisateurs_exp:
+            targetEntity: Utilisateurs
+            inversedBy: experiences
+            cascade: [ Persist ]
+        cursus_exp:
+            targetEntity: Cursus
+            inversedBy: experiences
+            cascade: [ Persist ]
+
+    oneToMany: 
+        competences:
+            targetEntity: Competences
+            mappedBy: experiences_comp

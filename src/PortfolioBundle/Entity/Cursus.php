@@ -109,5 +109,90 @@ class Cursus
     {
         return $this->descriptionFormation;
     }
-}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $experiences;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $competences;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->experiences = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->competences = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add experience
+     *
+     * @param \PortfolioBundle\Entity\Experiences $experience
+     *
+     * @return Cursus
+     */
+    public function addExperience(\PortfolioBundle\Entity\Experiences $experience)
+    {
+        $this->experiences[] = $experience;
+
+        return $this;
+    }
+
+    /**
+     * Remove experience
+     *
+     * @param \PortfolioBundle\Entity\Experiences $experience
+     */
+    public function removeExperience(\PortfolioBundle\Entity\Experiences $experience)
+    {
+        $this->experiences->removeElement($experience);
+    }
+
+    /**
+     * Get experiences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExperiences()
+    {
+        return $this->experiences;
+    }
+
+    /**
+     * Add competence
+     *
+     * @param \PortfolioBundle\Entity\Competences $competence
+     *
+     * @return Cursus
+     */
+    public function addCompetence(\PortfolioBundle\Entity\Competences $competence)
+    {
+        $this->competences[] = $competence;
+
+        return $this;
+    }
+
+    /**
+     * Remove competence
+     *
+     * @param \PortfolioBundle\Entity\Competences $competence
+     */
+    public function removeCompetence(\PortfolioBundle\Entity\Competences $competence)
+    {
+        $this->competences->removeElement($competence);
+    }
+
+    /**
+     * Get competences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetences()
+    {
+        return $this->competences;
+    }
+}

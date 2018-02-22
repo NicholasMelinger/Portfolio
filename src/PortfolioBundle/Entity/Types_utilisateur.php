@@ -81,4 +81,3 @@ class Types_utilisateur
         return $this->description;
     }
 }
-
