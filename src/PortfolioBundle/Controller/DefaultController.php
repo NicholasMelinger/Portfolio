@@ -10,4 +10,8 @@ class DefaultController extends Controller
     {
         return $this->render('PortfolioBundle:Default:index.html.twig');
     }
+    public function cssAction()
+    {
+        return $this->render('PortfolioBundle:Default:css.html.twig');
+    }
 }
