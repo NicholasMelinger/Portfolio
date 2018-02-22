@@ -16,3 +16,8 @@ PortfolioBundle\Entity\Validations:
             type: string
             length: 255
     lifecycleCallbacks: {  }
+    
+    oneToMany:
+        user_competences:
+            targetEntity: Utilisateurs_competences
+            mappedBy: validations

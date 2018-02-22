@@ -370,5 +370,118 @@ class Utilisateurs
     {
         return $this->codePostal;
     }
-}
+    /**
+     * @var \PortfolioBundle\Entity\Types_utilisateur
+     */
+    private $type_utilisateur;
 
+
+    /**
+     * Set typeUtilisateur
+     *
+     * @param \PortfolioBundle\Entity\Types_utilisateur $typeUtilisateur
+     *
+     * @return Utilisateurs
+     */
+    public function setTypeUtilisateur(\PortfolioBundle\Entity\Types_utilisateur $typeUtilisateur = null)
+    {
+        $this->type_utilisateur = $typeUtilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get typeUtilisateur
+     *
+     * @return \PortfolioBundle\Entity\Types_utilisateur
+     */
+    public function getTypeUtilisateur()
+    {
+        return $this->type_utilisateur;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $experiences;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->experiences = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add experience
+     *
+     * @param \PortfolioBundle\Entity\Experiences $experience
+     *
+     * @return Utilisateurs
+     */
+    public function addExperience(\PortfolioBundle\Entity\Experiences $experience)
+    {
+        $this->experiences[] = $experience;
+
+        return $this;
+    }
+
+    /**
+     * Remove experience
+     *
+     * @param \PortfolioBundle\Entity\Experiences $experience
+     */
+    public function removeExperience(\PortfolioBundle\Entity\Experiences $experience)
+    {
+        $this->experiences->removeElement($experience);
+    }
+
+    /**
+     * Get experiences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExperiences()
+    {
+        return $this->experiences;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $user_competences;
+
+
+    /**
+     * Add userCompetence
+     *
+     * @param \PortfolioBundle\Entity\Utilisateurs_competences $userCompetence
+     *
+     * @return Utilisateurs
+     */
+    public function addUserCompetence(\PortfolioBundle\Entity\Utilisateurs_competences $userCompetence)
+    {
+        $this->user_competences[] = $userCompetence;
+
+        return $this;
+    }
+
+    /**
+     * Remove userCompetence
+     *
+     * @param \PortfolioBundle\Entity\Utilisateurs_competences $userCompetence
+     */
+    public function removeUserCompetence(\PortfolioBundle\Entity\Utilisateurs_competences $userCompetence)
+    {
+        $this->user_competences->removeElement($userCompetence);
+    }
+
+    /**
+     * Get userCompetences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserCompetences()
+    {
+        return $this->user_competences;
+    }
+}

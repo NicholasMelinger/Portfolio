@@ -63,3 +63,15 @@ PortfolioBundle\Entity\Utilisateurs:
             nullable: true
             column: code_postal
     lifecycleCallbacks: {  }
+    manyToOne:  
+        type_utilisateur:
+            targetEntity: Types_utilisateur
+            inversedBy: utilisateurs
+            cascade: [ persist ]
+    oneToMany:
+        experiences:
+            targetEntity: Experiences
+            mappedBy: utilisateurs_exp
+        user_competences:
+            targetEntity: Utilisateurs_competences
+            mappedBy: utilisateurs

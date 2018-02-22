@@ -13,3 +13,22 @@ PortfolioBundle\Entity\Matrice:
             type: integer
             column: flag_actif
     lifecycleCallbacks: {  }
+
+    oneToMany:
+        competences:
+            targetEntity: Competences
+            mappedBy: matrice_comp
+
+    manyToOne:
+        theme_matrice:
+            targetEntity: Themes
+            inversedBy: matrice
+            cascade: [ Persist ]
+        s_theme_matrice:
+            targetEntity: Sous_themes
+            inversedBy: matrice
+            cascade: [ Persist ]
+        s_s_theme_matrice:
+            targetEntity: Sous_sous_themes
+            inversedBy: matrice
+            cascade: [ Persist ]

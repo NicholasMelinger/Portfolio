@@ -81,4 +81,3 @@ class Alertes
         return $this->commentaire;
     }
 }
-

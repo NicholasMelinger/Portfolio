@@ -15,3 +15,8 @@ PortfolioBundle\Entity\Themes:
             unique: true
             column: libelle_theme
     lifecycleCallbacks: {  }
+
+    oneToMany:
+        matrice:
+            targetEntity: Matrice
+            mappedBy: theme_matrice

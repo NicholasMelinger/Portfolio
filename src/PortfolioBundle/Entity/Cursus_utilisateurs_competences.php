@@ -52,4 +52,3 @@ class Cursus_utilisateurs_competences
         return $this->diplome;
     }
 }
-

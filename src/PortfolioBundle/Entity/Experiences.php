@@ -138,5 +138,132 @@ class Experiences
     {
         return $this->descriptionExperience;
     }
-}
 
+    /**
+     * Set anneeDebutExperience
+     *
+     * @param integer $anneeDebutExperience
+     *
+     * @return Experiences
+     */
+    public function setAnneeDebutExperience($anneeDebutExperience)
+    {
+        $this->anneeDebutExperience = $anneeDebutExperience;
+
+        return $this;
+    }
+
+    /**
+     * Get anneeDebutExperience
+     *
+     * @return integer
+     */
+    public function getAnneeDebutExperience()
+    {
+        return $this->anneeDebutExperience;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $competences;
+
+    /**
+     * @var \PortfolioBundle\Entity\Utilisateurs
+     */
+    private $utilisateurs_exp;
+
+    /**
+     * @var \PortfolioBundle\Entity\Cursus
+     */
+    private $cursus_exp;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->competences = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add competence
+     *
+     * @param \PortfolioBundle\Entity\Competences $competence
+     *
+     * @return Experiences
+     */
+    public function addCompetence(\PortfolioBundle\Entity\Competences $competence)
+    {
+        $this->competences[] = $competence;
+
+        return $this;
+    }
+
+    /**
+     * Remove competence
+     *
+     * @param \PortfolioBundle\Entity\Competences $competence
+     */
+    public function removeCompetence(\PortfolioBundle\Entity\Competences $competence)
+    {
+        $this->competences->removeElement($competence);
+    }
+
+    /**
+     * Get competences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetences()
+    {
+        return $this->competences;
+    }
+
+    /**
+     * Set utilisateursExp
+     *
+     * @param \PortfolioBundle\Entity\Utilisateurs $utilisateursExp
+     *
+     * @return Experiences
+     */
+    public function setUtilisateursExp(\PortfolioBundle\Entity\Utilisateurs $utilisateursExp = null)
+    {
+        $this->utilisateurs_exp = $utilisateursExp;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateursExp
+     *
+     * @return \PortfolioBundle\Entity\Utilisateurs
+     */
+    public function getUtilisateursExp()
+    {
+        return $this->utilisateurs_exp;
+    }
+
+    /**
+     * Set cursusExp
+     *
+     * @param \PortfolioBundle\Entity\Cursus $cursusExp
+     *
+     * @return Experiences
+     */
+    public function setCursusExp(\PortfolioBundle\Entity\Cursus $cursusExp = null)
+    {
+        $this->cursus_exp = $cursusExp;
+
+        return $this;
+    }
+
+    /**
+     * Get cursusExp
+     *
+     * @return \PortfolioBundle\Entity\Cursus
+     */
+    public function getCursusExp()
+    {
+        return $this->cursus_exp;
+    }
+}
