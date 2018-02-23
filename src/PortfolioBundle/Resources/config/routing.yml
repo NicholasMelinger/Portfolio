@@ -3,5 +3,5 @@ portfolio_homepage:
     defaults: { _controller: PortfolioBundle:Default:index }
 
 portfolio_css:
-    path:     /css 
+    path:     /css2 
     defaults: { _controller: PortfolioBundle:Default:css }
