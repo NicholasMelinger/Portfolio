@@ -14,10 +14,10 @@ PortfolioBundle\Entity\Experiences:
             length: 255
             column: type_experience
         anneeDebutExperience:
-            type: integer
+            type: date
             column: date_debut_experience
         anneeFinExperience:
-            type: integer
+            type: date
             nullable: true
             column: annee_fin_experience
         descriptionExperience:

@@ -5,3 +5,10 @@ portfolio_homepage:
 portfolio_css:
     path:     /css 
     defaults: { _controller: PortfolioBundle:Default:css }
+
+experience_defaut:
+    path:    /experiences
+    defaults: { _controller: PortfolioBundle:Experiences:experiences_defaut }
+experience_ajout:
+    path:    /experiences/add
+    defaults: { _controller: PortfolioBundle:Experiences:experience_add }

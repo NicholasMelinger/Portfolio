@@ -14,10 +14,10 @@ PortfolioBundle\Entity\Competences:
             length: 255
             column: libelle_competence
         dateCreation:
-            type: datetime
+            type: date
             column: date_creation
         dateMaj:
-            type: datetime
+            type: date
             nullable: true
             column: date_maj
     lifecycleCallbacks: {  }
