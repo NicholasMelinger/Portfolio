@@ -16,3 +16,7 @@ experience_ajout:
 creation_profil:
     path:     /creation_profil 
     defaults: { _controller: PortfolioBundle:Profil:creationProfil }
+
+recherche:
+    path:     /recherche
+    defaults: { _controller: PortfolioBundle:Recherche:recherche }

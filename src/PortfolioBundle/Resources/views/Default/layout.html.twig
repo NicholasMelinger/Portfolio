@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -36,12 +37,10 @@
           </button>
          <a class="navbar-brand" href="{{ path ('portfolio_homepage') }}"> Portefolio</a>
         </div>
-        
-
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ path ('portfolio_homepage') }}">Accueil</a></li>
-            <li><a href="#about">Recherche</a></li>
+            <li class="{{ app.request.attributes.get('_route') == 'portfolio_homepage' ? 'active' }}"><a href="{{ path ('portfolio_homepage') }}">Accueil</a></li>
+            <li class="{{ app.request.attributes.get('_route') == 'recherche' ? 'active' }}"><a href="{{ path ('recherche') }}">Recherche</a></li>
             <li><a href="#contact">Contact</a></li> <!-- ICI LES LIENS SONT A MODIFIER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! OK ENCULE-->
             <li><a href="{{ path ('portfolio_css') }}">Page CSS</a></li>
             <li class="dropdown">
@@ -59,9 +58,10 @@
 
             <!-- Barre de recherche -->
             <li>
-              <form class="navbar-form navbar-left" role="search">
+              <?php echo ""{{ path ('recherche') }}"" ?>
+              <form class="navbar-form navbar-left" role="search" action="{{ path ('recherche') }}" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nom de la personne recherchée" size="25" style="margin-left:10px;border-top-right-radius:0px;border-bottom-right-radius:0px;">
+                    <input type="text" name ="nomRecherche" class="form-control" placeholder="Nom de la personne recherchée" size="25" style="margin-left:10px;border-top-right-radius:0px;border-bottom-right-radius:0px;">
                 </div>
                 
                 <button type="submit" class="btn btn-primary" style="margin-left:-5px;border-top-left-radius:0px;border-bottom-left-radius:0px;">
@@ -75,7 +75,7 @@
     </nav>
 
    <div class="container theme-showcase" role="main">
-      <div class="jumbotron">
+      <div class="jumbotron" style="margin-top:60px;">
         {% block tete %}
          {% endblock %}
       </div>

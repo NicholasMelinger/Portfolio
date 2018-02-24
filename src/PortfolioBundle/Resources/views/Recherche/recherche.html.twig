@@ -1,0 +1,16 @@
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+<h1>Recherche</h1>
+        <p>Trouvez la personne adaptée à vos besoins !</p>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>Liste des expériences</h1>
+{% endblock %}
+
+{% block page %}
+ <p>
+ 	<a class="navbar-brand" href="{{ path ('experience_ajout') }}"><u>Ajouter une expérience</u></a>
+ </p>
+{% endblock %}
