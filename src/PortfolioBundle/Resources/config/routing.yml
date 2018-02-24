@@ -20,3 +20,6 @@ creation_profil:
 recherche:
     path:     /recherche
     defaults: { _controller: PortfolioBundle:Recherche:recherche }
+rechercheParNom:
+    path:     /recherchenom
+    defaults: { _controller: PortfolioBundle:Recherche:rechercheNom }
