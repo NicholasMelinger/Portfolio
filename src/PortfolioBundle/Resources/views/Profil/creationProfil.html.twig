@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+    {{ form_row(form.nomUtilisauteur) }}
+    {{ form_row(form.prenomUtilisateur) }}
+    {{ form_row(form.mailUtilisateur) }}
+    {{ form_row(form.mdpUtilisateurEncode.first) }}
+    {{ form_row(form.mdpUtilisateurEncode.second) }}
+
+    <button type="submit">Register!</button>
+{{ form_end(form) }}

@@ -6,9 +6,15 @@ portfolio_css:
     path:     /css 
     defaults: { _controller: PortfolioBundle:Default:css }
 
+<<<<<<< HEAD
 experience_defaut:
     path:    /experiences
     defaults: { _controller: PortfolioBundle:Experiences:experiences_defaut }
 experience_ajout:
     path:    /experiences/add
     defaults: { _controller: PortfolioBundle:Experiences:experience_add }
+=======
+creation_profil:
+    path:     /creation_profil 
+    defaults: { _controller: PortfolioBundle:Profil:creationProfil }
+>>>>>>> creation_profil

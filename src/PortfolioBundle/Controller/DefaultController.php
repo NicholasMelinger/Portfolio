@@ -8,7 +8,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('PortfolioBundle:Default:index.html.twig');
+        return $this->render('PortfolioBundle:Default:layout.html.twig');
     }
     public function cssAction()
     {
