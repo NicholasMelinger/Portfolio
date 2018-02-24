@@ -11,7 +11,7 @@ experience_defaut:
     defaults: { _controller: PortfolioBundle:Experiences:experiences_defaut }
 experience_ajout:
     path:    /experiences/add
-    defaults: { _controller: PortfolioBundle:Experiences:experience_add }
+    defaults: { _controller: PortfolioBundle:Experiences:experiences_add }
 
 creation_profil:
     path:     /creation_profil 

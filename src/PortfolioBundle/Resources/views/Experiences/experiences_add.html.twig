@@ -1,4 +1,4 @@
-% extends "PortfolioBundle:Default:layout.html.twig" %}
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
 
 {% block tete %}
 <h1>Expériences professionnelles</h1>
@@ -6,11 +6,11 @@
 {% endblock %}
 
 {% block titre_section %}
-	<h1>Liste des expériences</h1>
+	<h1>Ajout d'une expérience</h1>
 {% endblock %}
 
 {% block page %}
  <p>
- 	<a class="navbar-brand" href="{{ path ('experience_ajout') }}"><u>Ajouter une expérience</u></a>
+ 	{{ form(form_add_exp) }}
  </p>
 {% endblock %}

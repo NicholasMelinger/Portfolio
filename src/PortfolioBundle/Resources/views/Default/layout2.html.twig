@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!--<meta name="description" content="">-->
+    <meta name="author" content="Basso - Clabault - Dupont - Melinger">
+    <link rel="icon" href="../../../favicon.ico">
+
+
+
+    <title>UPJV - Portefolio</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="theme.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">    <!-- Barre de navigation -->
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+         <a class="navbar-brand" href="{{ path ('portfolio_homepage') }}"> Portefolio</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="{{ app.request.attributes.get('_route') == 'portfolio_homepage' ? 'active' }}"><a href="{{ path ('portfolio_homepage') }}">Accueil</a></li>
+            <li class="{{ app.request.attributes.get('_route') == 'recherche' ? 'active' }}"><a href="{{ path ('recherche') }}">Recherche</a></li>
+            <li><a href="#contact">Contact</a></li> <!-- ICI LES LIENS SONT A MODIFIER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! OK ENCULE-->
+            <li><a href="{{ path ('portfolio_css') }}">Page CSS</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Exemple <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+
+            <!-- Barre de recherche -->
+            <li>
+              <form class="navbar-form navbar-left" role="search" action="{{ path ('rechercheParNom') }}" method="post" name ="nomRecherche" >
+                <div class="form-group">
+                    <input type="text" name ="nomRecherche" class="form-control" placeholder="Nom de la personne recherchée" size="25" style="margin-left:10px;border-top-right-radius:0px;border-bottom-right-radius:0px;">
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="margin-left:-5px;border-top-left-radius:0px;border-bottom-left-radius:0px;">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </form>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+   <div class="container theme-showcase" role="main">
+      <div class="jumbotron" style="margin-top:60px;">
+        {% block tete %}
+         {% endblock %}
+      </div>
+    </documentiv>
+   <div class="page-header">
+    {% block titre_section %}
+    {% endblock %}
+   </div>
+    {% block page %}
+    {% endblock %}
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../bootstrap/js/jquery.min.js"></script>
+     <script src="bootstrap/js/holder.js"></script>
+     <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

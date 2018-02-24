@@ -13,13 +13,10 @@ PortfolioBundle\Entity\Experiences:
             type: string
             length: 255
             column: type_experience
-        anneeDebutExperience:
-            type: date
-            column: date_debut_experience
-        anneeFinExperience:
-            type: date
-            nullable: true
-            column: annee_fin_experience
+        dureeExperience:
+            type: string
+            length: 50
+            column: dureeExperience
         descriptionExperience:
             type: string
             length: '500'

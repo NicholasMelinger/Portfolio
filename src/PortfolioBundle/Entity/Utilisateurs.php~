@@ -40,6 +40,11 @@ class Utilisateurs
     /**
      * @var string
      */
+    private $mdpUtilisateurEncode;
+
+    /**
+     * @var string
+     */
     private $numeroMobile;
 
     /**
@@ -72,6 +77,20 @@ class Utilisateurs
      */
     private $codePostal;
 
+    /**
+     * @var integer
+     */
+    private $jourNaissance;
+
+    /**
+     * @var integer
+     */
+    private $moisNaissance;
+
+    /**
+     * @var integer
+     */
+    private $anneeNaissance;
 
     /**
      * Get id
@@ -201,6 +220,30 @@ class Utilisateurs
     public function getMdpUtilisateur()
     {
         return $this->mdpUtilisateur;
+    }
+
+    /**
+     * Set mdpUtilisateurEncode
+     *
+     * @param string $mdpUtilisateurEncode
+     *
+     * @return Utilisateurs
+     */
+    public function setMdpUtilisateurEncode($mdpUtilisateurEncode)
+    {
+        $this->mdpUtilisateurEncode = $mdpUtilisateurEncode;
+
+        return $this;
+    }
+
+    /**
+     * Get mdpUtilisateur
+     *
+     * @return string
+     */
+    public function getMdpUtilisateurEncode()
+    {
+        return $this->mdpUtilisateurEncode;
     }
 
     /**
@@ -370,11 +413,84 @@ class Utilisateurs
     {
         return $this->codePostal;
     }
+
+    /**
+     * Set jourNaissance
+     *
+     * @param string $jourNaissance
+     *
+     * @return Utilisateurs
+     */
+    public function setJourNaissance($jourNaissance)
+    {
+        $this->jourNaissance = $jourNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get jourNaissance
+     *
+     * @return string
+     */
+    public function getJourNaissance()
+    {
+        return $this->jourNaissance;
+    }
+
+    /**
+     * Set moisNaissance
+     *
+     * @param string $moisNaissance
+     *
+     * @return Utilisateurs
+     */
+    public function setMoisNaissance($codePostal)
+    {
+        $this->moisNaissance = $moisNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get moisNaissance
+     *
+     * @return string
+     */
+    public function getMoisNaissance()
+    {
+        return $this->moisNaissance;
+    }
+
+    /**
+     * Set anneeNaissance
+     *
+     * @param string $anneeNaissance
+     *
+     * @return Utilisateurs
+     */
+    public function setAnneeNaissance($anneeNaissance)
+    {
+        $this->anneeNaissance = $anneeNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get anneeNaissance
+     *
+     * @return string
+     */
+    public function getAnneeNaissance()
+    {
+        return $this->anneeNaissance;
+    }
+
+
     /**
      * @var \PortfolioBundle\Entity\Types_utilisateur
      */
     private $type_utilisateur;
-
 
     /**
      * Set typeUtilisateur
@@ -444,5 +560,44 @@ class Utilisateurs
     public function getExperiences()
     {
         return $this->experiences;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $user_competences;
+
+
+    /**
+     * Add userCompetence
+     *
+     * @param \PortfolioBundle\Entity\Utilisateurs_competences $userCompetence
+     *
+     * @return Utilisateurs
+     */
+    public function addUserCompetence(\PortfolioBundle\Entity\Utilisateurs_competences $userCompetence)
+    {
+        $this->user_competences[] = $userCompetence;
+
+        return $this;
+    }
+
+    /**
+     * Remove userCompetence
+     *
+     * @param \PortfolioBundle\Entity\Utilisateurs_competences $userCompetence
+     */
+    public function removeUserCompetence(\PortfolioBundle\Entity\Utilisateurs_competences $userCompetence)
+    {
+        $this->user_competences->removeElement($userCompetence);
+    }
+
+    /**
+     * Get userCompetences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserCompetences()
+    {
+        return $this->user_competences;
     }
 }

@@ -80,4 +80,50 @@ class Validations
     {
         return $this->commentaire;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $user_competences;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user_competences = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add userCompetence
+     *
+     * @param \PortfolioBundle\Entity\Utilisateurs_competences $userCompetence
+     *
+     * @return Validations
+     */
+    public function addUserCompetence(\PortfolioBundle\Entity\Utilisateurs_competences $userCompetence)
+    {
+        $this->user_competences[] = $userCompetence;
+
+        return $this;
+    }
+
+    /**
+     * Remove userCompetence
+     *
+     * @param \PortfolioBundle\Entity\Utilisateurs_competences $userCompetence
+     */
+    public function removeUserCompetence(\PortfolioBundle\Entity\Utilisateurs_competences $userCompetence)
+    {
+        $this->user_competences->removeElement($userCompetence);
+    }
+
+    /**
+     * Get userCompetences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserCompetences()
+    {
+        return $this->user_competences;
+    }
 }
