@@ -87,7 +87,7 @@ PortfolioBundle\Entity\Utilisateurs:
     oneToMany:
         experiences:
             targetEntity: Experiences
-            mappedBy: utilisateurs_exp
+            mappedBy: utilisateurs
         user_competences:
             targetEntity: Utilisateurs_competences
             mappedBy: utilisateurs

@@ -195,4 +195,9 @@ class Cursus
     {
         return $this->competences;
     }
+
+    public function __toString() {
+
+        return $this->libelleFormation;
+    }
 }

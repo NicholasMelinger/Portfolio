@@ -242,4 +242,33 @@ class Competences
     {
         return $this->user_competences;
     }
+    /**
+     * @var \PortfolioBundle\Entity\Cursus
+     */
+    private $cursus;
+
+
+    /**
+     * Set cursus
+     *
+     * @param \PortfolioBundle\Entity\Cursus $cursus
+     *
+     * @return Competences
+     */
+    public function setCursus(\PortfolioBundle\Entity\Cursus $cursus = null)
+    {
+        $this->cursus = $cursus;
+
+        return $this;
+    }
+
+    /**
+     * Get cursus
+     *
+     * @return \PortfolioBundle\Entity\Cursus
+     */
+    public function getCursus()
+    {
+        return $this->cursus;
+    }
 }

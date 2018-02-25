@@ -266,4 +266,33 @@ class Experiences
     {
         return $this->cursus_exp;
     }
+    /**
+     * @var string
+     */
+    private $dureeExperience;
+
+
+    /**
+     * Set dureeExperience
+     *
+     * @param string $dureeExperience
+     *
+     * @return Experiences
+     */
+    public function setDureeExperience($dureeExperience)
+    {
+        $this->dureeExperience = $dureeExperience;
+
+        return $this;
+    }
+
+    /**
+     * Get dureeExperience
+     *
+     * @return string
+     */
+    public function getDureeExperience()
+    {
+        return $this->dureeExperience;
+    }
 }

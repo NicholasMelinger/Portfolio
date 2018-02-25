@@ -27,7 +27,7 @@ PortfolioBundle\Entity\Competences:
             targetEntity: Experiences
             inversedBy: competences
             cascade: [ Persist ]
-        cursus_comp:
+        cursus:
             targetEntity: Cursus
             inversedBy: competences
             cascade: [ Persist ]
