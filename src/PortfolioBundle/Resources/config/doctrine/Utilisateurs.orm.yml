@@ -91,3 +91,6 @@ PortfolioBundle\Entity\Utilisateurs:
         user_competences:
             targetEntity: Utilisateurs_competences
             mappedBy: utilisateurs
+        cup:
+            targetEntity: Cursus_utilisateurs_competences
+            mappedBy: utilisateurs

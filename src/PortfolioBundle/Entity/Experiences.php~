@@ -295,4 +295,62 @@ class Experiences
     {
         return $this->dureeExperience;
     }
+    /**
+     * @var \PortfolioBundle\Entity\Utilisateurs
+     */
+    private $utilisateurs;
+
+    /**
+     * @var \PortfolioBundle\Entity\Cursus
+     */
+    private $cursus;
+
+
+    /**
+     * Set utilisateurs
+     *
+     * @param \PortfolioBundle\Entity\Utilisateurs $utilisateurs
+     *
+     * @return Experiences
+     */
+    public function setUtilisateurs(\PortfolioBundle\Entity\Utilisateurs $utilisateurs = null)
+    {
+        $this->utilisateurs = $utilisateurs;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateurs
+     *
+     * @return \PortfolioBundle\Entity\Utilisateurs
+     */
+    public function getUtilisateurs()
+    {
+        return $this->utilisateurs;
+    }
+
+    /**
+     * Set cursus
+     *
+     * @param \PortfolioBundle\Entity\Cursus $cursus
+     *
+     * @return Experiences
+     */
+    public function setCursus(\PortfolioBundle\Entity\Cursus $cursus = null)
+    {
+        $this->cursus = $cursus;
+
+        return $this;
+    }
+
+    /**
+     * Get cursus
+     *
+     * @return \PortfolioBundle\Entity\Cursus
+     */
+    public function getCursus()
+    {
+        return $this->cursus;
+    }
 }

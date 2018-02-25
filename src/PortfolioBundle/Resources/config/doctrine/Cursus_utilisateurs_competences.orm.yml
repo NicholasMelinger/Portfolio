@@ -11,4 +11,20 @@ PortfolioBundle\Entity\Cursus_utilisateurs_competences:
     fields:
         diplome:
             type: integer
+        annee:
+            type: integer
     lifecycleCallbacks: {  }
+
+    manyToOne:
+        competences:
+            targetEntity: Competences
+            inversedBy: cup
+            cascade: [ persist ]
+        cursus:
+            targetEntity: Cursus
+            inversedBy: cup
+            cascade: [ persist ]
+        utilisateurs:
+            targetEntity: Utilisateurs
+            inversedBy: cup
+            cascade: [ persist ]

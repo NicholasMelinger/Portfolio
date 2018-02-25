@@ -242,4 +242,188 @@ class Competences
     {
         return $this->user_competences;
     }
+    /**
+     * @var \PortfolioBundle\Entity\Cursus
+     */
+    private $cursus;
+
+
+    /**
+     * Set cursus
+     *
+     * @param \PortfolioBundle\Entity\Cursus $cursus
+     *
+     * @return Competences
+     */
+    public function setCursus(\PortfolioBundle\Entity\Cursus $cursus = null)
+    {
+        $this->cursus = $cursus;
+
+        return $this;
+    }
+
+    /**
+     * Get cursus
+     *
+     * @return \PortfolioBundle\Entity\Cursus
+     */
+    public function getCursus()
+    {
+        return $this->cursus;
+    }
+    /**
+     * @var \PortfolioBundle\Entity\Experiences
+     */
+    private $experiences;
+
+    /**
+     * @var \PortfolioBundle\Entity\Matrice
+     */
+    private $matrice;
+
+    /**
+     * @var \PortfolioBundle\Entity\Cursus_utilisateurs_competences
+     */
+    private $cursus_utilisateurs_competences;
+
+
+    /**
+     * Set experiences
+     *
+     * @param \PortfolioBundle\Entity\Experiences $experiences
+     *
+     * @return Competences
+     */
+    public function setExperiences(\PortfolioBundle\Entity\Experiences $experiences = null)
+    {
+        $this->experiences = $experiences;
+
+        return $this;
+    }
+
+    /**
+     * Get experiences
+     *
+     * @return \PortfolioBundle\Entity\Experiences
+     */
+    public function getExperiences()
+    {
+        return $this->experiences;
+    }
+
+    /**
+     * Set matrice
+     *
+     * @param \PortfolioBundle\Entity\Matrice $matrice
+     *
+     * @return Competences
+     */
+    public function setMatrice(\PortfolioBundle\Entity\Matrice $matrice = null)
+    {
+        $this->matrice = $matrice;
+
+        return $this;
+    }
+
+    /**
+     * Get matrice
+     *
+     * @return \PortfolioBundle\Entity\Matrice
+     */
+    public function getMatrice()
+    {
+        return $this->matrice;
+    }
+
+    /**
+     * Set cursusUtilisateursCompetences
+     *
+     * @param \PortfolioBundle\Entity\Cursus_utilisateurs_competences $cursusUtilisateursCompetences
+     *
+     * @return Competences
+     */
+    public function setCursusUtilisateursCompetences(\PortfolioBundle\Entity\Cursus_utilisateurs_competences $cursusUtilisateursCompetences = null)
+    {
+        $this->cursus_utilisateurs_competences = $cursusUtilisateursCompetences;
+
+        return $this;
+    }
+
+    /**
+     * Get cursusUtilisateursCompetences
+     *
+     * @return \PortfolioBundle\Entity\Cursus_utilisateurs_competences
+     */
+    public function getCursusUtilisateursCompetences()
+    {
+        return $this->cursus_utilisateurs_competences;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $Cursus_utilisateurs_competences;
+
+
+    /**
+     * Add cursusUtilisateursCompetence
+     *
+     * @param \PortfolioBundle\Entity\Cursus_utilisateurs_competences $cursusUtilisateursCompetence
+     *
+     * @return Competences
+     */
+    public function addCursusUtilisateursCompetence(\PortfolioBundle\Entity\Cursus_utilisateurs_competences $cursusUtilisateursCompetence)
+    {
+        $this->Cursus_utilisateurs_competences[] = $cursusUtilisateursCompetence;
+
+        return $this;
+    }
+
+    /**
+     * Remove cursusUtilisateursCompetence
+     *
+     * @param \PortfolioBundle\Entity\Cursus_utilisateurs_competences $cursusUtilisateursCompetence
+     */
+    public function removeCursusUtilisateursCompetence(\PortfolioBundle\Entity\Cursus_utilisateurs_competences $cursusUtilisateursCompetence)
+    {
+        $this->Cursus_utilisateurs_competences->removeElement($cursusUtilisateursCompetence);
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $cup;
+
+
+    /**
+     * Add cup
+     *
+     * @param \PortfolioBundle\Entity\Cursus_utilisateurs_competences $cup
+     *
+     * @return Competences
+     */
+    public function addCup(\PortfolioBundle\Entity\Cursus_utilisateurs_competences $cup)
+    {
+        $this->cup[] = $cup;
+
+        return $this;
+    }
+
+    /**
+     * Remove cup
+     *
+     * @param \PortfolioBundle\Entity\Cursus_utilisateurs_competences $cup
+     */
+    public function removeCup(\PortfolioBundle\Entity\Cursus_utilisateurs_competences $cup)
+    {
+        $this->cup->removeElement($cup);
+    }
+
+    /**
+     * Get cup
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCup()
+    {
+        return $this->cup;
+    }
 }

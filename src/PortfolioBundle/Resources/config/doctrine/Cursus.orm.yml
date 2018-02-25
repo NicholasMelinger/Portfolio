@@ -26,3 +26,6 @@ PortfolioBundle\Entity\Cursus:
         competences:
             targetEntity: Competences
             mappedBy: cursus
+        cup:
+            targetEntity: Cursus_utilisateurs_competences
+            mappedBy: cursus

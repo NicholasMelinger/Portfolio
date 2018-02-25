@@ -40,3 +40,6 @@ PortfolioBundle\Entity\Competences:
         user_competences:
             targetEntity: Utilisateurs_competences
             mappedBy: competences
+        cup:
+            targetEntity: Cursus_utilisateurs_competences
+            mappedBy: competences
