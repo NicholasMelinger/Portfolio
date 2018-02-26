@@ -32,5 +32,21 @@ class ExperiencesController extends Controller
     	}
         return $this->render('PortfolioBundle:Experiences:experiences_add.html.twig', array('form_exp' => $form->createView()));
     }
+    public function experiences_modifierAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $exp = $em->getRepository('PortfolioBundle:Experiences')->find($id);
+        if (null === $exp) {
+          throw new NotFoundHttpException("L'expérience".$id." n'existe pas.");
+        }
+        $form = $this->createForm(ExperienceType::class, $exp, array('action' =>  $this->generateUrl('experience_ajout', array('id' => $exp->getId()))));
+        if ($form->handleRequest($request)->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($exp);
+          $em->flush();
+          return $this->redirectToRoute('experience_defaut');
+        }
+        return $this->render('PortfolioBundle:Experiences:experiences_add.html.twig', array('form_exp' => $form->createView()));
+    }
 
 }
