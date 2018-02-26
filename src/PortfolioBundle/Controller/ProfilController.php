@@ -2,12 +2,13 @@
 
 namespace PortfolioBundle\Controller;
 
-use PortfolioBundle\Form\UtilisateurType;
+use PortfolioBundle\Form\UtilisateursType;
 use PortfolioBundle\Entity\Utilisateurs;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ProfilController extends Controller
 {
@@ -24,15 +25,17 @@ class ProfilController extends Controller
         //, UserPasswordEncoderInterface $passwordEncoder
         // 1) build the form
         $utilisateur = new Utilisateurs();
-        $form = $this->createForm(UtilisateurType::class, $utilisateur);
+        $form = $this->createForm(UtilisateursType::class, $utilisateur);
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             // 3) Encode the password (you could also do this via Doctrine listener)
-            //$password = $passwordEncoder->encodePassword($utilisateur, $utilisateur->getPlainPassword());
-            $utilisateur->setMdpUtilisateur($password);
+            $passwordEncoder = $this->get('security.password_encoder');
+            $password = $passwordEncoder->encodePassword($utilisateur, $utilisateur->getPlainPassword());
+            $utilisateur->setPassword($password);
+            $utilisateur->setDateInscription(new \DateTime("11-11-1990"));    
 
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();

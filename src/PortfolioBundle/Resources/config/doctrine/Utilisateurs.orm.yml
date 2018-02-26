@@ -22,19 +22,19 @@ PortfolioBundle\Entity\Utilisateurs:
             length: 255
             unique: true
             column: mail_utilisateur
-        loginUtilisateur:
+        username:
             type: string
             length: 255
             unique: true
-            column: login_utilisateur
-        mdpUtilisateur:
+            column: username
+        password:
             type: string
             length: 255
-            column: mdp_utilisateur
-        mdpUtilisateurEncode:
+            column: password
+        plainPassword:
             type: string
             length: 4096
-            column: mdp_utilisateur_encode
+            column: plain_password
         numeroMobile:
             type: string
             length: '15'
@@ -66,18 +66,10 @@ PortfolioBundle\Entity\Utilisateurs:
             length: '10'
             nullable: true
             column: code_postal
-        jourNaissance:
-            type: integer
+        dateNaissance:
+            type: date
             nullable: true
-            column: jour_naissance
-        moisNaissance:
-            type: integer
-            nullable: true
-            column: mois_naissance
-        anneeNaissance:
-            type: integer
-            nullable: true
-            column: annee_naissance
+            column: date_naissance
     lifecycleCallbacks: {  }
     manyToOne:  
         type_utilisateur:
