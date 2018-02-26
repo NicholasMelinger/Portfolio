@@ -25,11 +25,11 @@ PortfolioBundle\Entity\Experiences:
     lifecycleCallbacks: {  }
 
     manyToOne:
-        utilisateurs_exp:
+        utilisateurs:
             targetEntity: Utilisateurs
             inversedBy: experiences
             cascade: [ Persist ]
-        cursus_exp:
+        cursus:
             targetEntity: Cursus
             inversedBy: experiences
             cascade: [ Persist ]

@@ -13,9 +13,6 @@ PortfolioBundle\Entity\Cursus:
             type: string
             length: 255
             column: libelle_formation
-        anneeFormation:
-            type: integer
-            column: annee_formation
         descriptionFormation:
             type: string
             length: '500'
@@ -25,7 +22,10 @@ PortfolioBundle\Entity\Cursus:
     oneToMany:
         experiences:
             targetEntity: Experiences
-            mappedBy: cursus_exp
+            mappedBy: cursus
         competences:
             targetEntity: Competences
-            mappedBy: cursus_comp
+            mappedBy: cursus
+        cup:
+            targetEntity: Cursus_utilisateurs_competences
+            mappedBy: cursus

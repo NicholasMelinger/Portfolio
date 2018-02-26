@@ -11,6 +11,18 @@
 
 {% block page %}
  <p>
- 	{{ form(form_add_exp) }}
+ 	{{ form_start(form_exp) }}
+ 		{{ form_errors(form_exp) }}
+ 		<table>
+ 		<td>
+ 			<tr>{{ form_row(form_exp.typeExperience) }}</tr>
+ 			<tr>{{ form_row(form_exp.dureeExperience) }}</tr>
+ 			<tr>{{ form_row(form_exp.descriptionExperience) }}</tr>
+ 			<tr>{{ form_row(form_exp.cursus) }}</tr>
+ 			<tr>{{ form_row(form_exp.Valider) }}</tr>
+ 		</td>
+ 	</table>
+
+ 	{{ form_end(form_exp) }}
  </p>
 {% endblock %}

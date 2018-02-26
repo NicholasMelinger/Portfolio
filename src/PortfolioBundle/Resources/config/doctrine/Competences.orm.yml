@@ -27,7 +27,7 @@ PortfolioBundle\Entity\Competences:
             targetEntity: Experiences
             inversedBy: competences
             cascade: [ Persist ]
-        cursus_comp:
+        cursus:
             targetEntity: Cursus
             inversedBy: competences
             cascade: [ Persist ]
@@ -39,4 +39,7 @@ PortfolioBundle\Entity\Competences:
     oneToMany:
         user_competences:
             targetEntity: Utilisateurs_competences
+            mappedBy: competences
+        cup:
+            targetEntity: Cursus_utilisateurs_competences
             mappedBy: competences
