@@ -1,13 +1,23 @@
+
+
 {% extends "PortfolioBundle:Default:layout.html.twig" %}
 
 {% block tete %}
+<style style="text/css">
+	/* Define the hover highlight color for the table row */
+    .table-hover tbody tr:hover{
+          background-color: #cfd8dc;
+    }
+</style>
 	<h1>Recherche</h1>
-    <!--<p>Trouvez la personne adaptée à vos besoins !</p>-->
+	<p>Trouvez le candidat idéal !</p>
+	zfzeaf
+    
 {% endblock %}
 
 {% block titre_section %}
 	{% if resultatRequete is defined %}
-		<h1>Résultats de la recherche</h1>
+		<h1>Résultats de la recherche pour '{{ userRecherche }}'.</h1>
 	{% endif %}
 {% endblock %}
 
@@ -16,17 +26,42 @@
 	<p>
 		<!-- Parcours des résultats de la recherche. -->
 		{% if resultatRequete is defined %}
-			{% for resTheme in resultatRequete %}
-				<tr>
-					<td>{{ resTheme.libelle_theme }}</td>
-					
-					<button type="submit" class="btn btn-primary" style="padding:7px;">
-						Consulter le profil 
-			            <span class="glyphicon glyphicon-user"></span>
-			        </button>
-				</tr>
-				<br/><br/>
-			{% endfor %}
+			<center>
+				<div class="row">
+				<table class="table table-responsive table-bordered table-hover" style="max-width:800px;">
+					<center>
+	    				<thead style="background-color: #1c2331;">
+	        				<tr style="color:#ffffff;font-family:Verdana;font-weight:300;">
+		                		<th><center>Nom</center></th>
+		                		<th><center>Profil</center></th>
+		              		</tr>
+		            	</thead>
+					</center>
+
+					<tbody>
+						{% for resultat in resultatRequete %}
+							<tr>
+								<td style="padding-top:14px;font-size:16px;">
+									<center>
+										{{ resultat.prenom_utilisateur }} {{ resultat.nom_utilisateur }}
+									</center>
+								</td>
+
+								<!-- Bouton de consultation du profil -->
+								<td>
+									<center>
+										<button type="submit" class="btn btn-primary" style="padding:7px;">
+											Consulter le profil 
+								            <span class="glyphicon glyphicon-user"></span>
+								        </button>
+							    	</center>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			</center>
 		{% endif %}
 	</p>
 {% endblock %}

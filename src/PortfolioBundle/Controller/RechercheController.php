@@ -54,9 +54,18 @@ class RechercheController extends Controller
         }
 
         // Exécution de la requête.
-        $reponse = $bdd->query('SELECT * FROM Themes');
-        
+        $nomRecherche = $_POST['nomRecherche'];
+        $requeteNomUser = 'SELECT * FROM Utilisateurs 
+        WHERE (nom_utilisateur LIKE "%'.$nomRecherche.'%") 
+        OR (prenom_utilisateur LIKE "%'.$nomRecherche.'%") 
+        OR (CONCAT(nom_utilisateur, " ", prenom_utilisateur) LIKE "%'.$nomRecherche.'%")
+        OR (CONCAT(prenom_utilisateur, " ", nom_utilisateur) LIKE "%'.$nomRecherche.'%")';
 
-        return $this->render('PortfolioBundle:Recherche:recherche.html.twig', array('resultatRequete' => $reponse));//, array('form' => $form->createView()));
+
+
+        $reponse = $bdd->query($requeteNomUser);
+        //$reponse = $bdd->query('SELECT * FROM Themes');
+
+        return $this->render('PortfolioBundle:Recherche:recherche.html.twig', array('resultatRequete' => $reponse, 'userRecherche' => $nomRecherche));//, array('form' => $form->createView()));
     }
 }

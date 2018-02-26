@@ -2,10 +2,12 @@
 
 namespace PortfolioBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * Utilisateurs
  */
-class Utilisateurs
+class Utilisateurs implements UserInterface
 {
     /**
      * @var int
@@ -30,17 +32,17 @@ class Utilisateurs
     /**
      * @var string
      */
-    private $loginUtilisateur;
+    private $username;
 
     /**
      * @var string
      */
-    private $mdpUtilisateur;
+    private $password;
 
     /**
      * @var string
      */
-    private $mdpUtilisateurEncode;
+    private $plainPassword;
 
     /**
      * @var string
@@ -80,17 +82,7 @@ class Utilisateurs
     /**
      * @var integer
      */
-    private $jourNaissance;
-
-    /**
-     * @var integer
-     */
-    private $moisNaissance;
-
-    /**
-     * @var integer
-     */
-    private $anneeNaissance;
+    private $dateNaissance;
 
     /**
      * Get id
@@ -175,63 +167,39 @@ class Utilisateurs
     }
 
     /**
-     * Set loginUtilisateur
+     * Set username
      *
-     * @param string $loginUtilisateur
+     * @param string $username
      *
      * @return Utilisateurs
      */
-    public function setLoginUtilisateur($loginUtilisateur)
+    public function setUsername($username)
     {
-        $this->loginUtilisateur = $loginUtilisateur;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get loginUtilisateur
+     * Get username
      *
      * @return string
      */
-    public function getLoginUtilisateur()
+    public function getUsername()
     {
-        return $this->loginUtilisateur;
+        return $this->username;
     }
 
     /**
-     * Set mdpUtilisateur
+     * Set password
      *
-     * @param string $mdpUtilisateur
+     * @param string $password
      *
      * @return Utilisateurs
      */
-    public function setMdpUtilisateur($mdpUtilisateur)
+    public function setPassword($password)
     {
-        $this->mdpUtilisateur = $mdpUtilisateur;
-
-        return $this;
-    }
-
-    /**
-     * Get mdpUtilisateur
-     *
-     * @return string
-     */
-    public function getMdpUtilisateur()
-    {
-        return $this->mdpUtilisateur;
-    }
-
-    /**
-     * Set mdpUtilisateurEncode
-     *
-     * @param string $mdpUtilisateurEncode
-     *
-     * @return Utilisateurs
-     */
-    public function setMdpUtilisateurEncode($mdpUtilisateurEncode)
-    {
-        $this->mdpUtilisateurEncode = $mdpUtilisateurEncode;
+        $this->password = $password;
 
         return $this;
     }
@@ -241,9 +209,33 @@ class Utilisateurs
      *
      * @return string
      */
-    public function getMdpUtilisateurEncode()
+    public function getPassword()
     {
-        return $this->mdpUtilisateurEncode;
+        return $this->password;
+    }
+
+    /**
+     * Set plainPassword
+     *
+     * @param string $plainPassword
+     *
+     * @return Utilisateurs
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get mdpUtilisateur
+     *
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
     }
 
     /**
@@ -415,75 +407,27 @@ class Utilisateurs
     }
 
     /**
-     * Set jourNaissance
+     * Set dateNaissance
      *
-     * @param string $jourNaissance
+     * @param string $dateNaissance
      *
      * @return Utilisateurs
      */
-    public function setJourNaissance($jourNaissance)
+    public function setDateNaissance($dateNaissance)
     {
-        $this->jourNaissance = $jourNaissance;
+        $this->dateNaissance = $dateNaissance;
 
         return $this;
     }
 
     /**
-     * Get jourNaissance
+     * Get dateNaissance
      *
      * @return string
      */
-    public function getJourNaissance()
+    public function getDateNaissance()
     {
-        return $this->jourNaissance;
-    }
-
-    /**
-     * Set moisNaissance
-     *
-     * @param string $moisNaissance
-     *
-     * @return Utilisateurs
-     */
-    public function setMoisNaissance($codePostal)
-    {
-        $this->moisNaissance = $moisNaissance;
-
-        return $this;
-    }
-
-    /**
-     * Get moisNaissance
-     *
-     * @return string
-     */
-    public function getMoisNaissance()
-    {
-        return $this->moisNaissance;
-    }
-
-    /**
-     * Set anneeNaissance
-     *
-     * @param string $anneeNaissance
-     *
-     * @return Utilisateurs
-     */
-    public function setAnneeNaissance($anneeNaissance)
-    {
-        $this->anneeNaissance = $anneeNaissance;
-
-        return $this;
-    }
-
-    /**
-     * Get anneeNaissance
-     *
-     * @return string
-     */
-    public function getAnneeNaissance()
-    {
-        return $this->anneeNaissance;
+        return $this->dateNaissance;
     }
 
 
@@ -600,6 +544,7 @@ class Utilisateurs
     {
         return $this->user_competences;
     }
+
     /**
      * @var \PortfolioBundle\Entity\Cursus_utilisateurs_competences
      */
@@ -736,6 +681,7 @@ class Utilisateurs
     {
         return $this->cup;
     }
+<<<<<<< HEAD
     /**
      * @var \PortfolioBundle\Entity\Types_utilisateur
      */
@@ -764,5 +710,22 @@ class Utilisateurs
     public function getTypesUtilisateur()
     {
         return $this->types_utilisateur;
+=======
+
+    public function getSalt()
+    {
+        // The bcrypt and argon2i algorithms don't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+>>>>>>> cc57c7f2dc12f8597b21fa98d3020d6a96224940
     }
 }
