@@ -39,14 +39,26 @@ class ExperiencesController extends Controller
         if (null === $exp) {
           throw new NotFoundHttpException("L'expérience".$id." n'existe pas.");
         }
-        $form = $this->createForm(ExperienceType::class, $exp, array('action' =>  $this->generateUrl('experience_ajout', array('id' => $exp->getId()))));
-        if ($form->handleRequest($request)->isValid()) {
+        $form = $this->createForm(ExperienceType::class, $exp, array('action' =>  $this->generateUrl('experience_modifier', array('id' => $exp->getId()))));
+        $form->handleRequest($request);
+        if ($form->isValid()) {
           $em = $this->getDoctrine()->getManager();
-          $em->persist($exp);
           $em->flush();
           return $this->redirectToRoute('experience_defaut');
         }
-        return $this->render('PortfolioBundle:Experiences:experiences_add.html.twig', array('form_exp' => $form->createView()));
+        return $this->render('PortfolioBundle:Experiences:experiences_add.html.twig', array('form_exp' => $form->createView(),));
+    }
+
+        public function experiences_supprimerAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $exp = $em->getRepository('PortfolioBundle:Experiences')->find($id);
+        if (null === $exp) {
+          throw new NotFoundHttpException("L'expérience".$id." n'existe pas.");
+        }
+        $em->remove($exp);
+        $em->flush();
+        return $this->redirectToRoute('experience_defaut');
     }
 
 }

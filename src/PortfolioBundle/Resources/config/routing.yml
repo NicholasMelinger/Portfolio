@@ -14,7 +14,12 @@ experience_ajout:
     defaults: { _controller: PortfolioBundle:Experiences:experiences_add }
 experience_modifier:
     path:    /modifier_experience/{id}
-    defaults: { _controller: PortfolioBundle:Experiences:experiences_modifier}    
+    defaults: { _controller: PortfolioBundle:Experiences:experiences_modifier}
+    requirements:
+       _method: POST  
+experience_supprimer:
+    path:    /supprimer_experience/{id}
+    defaults: { _controller: PortfolioBundle:Experiences:experiences_supprimer}   
 
 creation_profil:
     path:     /creation_profil 
