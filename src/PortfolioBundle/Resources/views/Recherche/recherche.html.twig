@@ -3,16 +3,14 @@
 {% extends "PortfolioBundle:Default:layout.html.twig" %}
 
 {% block tete %}
-<style style="text/css">
-	/* Define the hover highlight color for the table row */
-    .table-hover tbody tr:hover{
-          background-color: #cfd8dc;
-    }
-</style>
+	<style style="text/css">
+		/* Define the hover highlight color for the table row */
+	    .table-hover tbody tr:hover{
+	          background-color: #cfd8dc;
+	    }
+	</style>
 	<h1>Recherche</h1>
 	<p>Trouvez le candidat idéal !</p>
-	zfzeaf
-    
 {% endblock %}
 
 {% block titre_section %}
@@ -26,42 +24,24 @@
 	<p>
 		<!-- Parcours des résultats de la recherche. -->
 		{% if resultatRequete is defined %}
-			<center>
-				<div class="row">
-				<table class="table table-responsive table-bordered table-hover" style="max-width:800px;">
-					<center>
-	    				<thead style="background-color: #1c2331;">
-	        				<tr style="color:#ffffff;font-family:Verdana;font-weight:300;">
-		                		<th><center>Nom</center></th>
-		                		<th><center>Profil</center></th>
-		              		</tr>
-		            	</thead>
-					</center>
-
-					<tbody>
-						{% for resultat in resultatRequete %}
-							<tr>
-								<td style="padding-top:14px;font-size:16px;">
-									<center>
-										{{ resultat.prenom_utilisateur }} {{ resultat.nom_utilisateur }}
-									</center>
-								</td>
-
-								<!-- Bouton de consultation du profil -->
-								<td>
-									<center>
-										<button type="submit" class="btn btn-primary" style="padding:7px;">
-											Consulter le profil 
-								            <span class="glyphicon glyphicon-user"></span>
-								        </button>
-							    	</center>
-								</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-			</center>
+			{% for resultat in resultatRequete %}
+				<center>
+					<div class="panel panel-primary" style="max-width:800px;border-color:#546e7a;" >
+						<div class="panel-heading" style="border-color:#546e7a;background-image: linear-gradient(to bottom,#37474f   0,#546e7a   100%);border-bottom-right-radius:0px;border-bottom-left-radius:0px;">
+							<h3 class="panel-title">
+								{{ resultat.prenom_utilisateur }} {{ resultat.nom_utilisateur }}
+							</h3>
+						</div>
+						<div class="panel-body">
+								<button type="submit" class="btn btn-primary" style="padding:7px;">
+									Consulter le profil 
+						            <span class="glyphicon glyphicon-user"></span>
+						        </button>
+					    	</center>
+					    </div>
+					</div>
+				</center>
+			{% endfor %}
 		{% endif %}
 	</p>
 {% endblock %}
