@@ -48,5 +48,7 @@ class ProfilController extends Controller
         return $this->render('PortfolioBundle:Profil:creationProfil.html.twig', array(
           'form' => $form->createView(),
         ));
+
+        //return $this->render('PortfolioBundle:Default:index.html.twig');
     }
 }
