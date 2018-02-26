@@ -681,7 +681,6 @@ class Utilisateurs implements UserInterface
     {
         return $this->cup;
     }
-<<<<<<< HEAD
     /**
      * @var \PortfolioBundle\Entity\Types_utilisateur
      */
@@ -710,8 +709,8 @@ class Utilisateurs implements UserInterface
     public function getTypesUtilisateur()
     {
         return $this->types_utilisateur;
-=======
 
+    }
     public function getSalt()
     {
         // The bcrypt and argon2i algorithms don't require a separate salt.
@@ -726,6 +725,6 @@ class Utilisateurs implements UserInterface
 
     public function eraseCredentials()
     {
->>>>>>> cc57c7f2dc12f8597b21fa98d3020d6a96224940
+
     }
 }

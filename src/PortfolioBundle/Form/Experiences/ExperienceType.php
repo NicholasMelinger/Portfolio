@@ -18,7 +18,6 @@ class ExperienceType extends AbstractType {
     			  ->add('dureeExperience', TextType::class, array('label' => 'Durée :'))
     			  ->add('descriptionExperience', TextareaType::class, array('label' => 'Description :'))
     			  ->add('cursus', EntityType::class, array('class' => Cursus::class,'label' => 'Cursus :'))
-    			  ->add('Valider', SubmitType::class)
     			  ->getForm();
 	}
 	public function configureOptions (OptionsResolver $resolver) {
