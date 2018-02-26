@@ -14,7 +14,9 @@ class ExperiencesController extends Controller
 {
     public function experiences_defautAction()
     {
-        return $this->render('PortfolioBundle:Experiences:experiences.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $exp = $em->getRepository('PortfolioBundle:Experiences')->findAll();
+        return $this->render('PortfolioBundle:Experiences:experiences.html.twig', array('experiences' => $exp, ));
     }
     
     public function experiences_addAction(Request $request)

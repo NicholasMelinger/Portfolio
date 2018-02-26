@@ -10,7 +10,37 @@
 {% endblock %}
 
 {% block page %}
+{% for exp in experiences %}
  <p>
- 	<a class="navbar-brand" href="{{ path ('experience_ajout') }}"><u>Ajouter une expérience</u></a>
- </p>
+<div class="row">
+	<div class="col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">{{ exp.typeExperience }}</h3>
+			</div>
+			<div class="panel-body">
+			<table>
+				<td>
+				<tr><b>Durée : </b>{{ exp.dureeExperience }}</tr><hr/>
+				<tr><b>Détails : </b> {{ exp.descriptionExperience}}</tr>
+				{% if exp.cursus != "Aucune formation" %}
+				<hr/>
+				<tr><b>Formation suivie :  </b>{{ exp.cursus }}</tr>
+				{% endif %}
+				</td>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+</p>
+{% endfor %}
+<div class="row">
+    <div class="col-sm-4">
+ 		<p>
+ 			<a class="navbar-brand" href="{{ path ('experience_ajout') }}"><u>Ajouter une expérience</u></a>
+		 </p>
+	</div>
+</div>
+
 {% endblock %}

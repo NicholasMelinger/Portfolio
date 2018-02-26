@@ -19,7 +19,7 @@ PortfolioBundle\Entity\Types_utilisateur:
             nullable: true
     lifecycleCallbacks: {  }
 
-oneToMany : 
-    utilisateurs:
-        targetEntity: Utilisateurs
-        mappedBy: type_utilisateur
+    oneToMany : 
+         utilisateurs:
+              targetEntity: Utilisateurs
+              mappedBy: type_utilisateur

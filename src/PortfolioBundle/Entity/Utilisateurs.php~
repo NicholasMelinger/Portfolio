@@ -736,4 +736,33 @@ class Utilisateurs
     {
         return $this->cup;
     }
+    /**
+     * @var \PortfolioBundle\Entity\Types_utilisateur
+     */
+    private $types_utilisateur;
+
+
+    /**
+     * Set typesUtilisateur
+     *
+     * @param \PortfolioBundle\Entity\Types_utilisateur $typesUtilisateur
+     *
+     * @return Utilisateurs
+     */
+    public function setTypesUtilisateur(\PortfolioBundle\Entity\Types_utilisateur $typesUtilisateur = null)
+    {
+        $this->types_utilisateur = $typesUtilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get typesUtilisateur
+     *
+     * @return \PortfolioBundle\Entity\Types_utilisateur
+     */
+    public function getTypesUtilisateur()
+    {
+        return $this->types_utilisateur;
+    }
 }
