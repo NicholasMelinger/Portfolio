@@ -1,9 +1,31 @@
-{{ form_start(form) }}
-    {{ form_row(form.nomUtilisauteur) }}
-    {{ form_row(form.prenomUtilisateur) }}
-    {{ form_row(form.mailUtilisateur) }}
-    {{ form_row(form.mdpUtilisateurEncode.first) }}
-    {{ form_row(form.mdpUtilisateurEncode.second) }}
 
-    <button type="submit">Register!</button>
-{{ form_end(form) }}
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+<h1>Création du profil</h1>
+        <p>Sur cette page, vous pouvez créer votre profil</p>
+{% endblock %}
+
+{% block titre_section %}
+{% endblock %}
+
+{% block page %}
+ <p>
+	 {{ form_start(form) }}
+	    {{ form_row(form.nomUtilisateur) }}
+	    {{ form_row(form.prenomUtilisateur) }}
+	    {{ form_row(form.mailUtilisateur) }}
+	    {{ form_row(form.username) }}
+	    {{ form_row(form.plainPassword) }}
+	    {{ form_row(form.numeroMobile) }}
+	    {{ form_row(form.numeroFixe) }}
+	    {{ form_row(form.adressePostale) }}
+	    {{ form_row(form.ville) }}
+	    {{ form_row(form.codePostal) }}
+	    {{ form_row(form.dateNaissance) }}
+	    {{ form_row(form.type_utilisateur) }}
+	    <button type="submit" class="btn btn-lg btn-success" >Valider</button>
+	{{ form_end(form) }}
+
+ </p>
+{% endblock %}
