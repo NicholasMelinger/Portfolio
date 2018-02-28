@@ -1,0 +1,41 @@
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
+
+{% block tete %}
+<h1>Cursus</h1>
+        <p>Sur cette page, vous pouvez gérer vos cursus parcourus ainsi que les compétences acquises durant chacun d'entre eux.</p>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>Liste des cursus</h1>
+{% endblock %}
+
+{% block page %}
+{% for cup in cup_lst %}
+ <p>
+<div class="row">
+	<div class="col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">{{ cup.cursus }}</h3>
+			</div>
+			<div class="panel-body">
+			<table>
+				<td>
+				<tr><b>Compétence(s) acquise(s): </b>{{ cup.competences }}</tr><hr/>
+				<tr><b>Diplôme obtenu : </b> {{ cup.diplome }}</tr>
+				</td>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+</p>
+{% endfor %}
+<div class="row">
+    <div class="col-sm-4">
+ 		<p>
+ 			<a class="navbar-brand" href="#"><u>Ajouter un cursus</u></a>
+		 </p>
+	</div>
+</div>
+{% endblock %}

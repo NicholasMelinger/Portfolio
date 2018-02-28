@@ -15,8 +15,7 @@ experience_ajout:
 experience_modifier:
     path:    /modifier_experience/{id}
     defaults: { _controller: PortfolioBundle:Experiences:experiences_modifier}
-    requirements:
-       _method: POST  
+    requirements: 
 experience_supprimer:
     path:    /supprimer_experience/{id}
     defaults: { _controller: PortfolioBundle:Experiences:experiences_supprimer}   
@@ -31,3 +30,19 @@ recherche:
 rechercheParNom:
     path:     /recherchenom
     defaults: { _controller: PortfolioBundle:Recherche:rechercheNom }
+
+cursus_defaut:
+    path:    /cursus
+    defaults: { _controller: PortfolioBundle:Cursus:cursus_defaut }
+cursus_ajout:
+    path:    /cursus/add
+    defaults: { _controller: PortfolioBundle:Cursus:cursus_add }
+cursus_modifier:
+    path:    /modifier_cursus/{id}
+    defaults: { _controller: PortfolioBundle:Cursus:cursus_modifier }
+cursus_supprimer:
+    path:    /supprimer_cursus/{id}
+    defaults: { _controller: PortfolioBundle:Cursus:cursus_supprimer }
+cup_defaut:
+    path:    /cup/{id}
+    defaults: { _controller: PortfolioBundle:Cup:cup_defaut }

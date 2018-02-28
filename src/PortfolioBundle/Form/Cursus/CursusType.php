@@ -13,14 +13,12 @@ class CursusType extends AbstractType {
 
 	public function buildForm (FormBuilderInterface $builder, array $options) {
 
-		$builder->add('libelle_formation', TextType::class, array('label' => 'Libellé :'))
-    			  ->add('annee_formation', IntegerType::class, array('label' => 'Année :'))
-    			  ->add('description_formation', TextareaType::class, array('label' => 'Description :'))
-    			  ->add('Valider', SubmitType::class)
+		$builder->add('libelleFormation', TextType::class, array('label' => 'Libellé :'))
+    			  ->add('descriptionFormation', TextareaType::class, array('label' => 'Description :'))
     			  ->getForm();
 	}
 	public function configureOptions (OptionsResolver $resolver) {
 
-		$resolver->setDefaults(array('data_class' => 'PortfolioBundle\Entity\Experiences',));
+		$resolver->setDefaults(array('data_class' => 'PortfolioBundle\Entity\Cursus',));
 	}
 }
