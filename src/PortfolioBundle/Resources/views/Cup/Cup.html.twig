@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block titre_section %}
-	<h1>Liste des cursus</h1>
+	<h1>{{ user | upper }}</h1>
 {% endblock %}
 
 {% block page %}
@@ -31,11 +31,4 @@
 </div>
 </p>
 {% endfor %}
-<div class="row">
-    <div class="col-sm-4">
- 		<p>
- 			<a class="navbar-brand" href="#"><u>Ajouter un cursus</u></a>
-		 </p>
-	</div>
-</div>
 {% endblock %}

@@ -727,4 +727,9 @@ class Utilisateurs implements UserInterface
     {
 
     }
+
+    public function __toString()
+    {
+        return $this->nomUtilisateur . ' ' . $this->prenomUtilisateur;
+    }
 }
