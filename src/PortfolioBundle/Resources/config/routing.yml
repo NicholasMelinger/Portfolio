@@ -30,7 +30,12 @@ recherche:
 rechercheParNom:
     path:     /recherchenom
     defaults: { _controller: PortfolioBundle:Recherche:rechercheNom }
-
+rechercheAvancee:
+    path:     /rechercheavancee
+    defaults: { _controller: PortfolioBundle:Recherche:rechercheAvancee }
+resultatRecherche:
+    path:     /resultatrecherche
+    defaults: { _controller: PortfolioBundle:Recherche:resultatrecherche }
 cursus_defaut:
     path:    /cursus
     defaults: { _controller: PortfolioBundle:Cursus:cursus_defaut }
