@@ -12,14 +12,8 @@ class Cursus_utilisateurs_competencesRepository extends \Doctrine\ORM\EntityRepo
 {
 	public function select_distinct($id_user)
 	{
-		 $qb = $this->createQueryBuilder('a');
-
- 		 $qb->where('a.utilisateurs = :id_user')
-      		 ->setParameter('id_user', $id_user)
-     		->groupBy('a.cursus', 'DESC');
-
-		return $qb
-    	->getQuery()
-    	->getResult();
+		$qb = $this->createQueryBuilder('a');
+ 		$qb->where('a.utilisateurs = :id_user')->setParameter('id_user', $id_user)->groupBy('a.cursus');
+		return $qb->getQuery()->getResult();
 	}
 }
