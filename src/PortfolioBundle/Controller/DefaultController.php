@@ -14,4 +14,8 @@ class DefaultController extends Controller
     {
         return $this->render('PortfolioBundle:Default:css.html.twig');
     }
+    public function adminAction()
+    {
+        return $this->render('PortfolioBundle:Default:admin.html.twig');
+    }
 }
