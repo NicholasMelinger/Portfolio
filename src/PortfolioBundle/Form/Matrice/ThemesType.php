@@ -13,7 +13,7 @@ class ThemesType extends AbstractType {
 
 	public function buildForm (FormBuilderInterface $builder, array $options) {
 
-		$builder->add('libelle_theme', TextType::class, array('label' => 'Libellé :'))
+		$builder->add('libelleTheme', TextType::class, array('label' => 'Libellé :'))
     			  ->getForm();
 	}
 	public function configureOptions (OptionsResolver $resolver) {

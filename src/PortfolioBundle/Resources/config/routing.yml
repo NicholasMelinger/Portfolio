@@ -51,3 +51,69 @@ cursus_supprimer:
 cup_defaut:
     path:    /cup/{id}
     defaults: { _controller: PortfolioBundle:Cup:cup_defaut }
+
+competences_defaut:
+    path:    /competences
+    defaults: { _controller: PortfolioBundle:Competences:competences_defaut }
+competences_ajout:
+    path:    /competences/add
+    defaults: { _controller: PortfolioBundle:Competences:competences_add }
+competences_modifier:
+    path:    /modifier_competences/{id}
+    defaults: { _controller: PortfolioBundle:Competences:competences_modifier }
+competences_supprimer:
+    path:    /supprimer_competences/{id}
+    defaults: { _controller: PortfolioBundle:Competences:competences_supprimer }
+
+themes_defaut:
+    path:    /themes
+    defaults: { _controller: PortfolioBundle:Themes:themes_defaut }
+themes_ajout:
+    path:    /themes/add
+    defaults: { _controller: PortfolioBundle:Themes:themes_add }
+themes_modifier:
+    path:    /modifier_themes/{id}
+    defaults: { _controller: PortfolioBundle:Themes:themes_modifier }
+themes_supprimer:
+    path:    /supprimer_themes/{id}
+    defaults: { _controller: PortfolioBundle:Themes:themes_supprimer }
+
+sous_themes_defaut:
+    path:    /sous_themes
+    defaults: { _controller: PortfolioBundle:Sous_themes:sous_themes_defaut }
+sous_themes_ajout:
+    path:    /sous_themes/add
+    defaults: { _controller: PortfolioBundle:Sous_themes:sous_themes_add }
+sous_themes_modifier:
+    path:    /modifier_sous_themes/{id}
+    defaults: { _controller: PortfolioBundle:Sous_themes:sous_themes_modifier }
+sous_themes_supprimer:
+    path:    /supprimer_sous_themes/{id}
+    defaults: { _controller: PortfolioBundle:Sous_themes:sous_themes_supprimer }
+
+sous_sous_themes_defaut:
+    path:    /sous_sous_themes
+    defaults: { _controller: PortfolioBundle:Sous_sous_themes:sous_sous_themes_defaut }
+sous_sous_themes_ajout:
+    path:    /sous_sous_themes/add
+    defaults: { _controller: PortfolioBundle:Sous_sous_themes:sous_sous_themes_add }
+sous_sous_themes_modifier:
+    path:    /modifier_sous_sous_themes/{id}
+    defaults: { _controller: PortfolioBundle:Sous_sous_themes:sous_sous_themes_modifier }
+sous_sous_themes_supprimer:
+    path:    /supprimer_sous_sous_themes/{id}
+    defaults: { _controller: PortfolioBundle:Sous_sous_themes:sous_sous_themes_supprimer }
+
+matrice_defaut:
+    path:    /matrice
+    defaults: { _controller: PortfolioBundle:Matrice:matrice_defaut }
+matrice_ajout:
+    path:    /matrice/add
+    defaults: { _controller: PortfolioBundle:Matrice:matrice_add }
+matrice_modifier:
+    path:    /modifier_matrice/{id}
+    defaults: { _controller: PortfolioBundle:Matrice:matrice_modifier}
+    requirements: 
+matrice_supprimer:
+    path:    /supprimer_matrice/{id}
+    defaults: { _controller: PortfolioBundle:Matrice:matrice_supprimer} 

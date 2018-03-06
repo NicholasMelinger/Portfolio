@@ -16,10 +16,10 @@ class MatriceType extends AbstractType {
 
 	public function buildForm (FormBuilderInterface $builder, array $options) {
 
-		$builder->add('theme', EntityType::class, array('class' => Themes::class,'label' => 'Thème :'))
-				  ->add('s_theme', EntityType::class, array('class' => Sous_themes::class,'label' => 'Sous thème :'))
-    			  ->add('s_s_theme', EntityType::class, array('class' => Sous_sous_themes::class,'label' => 'Spécifique :'))
-    			  ->add('flag', IntegerType::class, array('label' => 'Flag :'))
+		$builder->add('theme_matrice', EntityType::class, array('class' => Themes::class, 'choice_label' => 'libelleTheme', 'label' => 'Thème :'))
+				  ->add('s_theme_matrice', EntityType::class, array('class' => Sous_themes::class, 'choice_label' => 'libelleSousTheme', 'label' => 'Sous thème :'))
+    			  ->add('s_s_theme_matrice', EntityType::class, array('class' => Sous_sous_themes::class, 'choice_label' => 'libelleSousSousTheme', 'label' => 'Spécifique :'))
+    			  ->add('flagActif', IntegerType::class, array('label' => 'Flag :'))
     			  ->getForm();
 	}
 	public function configureOptions (OptionsResolver $resolver) {
