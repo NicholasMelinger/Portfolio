@@ -23,12 +23,14 @@
  <p>
 <div class="row">
 	<div class="col-sm-4">
-		<div class="panel panel-info">
+		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title"><a href="{{ path ('sous_themes_modifier', { 'id': stheme.id }) }}"><b><u>{{ stheme.libelleSousTheme }}</u></b></a> - <a href="{{ path ('sous_themes_supprimer', { 'id': stheme.id }) }}"><u><font color="red">X</font></u></a></h3>
+			</div>
 		</div>
 	</div>
 </div>
 </p>
 {% endfor %}
 {% endblock %}
+

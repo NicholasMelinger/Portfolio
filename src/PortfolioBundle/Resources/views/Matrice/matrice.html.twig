@@ -10,6 +10,13 @@
 {% endblock %}
 
 {% block page %}
+<div class="row">
+    <div class="col-sm-4">
+ 		<p>
+ 			<a class="navbar-brand" href="{{ path ('matrice_ajout') }}"><u>Ajouter une matrice de themes</u></a>
+		 </p>
+	</div>
+</div>
 {% for mat in matrice %}
  <p>
 <div class="row">
@@ -21,7 +28,7 @@
 			<div class="panel-body">
 			<table>
 				<td>
-				<tr><b>Flag : </b>{{ mat.flagActif }}</tr><hr/>
+				<tr><b>Chemin du theme : </b>{{ mat }}</tr><hr/>
 				</td>
 			</table>
 			</div>
@@ -30,11 +37,4 @@
 </div>
 </p>
 {% endfor %}
-<div class="row">
-    <div class="col-sm-4">
- 		<p>
- 			<a class="navbar-brand" href="{{ path ('matrice_ajout') }}"><u>Ajouter une matrice de compétence</u></a>
-		 </p>
-	</div>
-</div>
 {% endblock %}

@@ -40,7 +40,7 @@ class ThemesController extends Controller
         if (null === $theme) {
           throw new NotFoundHttpException("Le theme ".$id." n'existe pas.");
         }
-        $form = $this->createForm(themesType::class, $comp, array('action' =>  $this->generateUrl('themes_modifier', array('id' => $comp->getId()))));
+        $form = $this->createForm(themesType::class, $theme, array('action' =>  $this->generateUrl('themes_modifier', array('id' => $theme->getId()))));
         $form->handleRequest($request);
         if ($form->isValid()) {
           $em = $this->getDoctrine()->getManager();

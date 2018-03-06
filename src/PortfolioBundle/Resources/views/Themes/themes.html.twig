@@ -10,7 +10,6 @@
 {% endblock %}
 
 {% block page %}
-
 <div class="row">
     <div class="col-sm-4">
  		<p>
@@ -18,14 +17,14 @@
 		 </p>
 	</div>
 </div>
-
 {% for theme in themes %}
  <p>
 <div class="row">
 	<div class="col-sm-4">
-		<div class="panel panel-info">
+		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title"><a href="{{ path ('themes_modifier', { 'id': theme.id }) }}"><b><u>{{ theme.libelleTheme }}</u></b></a> - <a href="{{ path ('themes_supprimer', { 'id': theme.id }) }}"><u><font color="red">X</font></u></a></h3>
+			</div>
 		</div>
 	</div>
 </div>
