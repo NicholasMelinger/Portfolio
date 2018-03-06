@@ -1,7 +1,9 @@
 portfolio_homepage:
     path:     /
     defaults: { _controller: PortfolioBundle:Default:index }
-
+admin_homepage:
+    path:     /admin
+    defaults: { _controller: PortfolioBundle:Default:admin }
 portfolio_css:
     path:     /css 
     defaults: { _controller: PortfolioBundle:Default:css }

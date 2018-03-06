@@ -10,19 +10,31 @@
 {% endblock %}
 
 {% block page %}
-{% for cup in cup_lst %}
+{% for crs in cursus %}
  <p>
 <div class="row">
 	<div class="col-sm-4">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">{{ cup.cursus }}</h3>
+				<h3 class="panel-title">{{ crs.cursus | upper }}</h3>	
 			</div>
 			<div class="panel-body">
 			<table>
 				<td>
-				<tr><b>Compétence(s) acquise(s): </b>{{ cup.competences }}</tr><hr/>
-				<tr><b>Diplôme obtenu : </b> {{ cup.diplome }}</tr>
+				<tr><b>Compétence(s) acquise(s): </b></tr>
+					{% for cup in cup_lst %}
+						{% if cup.cursus == crs.cursus %}
+							<tr><font color="white">_</font></tr><tr>{{ cup.competences }}</tr>
+						{% endif %}
+					{% endfor %}<hr/>
+				<tr>
+					<b><font size="2px">Diplôme obtenu :</font> </b>
+				 	{% if crs.diplome == 1 %}
+				 	<input type="checkbox" disabled checked>
+				 	{% else %}
+				 	<input type="checkbox" disabled>
+				 	{% endif %}
+				</tr>
 				</td>
 			</table>
 			</div>

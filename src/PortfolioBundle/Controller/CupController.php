@@ -16,7 +16,8 @@ class CupController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $cup = $em->getRepository('PortfolioBundle:Cursus_utilisateurs_competences')->findBy(array('utilisateurs' => $id));
+        $cursus = $em->getRepository('PortfolioBundle:Cursus_utilisateurs_competences')->select_distinct($id);
         $user = $em->getRepository('PortfolioBundle:Utilisateurs')->find($id);
-        return $this->render('PortfolioBundle:Cup:cup.html.twig', array('cup_lst' => $cup, 'user' => $user,));
+        return $this->render('PortfolioBundle:Cup:cup.html.twig', array('cup_lst' => $cup, 'user' => $user, 'cursus' => $cursus,));
     }
 }
