@@ -1,0 +1,42 @@
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+<h1>Competences</h1>
+        <p>Administration des competences</p>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>Liste globale des competences</h1>
+{% endblock %}
+
+{% block page %}
+
+<div class="row">
+    <div class="col-sm-4">
+ 		<p>
+ 			<a class="navbar-brand" href="{{ path ('competences_ajout') }}"><u>Ajouter une competence</u></a>
+		 </p>
+	</div>
+</div>
+
+{% for crs in competences %}
+ <p>
+<div class="row">
+	<div class="col-sm-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title"><a href="{{ path ('competences_modifier', { 'id': comp.id }) }}"><b><u>{{ comp.libelleCompetences }}</u></b></a> - <a href="{{ path ('competences_supprimer', { 'id': comp.id }) }}"><u><font color="red">X</font></u></a></h3>
+			</div>
+			<div class="panel-body">
+			<table>
+				<td>
+				<tr><b>Description : </b> {{ comp.descriptionCompetences }}</tr>
+				</td>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+</p>
+{% endfor %}
+{% endblock %}

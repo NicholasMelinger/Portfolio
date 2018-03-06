@@ -1,0 +1,25 @@
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
+
+{% block tete %}
+<h1>Competences</h1>
+        <p>Administration des competences</p>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>Ajout d'une competence</h1>
+{% endblock %}
+
+{% block page %}
+ <p>
+ 	{{ form_start(form_comp) }}
+ 		{{ form_errors(form_comp) }}
+ 		<table>
+ 		<td>
+ 			<tr>{{ form_row(form_comp.libelleCompetence) }}</tr>
+ 			<tr><button type="submit" class="btn btn-lg btn-success" >Valider</button></tr>
+ 		</td>
+ 	</table>
+
+ 	{{ form_end(form_comp) }}
+ </p>
+{% endblock %}

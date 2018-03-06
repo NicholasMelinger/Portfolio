@@ -1,0 +1,34 @@
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+<h1>Sous themes</h1>
+        <p>Administration des sous themes</p>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>Liste globale des sous themes</h1>
+{% endblock %}
+
+{% block page %}
+
+<div class="row">
+    <div class="col-sm-4">
+ 		<p>
+ 			<a class="navbar-brand" href="{{ path ('sous_themes_ajout') }}"><u>Ajouter un sous theme</u></a>
+		 </p>
+	</div>
+</div>
+
+{% for stheme in sous_themes %}
+ <p>
+<div class="row">
+	<div class="col-sm-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title"><a href="{{ path ('sous_themes_modifier', { 'id': stheme.id }) }}"><b><u>{{ stheme.libelleSousTheme }}</u></b></a> - <a href="{{ path ('sous_themes_supprimer', { 'id': stheme.id }) }}"><u><font color="red">X</font></u></a></h3>
+		</div>
+	</div>
+</div>
+</p>
+{% endfor %}
+{% endblock %}

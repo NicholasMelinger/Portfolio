@@ -1,0 +1,25 @@
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
+
+{% block tete %}
+<h1>Sous sous themes</h1>
+        <p>Administration des sous sous themes</p>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>Ajout d'un sous sous theme</h1>
+{% endblock %}
+
+{% block page %}
+ <p>
+ 	{{ form_start(form_sstheme) }}
+ 		{{ form_errors(form_sstheme) }}
+ 		<table>
+ 		<td>
+ 			<tr>{{ form_row(form_sstheme.libelleSousSousTheme) }}</tr>
+ 			<tr><button type="submit" class="btn btn-lg btn-success" >Valider</button></tr>
+ 		</td>
+ 	</table>
+
+ 	{{ form_end(form_sstheme) }}
+ </p>
+{% endblock %}
