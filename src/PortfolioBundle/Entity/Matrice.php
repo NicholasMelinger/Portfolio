@@ -189,4 +189,9 @@ class Matrice
     {
         return $this->theme_matrice.''.$this->s_theme_matrice.''.$this->s_s_theme_matrice;
     }
+
+    public function getMatrice()
+    {
+        return $this->theme_matrice.''.$this->s_theme_matrice.''.$this->s_s_theme_matrice;
+    }
 }
