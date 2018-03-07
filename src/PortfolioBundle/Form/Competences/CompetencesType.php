@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CompetencesType extends AbstractType {
@@ -14,6 +15,7 @@ class CompetencesType extends AbstractType {
 	public function buildForm (FormBuilderInterface $builder, array $options) {
 
 		$builder->add('libelleCompetence', TextType::class, array('label' => 'Libellé :'))
+				->add('dateCreation', DateType::class, array('label' => 'Création :'))
     			  ->getForm();
 	}
 	public function configureOptions (OptionsResolver $resolver) {

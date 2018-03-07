@@ -19,18 +19,18 @@
 	</div>
 </div>
 
-{% for crs in competences %}
+{% for comp in competences %}
  <p>
 <div class="row">
 	<div class="col-sm-4">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<h3 class="panel-title"><a href="{{ path ('competences_modifier', { 'id': comp.id }) }}"><b><u>{{ comp.libelleCompetences }}</u></b></a> - <a href="{{ path ('competences_supprimer', { 'id': comp.id }) }}"><u><font color="red">X</font></u></a></h3>
+				<h3 class="panel-title"><a href="{{ path ('competences_modifier', { 'id': comp.id }) }}"><b><u>{{ comp.libelleCompetence }}</u></b></a> - <a href="{{ path ('competences_supprimer', { 'id': comp.id }) }}"><u><font color="red">X</font></u></a></h3>
 			</div>
 			<div class="panel-body">
 			<table>
 				<td>
-				<tr><b>Description : </b> {{ comp.descriptionCompetences }}</tr>
+				<tr><b>Description : </b> {{ comp.descriptionCompetence }}</tr>
 				</td>
 			</table>
 			</div>
