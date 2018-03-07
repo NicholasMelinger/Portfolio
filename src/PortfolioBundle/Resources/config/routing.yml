@@ -17,9 +17,14 @@ creation_profil:
     path:     /creation_profil 
     defaults: { _controller: PortfolioBundle:Profil:creationProfil }
 
+modification_profil:
+    path:     /modification_profil/{id_utilisateur} 
+    defaults: { _controller: PortfolioBundle:Profil:modificationProfil }
+
 recherche:
     path:     /recherche
     defaults: { _controller: PortfolioBundle:Recherche:recherche }
+
 rechercheParNom:
     path:     /recherchenom
     defaults: { _controller: PortfolioBundle:Recherche:rechercheNom }

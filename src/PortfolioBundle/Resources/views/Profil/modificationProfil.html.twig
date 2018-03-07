@@ -1,0 +1,18 @@
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+<h1>Modification du profil</h1>
+        <p>Sur cette page, vous pouvez modifier votre profil</p>
+{% endblock %}
+
+{% block titre_section %}
+{% endblock %}
+
+{% block page %}
+ <p>
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+ </p>
+{% endblock %}

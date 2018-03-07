@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class UtilisateursType extends AbstractType
@@ -18,25 +20,30 @@ class UtilisateursType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomUtilisateur')
-                ->add('prenomUtilisateur')
-                ->add('mailUtilisateur', EmailType::class)
-                ->add('username')
+        $builder->add('nomUtilisateur',TextType::class,array('label'=>'Nom : *'))
+                ->add('prenomUtilisateur',TextType::class,array('label'=>'Prénom : *'))
+                ->add('mailUtilisateur', EmailType::class,array('label'=>'Adresse email : *'))
+                ->add('username',TextType::class,array('label'=>'Nom dutilisateur (celui-ci vous servira lors de votre connexion, au même titre que votre adresse email) : *'))
                 ->add('plainPassword', RepeatedType::class, array(
                     'type' => PasswordType::class,
-                    'first_options'  => array('label' => 'Mot de passe'),
-                    'second_options' => array('label' => 'Confirmer le mot de passe'),
+                    'first_options'  => array('label' => 'Mot de passe : *'),
+                    'second_options' => array('label' => 'Confirmer le mot de passe : *'),
                     ))
-                ->add('numeroMobile')
-                ->add('numeroFixe')
-                ->add('adressePostale')
-                ->add('ville')
-                ->add('codePostal')
-                ->add('dateNaissance')
+                ->add('numeroMobile',TextType::class,array('label'=>'Numéro de mobile : '))
+                ->add('numeroFixe', TextType::class,array('label'=>'Numéro de fixe : '))
+                ->add('adressePostale', TextType::class,array('label'=>'Numéro de nom de rue : '))
+                ->add('ville', TextType::class,array('label'=>'Ville : '))
+                ->add('codePostal', TextType::class,array('label'=>'Code postal : '))
+                //->add('dateNaissance', DateType::class, array('label'=>'Date de naissance : '))
+                ->add('dateNaissance',BirthdayType::class, array(
+                        'label'=>'Date de naissance : ',
+                        'format' => 'dd-MM-yyyy') 
+                    )
                 //->add('type_utilisateur');
                 ->add('type_utilisateur', EntityType::class, array(
                     'class'        => 'PortfolioBundle:Types_utilisateur',
-                    'choice_label' => 'libelle'
+                    'choice_label' => 'libelle',
+                    'label'=>'Vous êtes : * '
                   ));
     }/**
      * {@inheritdoc}
