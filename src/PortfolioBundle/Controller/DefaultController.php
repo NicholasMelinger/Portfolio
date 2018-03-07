@@ -18,4 +18,8 @@ class DefaultController extends Controller
     {
         return $this->render('PortfolioBundle:Default:admin.html.twig');
     }
+    public function contactAction()
+    {
+        return $this->render('PortfolioBundle:Default:contact.html.twig');
+    }
 }

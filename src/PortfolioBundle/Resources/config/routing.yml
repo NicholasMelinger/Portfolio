@@ -7,6 +7,9 @@ admin_homepage:
 portfolio_css:
     path:     /css 
     defaults: { _controller: PortfolioBundle:Default:css }
+portfolio_contact :
+    path:     /contact
+    defaults: { _controller: PortfolioBundle:Default:contact }
 
 experience_defaut:
     path:    /experiences
