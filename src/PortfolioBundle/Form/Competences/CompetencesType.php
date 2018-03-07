@@ -8,7 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use PortfolioBundle\Entity\Matrice;
 
 class CompetencesType extends AbstractType {
 
@@ -16,6 +18,7 @@ class CompetencesType extends AbstractType {
 
 		$builder->add('libelleCompetence', TextType::class, array('label' => 'Libellé :'))
 				->add('dateCreation', DateType::class, array('label' => 'Création :'))
+				->add('matrice_comp', EntityType::class, array('class' => Matrice::class, 'choice_label' => 'Matrice', 'label' => 'Matrice :'))
     			  ->getForm();
 	}
 	public function configureOptions (OptionsResolver $resolver) {

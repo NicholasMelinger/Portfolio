@@ -22,6 +22,8 @@ class CompetencesController extends Controller
     public function competences_addAction(Request $request)
     {
     	$comp = new Competences;
+        $comp->setdateCreation (new \DateTime());
+        $comp->setdateMaj (new \DateTime());
     	$form = $this->createForm(CompetencesType::class, $comp, array('action' => $this->generateUrl('competences_ajout')));
     	$form->handleRequest($request);
     	if ($form->isValid()) {
@@ -37,6 +39,7 @@ class CompetencesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $comp = $em->getRepository('PortfolioBundle:Competences')->find($id);
+        $comp->setdateMaj (new \DateTime());
         if (null === $comp) {
           throw new NotFoundHttpException("La competence ".$id." n'existe pas.");
         }
@@ -54,7 +57,7 @@ class CompetencesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $comp = $em->getRepository('PortfolioBundle:Competences')->find($id);
-        if (null === $crs) {
+        if (null === $comp) {
           throw new NotFoundHttpException("La competence ".$id." n'existe pas.");
         }
         $em->remove($comp);
