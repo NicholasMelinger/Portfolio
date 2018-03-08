@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block titre_section %}
-	<h1>Ajout d'une expérience</h1>
+	<h1>Gestion d'une expérience</h1>
 {% endblock %}
 
 {% block page %}
@@ -19,7 +19,7 @@
  			<tr>{{ form_row(form_exp.dureeExperience) }}</tr>
  			<tr>{{ form_row(form_exp.descriptionExperience) }}</tr>
  			<tr>{{ form_row(form_exp.cursus) }}</tr>
- 			<tr>{{ form_row(form_exp.Valider) }}</tr>
+ 			<tr><button type="submit" class="btn btn-lg btn-success" >Valider</button></tr>
  		</td>
  	</table>
 

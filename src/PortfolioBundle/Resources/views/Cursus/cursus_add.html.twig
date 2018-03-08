@@ -1,0 +1,26 @@
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
+
+{% block tete %}
+<h1>Cursus</h1>
+        <p>Administration des cursus</p>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>Ajout d'un cursus</h1>
+{% endblock %}
+
+{% block page %}
+ <p>
+ 	{{ form_start(form_crs) }}
+ 		{{ form_errors(form_crs) }}
+ 		<table>
+ 		<td>
+ 			<tr>{{ form_row(form_crs.libelleFormation) }}</tr>
+ 			<tr>{{ form_row(form_crs.descriptionFormation) }}</tr>
+ 			<tr><button type="submit" class="btn btn-lg btn-success" >Valider</button></tr>
+ 		</td>
+ 	</table>
+
+ 	{{ form_end(form_crs) }}
+ </p>
+{% endblock %}

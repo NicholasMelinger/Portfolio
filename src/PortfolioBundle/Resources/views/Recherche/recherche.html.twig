@@ -1,13 +1,21 @@
+
+
 {% extends "PortfolioBundle:Default:layout.html.twig" %}
 
 {% block tete %}
+	<style style="text/css">
+		/* Define the hover highlight color for the table row */
+	    .table-hover tbody tr:hover{
+	          background-color: #cfd8dc;
+	    }
+	</style>
 	<h1>Recherche</h1>
-    <!--<p>Trouvez la personne adaptée à vos besoins !</p>-->
+	<p>Trouvez le candidat idéal !</p>
 {% endblock %}
 
 {% block titre_section %}
 	{% if resultatRequete is defined %}
-		<h1>Résultats de la recherche</h1>
+		<h1>Résultats de la recherche pour '{{ userRecherche }}'.</h1>
 	{% endif %}
 {% endblock %}
 
@@ -16,16 +24,56 @@
 	<p>
 		<!-- Parcours des résultats de la recherche. -->
 		{% if resultatRequete is defined %}
-			{% for resTheme in resultatRequete %}
-				<tr>
-					<td>{{ resTheme.libelle_theme }}</td>
-					
-					<button type="submit" class="btn btn-primary" style="padding:7px;">
-						Consulter le profil 
-			            <span class="glyphicon glyphicon-user"></span>
-			        </button>
-				</tr>
-				<br/><br/>
+			{% for resultat in resultatRequete %}
+				<!--<center>-->
+					<div class="panel panel-primary" style="max-width:800px;border-color:#546e7a;" >
+						<div class="panel-heading" style="border-color:#546e7a;background-image: linear-gradient(to bottom,#37474f   0,#546e7a   100%);border-bottom-right-radius:0px;border-bottom-left-radius:0px;">
+							<h3 style="margin:0px;"><!-- class="panel-title">-->
+								<center>
+									{{ resultat.prenom_utilisateur }} {{ resultat.nom_utilisateur }}
+								</center>
+							</h3>
+						</div>
+
+						<div class="panel-body" style="padding-top:0px;">
+							{% if resultat.age is not null %}
+								 <h3 style="margin-top:10px;"><span class="label label-default" style="font-weight:normal;font-size:16px;">{{ resultat.age }} ans</span></h3>
+							{% endif %}
+
+							<h3>
+								Compétences
+							</h3>
+							<ul>
+								<!-- Parcours de la table utilisateurs_comp_user afin de rechercher les cursus et comp de l'user actuel -->
+								{% for resComp in resultatComp %}
+									{% if resComp.utilisateurs_id == resultat.id %}
+										<h4 style="margin-top:0px;"><span class="label label-primary" style="font-size:15px;font-weight:normal;">{{ resComp.libelle_competence }}</span></h4>	
+									{% endif %}
+								{% endfor %}
+							</ul>
+
+
+							
+								<h3>
+									Cursus
+								</h3>
+								<ul>
+									<!-- Parcours de la table utilisateurs_comp_user afin de rechercher les cursus et comp de l'user actuel -->
+									{% for resCursus in resultatCursus %}
+										{% if resCursus.utilisateurs_id == resultat.id %}
+											<li>{{ resCursus.libelle_formation ~ ' (' ~ resCursus.annee ~ ')'}}</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+
+
+							<button type="submit" class="btn btn-primary" style="padding:7px;">
+								Consulter le profil 
+					            <span class="glyphicon glyphicon-user"></span>
+					        </button>
+					    </div>
+					</div>
+				<!--</center>-->
 			{% endfor %}
 		{% endif %}
 	</p>

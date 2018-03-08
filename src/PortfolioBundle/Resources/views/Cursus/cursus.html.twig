@@ -1,0 +1,42 @@
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+<h1>Cursus</h1>
+        <p>Administration des cursus</p>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>Liste globale des cursus</h1>
+{% endblock %}
+
+{% block page %}
+
+<div class="row">
+    <div class="col-sm-4">
+ 		<p>
+ 			<a class="navbar-brand" href="{{ path ('cursus_ajout') }}"><u>Ajouter un cursus</u></a>
+		 </p>
+	</div>
+</div>
+
+{% for crs in cursus %}
+ <p>
+<div class="row">
+	<div class="col-sm-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title"><a href="{{ path ('cursus_modifier', { 'id': crs.id }) }}"><b><u>{{ crs.libelleFormation }}</u></b></a> - <a href="{{ path ('cursus_supprimer', { 'id': crs.id }) }}"><u><font color="red">X</font></u></a></h3>
+			</div>
+			<div class="panel-body">
+			<table>
+				<td>
+				<tr><b>Description : </b> {{ crs.descriptionFormation }}</tr>
+				</td>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+</p>
+{% endfor %}
+{% endblock %}

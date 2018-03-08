@@ -426,4 +426,9 @@ class Competences
     {
         return $this->cup;
     }
+
+    public function __toString()
+    {
+        return $this->libelleCompetence;
+    }
 }

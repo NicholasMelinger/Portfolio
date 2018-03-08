@@ -10,4 +10,10 @@ namespace PortfolioBundle\Repository;
  */
 class Cursus_utilisateurs_competencesRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function select_distinct($id_user)
+	{
+		$qb = $this->createQueryBuilder('a');
+ 		$qb->where('a.utilisateurs = :id_user')->setParameter('id_user', $id_user)->groupBy('a.cursus');
+		return $qb->getQuery()->getResult();
+	}
 }

@@ -1,0 +1,33 @@
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+<h1>Themes</h1>
+        <p>Administration des themes</p>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>Liste globale des themes</h1>
+{% endblock %}
+
+{% block page %}
+<div class="row">
+    <div class="col-sm-4">
+ 		<p>
+ 			<a class="navbar-brand" href="{{ path ('themes_ajout') }}"><u>Ajouter un theme</u></a>
+		 </p>
+	</div>
+</div>
+{% for theme in themes %}
+ <p>
+<div class="row">
+	<div class="col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title"><a href="{{ path ('themes_modifier', { 'id': theme.id }) }}"><b><u>{{ theme.libelleTheme }}</u></b></a> - <a href="{{ path ('themes_supprimer', { 'id': theme.id }) }}"><u><font color="red">X</font></u></a></h3>
+			</div>
+		</div>
+	</div>
+</div>
+</p>
+{% endfor %}
+{% endblock %}

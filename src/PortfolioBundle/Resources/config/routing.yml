@@ -1,10 +1,15 @@
 portfolio_homepage:
     path:     /
     defaults: { _controller: PortfolioBundle:Default:index }
-
+admin_homepage:
+    path:     /admin
+    defaults: { _controller: PortfolioBundle:Default:admin }
 portfolio_css:
     path:     /css 
     defaults: { _controller: PortfolioBundle:Default:css }
+portfolio_contact :
+    path:     /contact
+    defaults: { _controller: PortfolioBundle:Default:contact }
 
 experience_defaut:
     path:    /experiences
@@ -12,6 +17,13 @@ experience_defaut:
 experience_ajout:
     path:    /experiences/add
     defaults: { _controller: PortfolioBundle:Experiences:experiences_add }
+experience_modifier:
+    path:    /modifier_experience/{id}
+    defaults: { _controller: PortfolioBundle:Experiences:experiences_modifier}
+    requirements: 
+experience_supprimer:
+    path:    /supprimer_experience/{id}
+    defaults: { _controller: PortfolioBundle:Experiences:experiences_supprimer}   
 
 creation_profil:
     path:     /creation_profil 
@@ -28,3 +40,90 @@ recherche:
 rechercheParNom:
     path:     /recherchenom
     defaults: { _controller: PortfolioBundle:Recherche:rechercheNom }
+rechercheAvancee:
+    path:     /rechercheavancee
+    defaults: { _controller: PortfolioBundle:Recherche:rechercheAvancee }
+resultatRecherche:
+    path:     /resultatrecherche
+    defaults: { _controller: PortfolioBundle:Recherche:resultatrecherche }
+cursus_defaut:
+    path:    /cursus
+    defaults: { _controller: PortfolioBundle:Cursus:cursus_defaut }
+cursus_ajout:
+    path:    /cursus/add
+    defaults: { _controller: PortfolioBundle:Cursus:cursus_add }
+cursus_modifier:
+    path:    /modifier_cursus/{id}
+    defaults: { _controller: PortfolioBundle:Cursus:cursus_modifier }
+cursus_supprimer:
+    path:    /supprimer_cursus/{id}
+    defaults: { _controller: PortfolioBundle:Cursus:cursus_supprimer }
+cup_defaut:
+    path:    /cup/{id}
+    defaults: { _controller: PortfolioBundle:Cup:cup_defaut }
+
+competences_defaut:
+    path:    /competences
+    defaults: { _controller: PortfolioBundle:Competences:competences_defaut }
+competences_ajout:
+    path:    /competences/add
+    defaults: { _controller: PortfolioBundle:Competences:competences_add }
+competences_modifier:
+    path:    /modifier_competences/{id}
+    defaults: { _controller: PortfolioBundle:Competences:competences_modifier }
+competences_supprimer:
+    path:    /supprimer_competences/{id}
+    defaults: { _controller: PortfolioBundle:Competences:competences_supprimer }
+
+themes_defaut:
+    path:    /themes
+    defaults: { _controller: PortfolioBundle:Themes:themes_defaut }
+themes_ajout:
+    path:    /themes/add
+    defaults: { _controller: PortfolioBundle:Themes:themes_add }
+themes_modifier:
+    path:    /modifier_themes/{id}
+    defaults: { _controller: PortfolioBundle:Themes:themes_modifier }
+themes_supprimer:
+    path:    /supprimer_themes/{id}
+    defaults: { _controller: PortfolioBundle:Themes:themes_supprimer }
+
+sous_themes_defaut:
+    path:    /sous_themes
+    defaults: { _controller: PortfolioBundle:Sous_themes:sous_themes_defaut }
+sous_themes_ajout:
+    path:    /sous_themes/add
+    defaults: { _controller: PortfolioBundle:Sous_themes:sous_themes_add }
+sous_themes_modifier:
+    path:    /modifier_sous_themes/{id}
+    defaults: { _controller: PortfolioBundle:Sous_themes:sous_themes_modifier }
+sous_themes_supprimer:
+    path:    /supprimer_sous_themes/{id}
+    defaults: { _controller: PortfolioBundle:Sous_themes:sous_themes_supprimer }
+
+sous_sous_themes_defaut:
+    path:    /sous_sous_themes
+    defaults: { _controller: PortfolioBundle:Sous_sous_themes:sous_sous_themes_defaut }
+sous_sous_themes_ajout:
+    path:    /sous_sous_themes/add
+    defaults: { _controller: PortfolioBundle:Sous_sous_themes:sous_sous_themes_add }
+sous_sous_themes_modifier:
+    path:    /modifier_sous_sous_themes/{id}
+    defaults: { _controller: PortfolioBundle:Sous_sous_themes:sous_sous_themes_modifier }
+sous_sous_themes_supprimer:
+    path:    /supprimer_sous_sous_themes/{id}
+    defaults: { _controller: PortfolioBundle:Sous_sous_themes:sous_sous_themes_supprimer }
+
+matrice_defaut:
+    path:    /matrice
+    defaults: { _controller: PortfolioBundle:Matrice:matrice_defaut }
+matrice_ajout:
+    path:    /matrice/add
+    defaults: { _controller: PortfolioBundle:Matrice:matrice_add }
+matrice_modifier:
+    path:    /modifier_matrice/{id}
+    defaults: { _controller: PortfolioBundle:Matrice:matrice_modifier}
+    requirements: 
+matrice_supprimer:
+    path:    /supprimer_matrice/{id}
+    defaults: { _controller: PortfolioBundle:Matrice:matrice_supprimer} 

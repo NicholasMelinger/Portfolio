@@ -1,0 +1,46 @@
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
+
+{% block tete %}
+<h1>Cursus</h1>
+        <p>Sur cette page, vous pouvez gérer vos cursus parcourus ainsi que les compétences acquises durant chacun d'entre eux.</p>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>{{ user | upper }}</h1>
+{% endblock %}
+
+{% block page %}
+{% for crs in cursus %}
+ <p>
+<div class="row">
+	<div class="col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">{{ crs.cursus | upper }}</h3>	
+			</div>
+			<div class="panel-body">
+			<table>
+				<td>
+				<tr><b>Compétence(s) acquise(s): </b></tr>
+					{% for cup in cup_lst %}
+						{% if cup.cursus == crs.cursus %}
+							<tr><font color="white">_</font></tr><tr>{{ cup.competences }}</tr>
+						{% endif %}
+					{% endfor %}<hr/>
+				<tr>
+					<b><font size="2px">Diplôme obtenu :</font> </b>
+				 	{% if crs.diplome == 1 %}
+				 	<input type="checkbox" disabled checked>
+				 	{% else %}
+				 	<input type="checkbox" disabled>
+				 	{% endif %}
+				</tr>
+				</td>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+</p>
+{% endfor %}
+{% endblock %}
