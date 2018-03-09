@@ -1,8 +1,9 @@
 {% extends "PortfolioBundle:Default:layout.html.twig" %}
 
 {% block tete %}
-<h1>Portefolio</h1>
-        <p>Bienvenue sur le portefeuille de compétences de l'UPJV.</p>
+
+<p><a href="https://www.u-picardie.fr/universite-de-picardie-jules-verne-290591.kjsp"><img src="{{ asset('img/UPJVIcon.png') }}" style="float: left; margin-right: 50px; margin-left: -50px;" width="170px" height="170px"/></a><h1>Portefolio</h1><h3>Bienvenue sur le portefeuille de compétences de l'UPJV.</h3></p>
+
 {% endblock %}
 
 {% block titre_section %}
@@ -10,16 +11,20 @@
 {% endblock %}
 
 {% block page %}
-test
+<h2>Bonjour et bienvenu sur le site portfolio de l'UPJV d'Amiens.</h2>
+<br />
+<br />
+<p>
+Ici vous allez pouvoir créer votre e-curiculumvitae dans le but de vous aidez dans votre recherche de stage, d'alternance ou encore de travail. <br />
+Ce e-CV sera le moyen de vous faire connaître auprès des recruteurs, des entreprises, etc...<br />
+Enrichissez le à l'aide de vos cursus et de vos expériences passées. Celles-ci pourront être approuver sur le site par vos professeurs ou des professionnels afin de valider vos différentes compétences.
+<br />
+<br />
+Mais n'oubliez pas, l'expérience ne fait pas tout, apprenez à vous vendre !
+</p>
 {% endblock %}
 
 {% block script %}
 
-
-<script>
-            $(document).ready(function(){
-                console.log("Script working properly");
-            });
-        </script>
 
 {% endblock %}

@@ -29,10 +29,9 @@
 			</div>
 			<div class="panel-body">
 			<table>
-				<td>
 				<tr><b>Description : </b> {{ comp }}</tr><hr/>
-				<tr><b>Créer le : </b> {{ comp.dateCreation|date("m/d/Y") }}</tr><hr/>
-				<tr><b>Mis à jour le : </b> {{ comp.dateMaj|date("m/d/Y") }}</tr>
+				<tr><b>Créer le : </b> {{ comp.dateCreation|date("d/m/Y") }}</tr><hr/>
+				<tr><b>Mis à jour le : </b> {{ comp.dateMaj|date("d/m/Y") }}</tr>
 				</td>
 			</table>
 			</div>

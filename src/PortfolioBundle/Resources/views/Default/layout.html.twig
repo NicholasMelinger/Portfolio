@@ -11,7 +11,7 @@
     <meta name="author" content="Basso - Clabault - Dupont - Melinger">
     <link rel="icon" href="../../favicon.ico">
 
-
+    
 
     <title>UPJV - Portefolio</title>
 
@@ -22,6 +22,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="theme.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('img/UPJVIcon.png') }}" />
   </head>
 
   <body>
@@ -41,20 +42,24 @@
           <ul class="nav navbar-nav">
             <li class="{{ app.request.attributes.get('_route') == 'portfolio_homepage' ? 'active' }}"><a href="{{ path ('portfolio_homepage') }}">Accueil</a></li>
             <li class="{{ app.request.attributes.get('_route') == 'recherche' ? 'active' }}"><a href="{{ path ('rechercheAvancee') }}">Recherche</a></li>
-            <li><a href="#contact">Contact</a></li> <!-- ICI LES LIENS SONT A MODIFIER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! OK ENCULE-->
-            <li><a href="{{ path ('portfolio_css') }}">Page CSS</a></li>
+             <!-- ICI LES LIENS SONT A MODIFIER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! OK ENCULE-->
+            <li><a href="{{ path ('creation_profil') }}">Mon profil</a></li>
+            <li><a href="{{ path ('portfolio_contact') }}">Contact</a></li>
+            <li><a href="{{ path ('admin_homepage') }}">Admin</a></li>
+            <!--
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Exemple <span class="caret"></span></a>
+              <a href="{{ path ('admin_homepage') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="{{ path ('experience_defaut') }}">Expérience</a></li>
+                <li><a href="{{ path ('cursus_defaut') }}"</a>Cursus</li>
+                <li><a href="{{ path ('competences_defaut') }}"</a>Compétences</li>
+                <li><a href="{{ path ('matrice_defaut') }}"</a>Matrices</li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
                 <li><a href="#">Separated link</a></li>
                 <li><a href="#">One more separated link</a></li>
               </ul>
-            </li>
+            </li>-->
 
             <!-- Barre de recherche -->
             <li>
