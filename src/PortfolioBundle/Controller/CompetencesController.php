@@ -4,6 +4,7 @@ namespace PortfolioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PortfolioBundle\Entity\Competences;
+use PortfolioBundle\Entity\Matrice;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +25,8 @@ class CompetencesController extends Controller
     	$comp = new Competences;
         $comp->setdateCreation (new \DateTime());
         $comp->setdateMaj (new \DateTime());
+        $em = $this->getDoctrine()->getManager();
+        $matrice = $em->getRepository('PortfolioBundle:Matrice')->select_distinct();
     	$form = $this->createForm(CompetencesType::class, $comp, array('action' => $this->generateUrl('competences_ajout')));
     	$form->handleRequest($request);
     	if ($form->isValid()) {
@@ -32,7 +35,7 @@ class CompetencesController extends Controller
     		$em->flush();
     		return $this->redirectToRoute('competences_defaut');
     	}
-        return $this->render('PortfolioBundle:Competences:competences_add.html.twig', array('form_comp' => $form->createView()));
+        return $this->render('PortfolioBundle:Competences:competences_add.html.twig', array('form_comp' => $form->createView(), 'matrice' => $matrice));
     }
 
      public function competences_modifierAction($id, Request $request)
@@ -64,5 +67,5 @@ class CompetencesController extends Controller
         $em->flush();
         return $this->redirectToRoute('competences_defaut');
     }
-   
+
 }

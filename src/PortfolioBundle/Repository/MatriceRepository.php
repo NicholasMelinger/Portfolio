@@ -10,4 +10,11 @@ namespace PortfolioBundle\Repository;
  */
 class MatriceRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function select_distinct() 
+	{
+		  $qb = $this->createQueryBuilder('a');
+		  $qb->groupBy('a.theme_matrice');
+		  return $qb->getQuery()->getResult()
+		  ;
+	}
 }
