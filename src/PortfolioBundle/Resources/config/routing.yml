@@ -30,8 +30,12 @@ creation_profil:
     defaults: { _controller: PortfolioBundle:Profil:creationProfil }
 
 modification_profil:
-    path:     /modification_profil/{id_utilisateur} 
+    path:     /modification_profil/{id} 
     defaults: { _controller: PortfolioBundle:Profil:modificationProfil }
+
+profil:
+    path:     /profil/{id} 
+    defaults: { _controller: PortfolioBundle:Profil:profil }
 
 recherche:
     path:     /recherche

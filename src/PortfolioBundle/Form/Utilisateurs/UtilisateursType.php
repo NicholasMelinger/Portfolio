@@ -1,6 +1,6 @@
 <?php
 
-namespace PortfolioBundle\Form;
+namespace PortfolioBundle\Form\Utilisateurs;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,12 +34,10 @@ class UtilisateursType extends AbstractType
                 ->add('adressePostale', TextType::class,array('label'=>'Numéro de nom de rue : '))
                 ->add('ville', TextType::class,array('label'=>'Ville : '))
                 ->add('codePostal', TextType::class,array('label'=>'Code postal : '))
-                //->add('dateNaissance', DateType::class, array('label'=>'Date de naissance : '))
                 ->add('dateNaissance',BirthdayType::class, array(
                         'label'=>'Date de naissance : ',
                         'format' => 'dd-MM-yyyy') 
                     )
-                //->add('type_utilisateur');
                 ->add('type_utilisateur', EntityType::class, array(
                     'class'        => 'PortfolioBundle:Types_utilisateur',
                     'choice_label' => 'libelle',

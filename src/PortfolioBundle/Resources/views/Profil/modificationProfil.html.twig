@@ -1,4 +1,4 @@
-{% extends "PortfolioBundle:Default:layout.html.twig" %}
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
 
 {% block tete %}
 <h1>Modification du profil</h1>
@@ -12,7 +12,7 @@
  <p>
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input type="submit" value="Enregistrer les informations saisies" />
     {{ form_end(edit_form) }}
  </p>
 {% endblock %}

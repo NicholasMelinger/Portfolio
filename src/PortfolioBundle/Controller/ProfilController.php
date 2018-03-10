@@ -2,13 +2,15 @@
 
 namespace PortfolioBundle\Controller;
 
-use PortfolioBundle\Form\UtilisateursType;
+use PortfolioBundle\Form\Utilisateurs\UtilisateursType;
+use PortfolioBundle\Form\Utilisateurs\EditUtilisateursType;
 use PortfolioBundle\Entity\Utilisateurs;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProfilController extends Controller
 {
@@ -56,32 +58,25 @@ class ProfilController extends Controller
     }
 
 
-    public function modificationProfilAction(Request $request, $id_utilisateur)
+    public function modificationProfilAction($id, Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $utilisateur = $em->getRepository('PortfolioBundle:Utilisateurs')->find($id_utilisateur);
-
-        $editForm = $this->createForm('PortfolioBundle\Form\UtilisateursType', $utilisateur);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($utilisateur);
-            $em->flush();
-
-
-            return $this->render('PortfolioBundle:Default:index.html.twig');
-            //return $this>redirectToRoute('rayon_edit', array('id' => $rayon->getId()));-
+        $em = $this->getDoctrine()->getManager();
+        $exp = $em->getRepository('PortfolioBundle:Utilisateurs')->find($id);
+        if (null === $exp) {
+          throw new NotFoundHttpException("L'utilisateur ".$id." n'existe pas.");
         }
+        $form = $this->createForm(EditUtilisateursType::class, $exp, array('action' =>  $this->generateUrl('modification_profil', array('id' => $exp->getId()))));
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $em->flush();
+          return $this->redirectToRoute('portfolio_homepage');
+        }
+        return $this->render('PortfolioBundle:Profil:modificationProfil.html.twig', array('edit_form' => $form->createView(),));
+    }
 
-        /*return $this->render('rayon/edit.html.twig', array(
-            'rayon' => $rayon,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));*/
-
-        return $this->render('PortfolioBundle:Profil:modificationProfil.html.twig',array(
-            'utilisateur' => $utilisateur,
-            'edit_form' => $editForm->createView()));
+    public function profilAction($id)
+    {
+        return $this->render('PortfolioBundle:Profil:profil.html.twig');
     }
 }
