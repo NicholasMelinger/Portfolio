@@ -17,7 +17,7 @@ class CompetencesType extends AbstractType {
 	public function buildForm (FormBuilderInterface $builder, array $options) {
 
 		$builder->add('libelleCompetence', TextType::class, array('label' => 'Libellé :'))
-				->add('matrice_comp', EntityType::class, array('class' => Matrice::class, 'choice_label' => 'Matrice', 'label' => 'Matrice :'))
+				//->add('matrice_comp', EntityType::class, array('class' => Matrice::class, 'choice_label' => 'Matrice', 'label' => 'Matrice :'))
     			  ->getForm();
 	}
 	public function configureOptions (OptionsResolver $resolver) {

@@ -13,10 +13,20 @@
 {% block page %}
  <div class="row">
     <div class="col-sm-4"><center><a href="{{ path ('cursus_defaut') }}"><div class="panel panel-primary"><div class="panel-heading"><h3 class="panel-title">Gestion des cursus</h3></div>
-            <div class="panel-body"><img src="https://www.equid-consult.com/images/iconediplome.png" class="img-thumbnail" width="200px" height="200px"></div></div></a></center></div>
+            <div class="panel-body"><img src="https://www.equid-consult.com/images/iconediplome.png" class="img-thumbnail" width="214px" height="200px"></div></div></a></center></div>
           
     <div class="col-sm-4"><center><a href="{{ path ('creation_profil') }}"><div class="panel panel-primary"><div class="panel-heading"><h3 class="panel-title">Création utilisateur</h3></div>
-            <div class="panel-body"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2/512/User_-_add-512.png" class="img-thumbnail" width="200px" height="200px"></div></div></a></center></div>
+            <div class="panel-body"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2/512/User_-_add-512.png" class="img-thumbnail" width="214px" height="200px"></div></div></a></center></div>
+
+    <div class="col-sm-4"><div class="panel panel-primary"><div class="panel-heading"><center><h3 class="panel-title">Gestion des thèmes</h3></center></div>
+            <div class="panel-body">
+            <ul>
+            <li><a href="{{ path ('themes_defaut') }}">Création thème</a></li><hr/>
+            <li><a href="{{ path ('sous_themes_defaut') }}">Création sous thème</a></li><hr/>
+            <li><a href="{{ path ('sous_sous_themes_defaut') }}">Création sous sous thème</a></li><hr/>
+            <li><a href="{{ path ('matrice_defaut') }}">Création matrice</a></li>
+            </ul>
+            </div></div></div>
  </div>
   
 {% endblock %}
