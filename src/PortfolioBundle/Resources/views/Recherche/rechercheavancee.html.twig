@@ -1,0 +1,59 @@
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+	<h1>Recherche avancée</h1>
+	<p>Trouvez le candidat idéal !</p>
+{% endblock %}
+
+{% block titre_section %}
+{% endblock %}
+
+
+{% block page %}
+	<p>
+		<h5 style="font-style:italic;">Maintenez la touche "CTRL" enfoncée pour sélectionner plusieurs éléments.</h5>
+		<center><form action="{{ path ('resultatRecherche') }}" method="post" name ="rechercheAvancee">
+		  <div class="form-row">
+		  	<!-- Liste des cursus -->
+		    <div class="form-group col-md-6">
+		    	<h3><b>Cursus recherchés</b></h3>
+				<select multiple class="form-control" style="max-width:500px;min-height:200px;" name="cursusRecherche[]">
+					{% for cursus in resultatCursus %}
+						<option value ={{ cursus.id }}>{{ cursus.libelle_formation }}</option>
+					{% endfor %}
+				</select>
+		    </div>
+
+		    <!-- Liste des compétences -->
+		    <div class="form-group col-md-6">
+			    <h3><b>Compétences recherchées</b></h3>
+			    <select multiple class="form-control" style="max-width:500px;min-height:200px;" name="competencesRecherche[]">
+			    	{% set idTheme = 0 %}
+			    	{% for competencesThemes in resultatCompetencesThemes %}
+			    		{% if idTheme == competencesThemes.idTheme %}
+			    			<option value ={{ competencesThemes.id }}>{{ competencesThemes.libelle_competence }}</option>
+			    		{% else %}
+			    			</optgroup>
+			    			<optgroup label={{ competencesThemes.libelle_theme }}>
+			    				<option value ={{ competencesThemes.id }}>{{ competencesThemes.libelle_competence }}</option>
+			    				{% set idTheme = competencesThemes.idTheme %}
+
+			    		{% endif %}
+					{% endfor %}
+					</optgroup>
+				</select>
+			</div>
+
+</div>
+	    	<div class="form-group col-md-12" >
+	    		<h3><b>Expérience souhaitée</b></h3>
+	      		<input type="text" class="form-control" placeholder="Indiquez une expérience en mois" name="experienceRecherchee"/>
+	    	</div>
+	
+		  
+			<div class="form-group col-md-12">
+				<center><button type="submit" class="btn btn-primary"><b>Rechercher</b></button></center>
+			</div>
+		</form></center>
+	</p>
+{% endblock %}

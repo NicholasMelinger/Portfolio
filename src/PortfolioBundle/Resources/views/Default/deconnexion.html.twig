@@ -1,0 +1,24 @@
+
+
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+	<h1>Connexion</h1>
+	<p>Trouvez le candidat idéal !</p>
+{% endblock %}
+
+{% block titre_section %}
+{% endblock %}
+
+
+{% block page %}
+	<p>
+		<center>
+			<form action="{{ path ('traitementDeconnexion') }}" method="post" name ="deco" style="max-width:300px;">
+				<div class="form-group">
+					<center><button type="submit" class="btn btn-primary"><b>Déconnexion</b></button></center>
+				</div>
+			</form>
+		</center>
+	</p>
+{% endblock %}

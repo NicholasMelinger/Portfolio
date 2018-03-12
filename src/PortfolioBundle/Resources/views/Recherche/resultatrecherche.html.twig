@@ -1,0 +1,108 @@
+
+
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+
+{% block tete %}
+	<h1>Recherche avancée</h1>
+	<p>Résultat de votre recherche.</p>
+{% endblock %}
+
+{% block titre_section %}
+
+{% endblock %}
+
+
+{% block page %}
+		{% if resultatRecherche is defined and resultatRecherche|length > 0 %}
+			{# Boucle sur chaque personne retournée par la recherche #}
+			{% for resRecherche in resultatRecherche %}
+				<div class="panel panel-primary" style="max-width:800px;border-color:#546e7a;margin-left:auto;margin-right:auto;">
+					<div class="panel-heading" style="border-color:#546e7a;background-image: linear-gradient(to bottom,#37474f   0,#546e7a   100%);border-bottom-right-radius:0px;border-bottom-left-radius:0px;">
+						<h3 style="margin:0px;">
+						<center>
+							{{ resRecherche.prenom_utilisateur }} {{ resRecherche.nom_utilisateur }}
+						</center>
+						</h3>
+					</div>
+
+					<div class="panel-body" style="padding-top:0px;margin-top:10px;">
+						{% if resRecherche.age is not null %}
+							<span class="label label-default" style="font-weight:normal;font-size:16px">{{ resRecherche.age }} ans</span>
+						{% endif %}
+						
+						{% if resRecherche.mail_utilisateur is not null %}
+							<span class="label label-default" style="font-weight:normal;font-size:16px;">{{ resRecherche.mail_utilisateur }}</span>
+						{% endif %}
+
+						{% if resRecherche.ville is not null %}
+							<span class="label label-default" style="font-weight:normal;font-size:16px;">
+								{{ resRecherche.ville ~ ' (' ~ resRecherche.code_postal ~ ')' }}
+							</span>
+						{% endif %}
+
+						<br>
+
+						
+						<h3>
+							<b>Cursus</b>
+						</h3>
+						<ul>
+							<!-- Parcours de la table utilisateurs_comp_user afin de rechercher les cursus et comp de l'user actuel -->
+							{% for resCursus in resultatCursus %}
+								{% if resCursus.utilisateurs_id == resRecherche.id %}
+									<h4 style="margin-top:0px;margin-bottom:15px;">
+										<span class="label label-success" style="margin-bottom:15px;font-size:15px;font-weight:normal;">
+											{{ resCursus.libelle_formation ~ ' (' ~ resCursus.annee ~ ')'}}
+										</span>
+									</h4>
+								{% endif %}
+							{% endfor %}
+						</ul>
+
+
+						<!-- Affichage des compétences de l'user -->	
+						<h3 style="margin-top:30px;">
+							<b>Compétences</b>
+						</h3>
+						<ul>
+							<!-- Parcours de la table utilisateurs_comp_user afin de rechercher les cursus et comp de l'user actuel -->
+							{% for resComp in resultatComp %}
+								{% if resComp.utilisateurs_id == resRecherche.id %}
+									<h4 style="margin-top:0px;margin-bottom:15px;">
+										<span class="label label-primary" style="font-size:15px;font-weight:normal;">
+											{{ resComp.libelle_competence }}
+										</span>
+									</h4>
+								{% endif %}
+							{% endfor %}
+						</ul>
+
+						<h3 style="margin-top:30px;"><b>Expériences</b></h3>
+						<ul>
+							<!-- Parcours de la table utilisateurs_comp_user afin de rechercher les cursus et comp de l'user actuel -->
+							{% for resExperience in resultatExp %}
+								{% if resExperience.utilisateurs_id == resRecherche.id %}
+									<h4 style="margin-top:0px;margin-bottom:15px;">
+										<span class="label label-danger" style="margin-bottom:15px;font-size:15px;font-weight:normal;">
+											{{ resExperience.type_experience ~ ' : ' ~ resExperience.description_experience ~ ' (' ~ resExperience.dureeExperience ~ ' mois)'}}
+										</span>
+									</h4>
+								{% endif %}
+							{% endfor %}
+						</ul>
+
+
+
+						<br>	
+						<button type="submit" class="btn btn-primary" style="padding:7px;">
+							Consulter le profil 
+				            <span class="glyphicon glyphicon-user"></span>
+				        </button>
+				    </div>
+				</div>
+			{% endfor %}
+		{% else %}
+			Pas de résultat.
+		{% endif %}
+{% endblock %}
