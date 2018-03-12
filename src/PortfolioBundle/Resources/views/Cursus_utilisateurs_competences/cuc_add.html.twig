@@ -1,0 +1,18 @@
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
+
+{% block tete %}
+<h1>Matrices</h1>
+        <p>Sur cette page, vous pouvez ajouter un cursus à votre profil</p>
+{% endblock %}
+
+{% block titre_section %}
+{% endblock %}
+
+{% block page %}
+<div class="form">
+{{ form_start(form_cuc) }}
+        {{ form_widget(form_cuc) }}
+        <input type="submit"  class="btn btn-primary" value="Enregistrer" />
+    {{ form_end(form_cuc) }}
+</div>
+{% endblock %}

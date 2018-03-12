@@ -80,6 +80,9 @@ cursus_supprimer:
 cup_defaut:
     path:    /cup/{id}
     defaults: { _controller: PortfolioBundle:Cup:cup_defaut }
+cuc_ajout:
+    path:    /cuc/add
+    defaults: { _controller: PortfolioBundle:Cursus:cuc_add }
 
 competences_defaut:
     path:    /competences

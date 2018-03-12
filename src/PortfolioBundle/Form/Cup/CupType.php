@@ -23,6 +23,6 @@ class CupType extends AbstractType {
 	}
 	public function configureOptions (OptionsResolver $resolver) {
 
-		$resolver->setDefaults(array('data_class' => 'PortfolioBundle\Entity\Experiences',));
+		$resolver->setDefaults(array('data_class' => 'PortfolioBundle\Entity\Cursus_utilisateurs_competences',));
 	}
 }

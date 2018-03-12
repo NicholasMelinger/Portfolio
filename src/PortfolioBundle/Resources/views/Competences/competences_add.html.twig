@@ -82,6 +82,7 @@ function getXhr(){
 {% endblock %}
 
 {% block page %}
+<div class="form">
  <p>
  	{{ form_start(form_comp) }}
  		{{ form_errors(form_comp) }}
@@ -117,5 +118,6 @@ function getXhr(){
  		</td>
  	</table>
  </p>
+</div>
 {{ form_end(form_comp) }}
 {% endblock %}

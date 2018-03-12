@@ -32,7 +32,7 @@ class ExperiencesController extends Controller
     		$em = $this->getDoctrine()->getManager();
     		$em->persist($exp->setUtilisateurs($user[0]));
     		$em->flush();
-    		return $this->redirectToRoute('experience_defaut');
+    		return $this->redirectToRoute('modification_profil', array('id' => $user_id));
     	}
         return $this->render('PortfolioBundle:Experiences:experiences_add.html.twig', array('form_exp' => $form->createView()));
     }

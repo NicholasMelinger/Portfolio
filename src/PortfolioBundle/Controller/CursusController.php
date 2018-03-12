@@ -4,10 +4,13 @@ namespace PortfolioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PortfolioBundle\Entity\Cursus;
+use PortfolioBundle\Entity\Cursus_utilisateurs_competences;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use PortfolioBundle\Form\Cursus\CursusType;
+use PortfolioBundle\Form\Cursus\Cup\CupType;
+use PortfolioBundle\Form\Cursus_utilisateurs_competences\Cursus_utilisateurs_competencesType;
 
 
 class CursusController extends Controller
@@ -61,5 +64,27 @@ class CursusController extends Controller
         $em->flush();
         return $this->redirectToRoute('cursus_defaut');
     }
-   
+
+    public function cuc_addAction(Request $request)
+    {
+        $session = $this->get('session');
+        $user_id = $session->get('userID');
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('PortfolioBundle:Utilisateurs')->findById($user_id);
+
+        $cuc = new Cursus_utilisateurs_competences;
+
+        $form = $this->createForm(Cursus_utilisateurs_competencesType::class, $cuc);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $cuc->setUtilisateurs($user[0]);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($cuc);
+            $em->flush();
+            return $this->redirectToRoute('modification_profil', array('id' => $user_id));
+        }
+        return $this->render('PortfolioBundle:Cursus_utilisateurs_competences:cuc_add.html.twig', array('form_cuc' => $form->createView()));
+    }
+    
 }
