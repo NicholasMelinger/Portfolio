@@ -5,6 +5,7 @@ namespace PortfolioBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PortfolioBundle\Entity\Competences;
 use PortfolioBundle\Entity\Matrice;
+use PortfolioBundle\Entity\Utilisateurs_competences;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,6 +32,15 @@ class CompetencesController extends Controller
     	$form->handleRequest($request);
     	if ($form->isValid()) {
     		$em = $this->getDoctrine()->getManager();
+            $uc = new Utilisateurs_competences;
+            $uc->setCompetences($comp);
+            $session = $this->get('session');
+            $user_id = $session->get('userID');
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('PortfolioBundle:Utilisateurs')->findById($user_id);
+            $uc->setUtilisateurs($user[0]);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($uc);
     		$em->persist($comp);
     		$em->flush();
     		return $this->redirectToRoute('competences_defaut');

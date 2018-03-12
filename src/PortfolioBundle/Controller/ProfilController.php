@@ -92,7 +92,7 @@ class ProfilController extends Controller
             LEFT JOIN themes ON themes.id = matrice.theme_matrice_id
             LEFT JOIN sous_themes ON sous_themes.id = matrice.s_theme_matrice_id
             LEFT JOIN sous_sous_themes ON sous_sous_themes.id = matrice.s_s_theme_matrice_id
-            WHERE utilisateurs.id = '. $id .' AND cursus_utilisateurs_competences.utilisateurs_id = ' . $id;
+            WHERE utilisateurs.id = '. $id;
 
 
         $competences = $bdd->query($requeteCompetence);
@@ -173,8 +173,8 @@ class ProfilController extends Controller
             LEFT JOIN themes ON themes.id = matrice.theme_matrice_id
             LEFT JOIN sous_themes ON sous_themes.id = matrice.s_theme_matrice_id
             LEFT JOIN sous_sous_themes ON sous_sous_themes.id = matrice.s_s_theme_matrice_id
-            WHERE utilisateurs.id = '. $id .' AND cursus_utilisateurs_competences.utilisateurs_id = ' . $id;
-
+            WHERE utilisateurs.id = '. $id;
+            echo $requeteCompetence;
 
         $competences = $bdd->query($requeteCompetence);
 
@@ -203,4 +203,5 @@ class ProfilController extends Controller
 
         return $this->render('PortfolioBundle:Profil:profil.html.twig', array('utilisateur' => $utilisateur, 'competences' => $competences, 'cursus' => $cursus , 'experiences' => $experiences));
     }
+
 }
