@@ -1,6 +1,9 @@
 portfolio_homepage:
     path:     /
     defaults: { _controller: PortfolioBundle:Default:index }
+portfolio_homepage2:
+    path:     /index
+    defaults: { _controller: PortfolioBundle:Default:index }
 admin_homepage:
     path:     /admin
     defaults: { _controller: PortfolioBundle:Default:admin }
@@ -10,7 +13,15 @@ portfolio_css:
 portfolio_contact :
     path:     /contact
     defaults: { _controller: PortfolioBundle:Default:contact }
-
+connexion :
+    path:     /connexion
+    defaults: { _controller: PortfolioBundle:connexion:connexion }
+traitementConnexion :
+    path:     /resConnex
+    defaults: { _controller: PortfolioBundle:connexion:connexionTraitement }
+deconnexion :
+    path:     /deconnexion
+    defaults: { _controller: PortfolioBundle:connexion:deconnexion }
 experience_defaut:
     path:    /experiences
     defaults: { _controller: PortfolioBundle:Experiences:experiences_defaut }
