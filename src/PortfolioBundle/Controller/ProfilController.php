@@ -42,7 +42,7 @@ class ProfilController extends Controller
             $utilisateur->setPassword($password);
             $utilisateur->setDateInscription(new \DateTime(date("d-m-y")));    
 
-            $utilisateur->setUrlPhoto('../../img/default.jpg');
+            $utilisateur->setUrlPhoto('img/default.jpg');
 
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();
