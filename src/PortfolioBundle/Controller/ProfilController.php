@@ -77,7 +77,10 @@ class ProfilController extends Controller
           $em->flush();
           return $this->redirectToRoute('portfolio_homepage');
         }
-        return $this->render('PortfolioBundle:Profil:modificationProfil.html.twig', array('edit_form' => $form->createView(),));
+
+        
+
+        return $this->render('PortfolioBundle:Profil:modificationProfil.html.twig', array('edit_form' => $form->createView(),'utilisateur' => $exp));
     }
 
     public function profilAction($id)
