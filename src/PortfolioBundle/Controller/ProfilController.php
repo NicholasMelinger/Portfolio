@@ -36,7 +36,9 @@ class ProfilController extends Controller
 
             // 3) Encode the password (you could also do this via Doctrine listener)
             $passwordEncoder = $this->get('security.password_encoder');
-            $password = $passwordEncoder->encodePassword($utilisateur, $utilisateur->getPlainPassword());
+            //$password = $passwordEncoder->encodePassword($utilisateur, $utilisateur->getPlainPassword());
+            //$password = $passwordEncoder->encodePassword($utilisateur, $utilisateur->getPlainPassword());
+            $password = password_hash($utilisateur->getPlainPassword(), PASSWORD_DEFAULT);
             $utilisateur->setPassword($password);
             $utilisateur->setDateInscription(new \DateTime(date("d-m-y")));    
 
