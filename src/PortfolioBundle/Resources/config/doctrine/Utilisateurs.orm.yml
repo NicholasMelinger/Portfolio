@@ -70,6 +70,10 @@ PortfolioBundle\Entity\Utilisateurs:
             type: date
             nullable: true
             column: date_naissance
+        urlPhoto:
+            type: string
+            nullable: true
+            column: url_photo
     lifecycleCallbacks: {  }
     manyToOne:  
         type_utilisateur:

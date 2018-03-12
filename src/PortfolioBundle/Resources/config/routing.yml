@@ -37,6 +37,10 @@ profil:
     path:     /profil/{id} 
     defaults: { _controller: PortfolioBundle:Profil:profil }
 
+profil_default:
+    path:     /profil
+    defaults: { _controller: PortfolioBundle:Profil:profilIndex }
+
 recherche:
     path:     /recherche
     defaults: { _controller: PortfolioBundle:Recherche:recherche }

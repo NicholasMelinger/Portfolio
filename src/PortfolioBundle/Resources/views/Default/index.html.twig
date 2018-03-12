@@ -11,17 +11,35 @@
 {% endblock %}
 
 {% block page %}
-<h2>Bonjour et bienvenu sur le site portfolio de l'UPJV d'Amiens.</h2>
-<br />
-<br />
-<p>
-Ici vous allez pouvoir créer votre e-curiculumvitae dans le but de vous aidez dans votre recherche de stage, d'alternance ou encore de travail. <br />
-Ce e-CV sera le moyen de vous faire connaître auprès des recruteurs, des entreprises, etc...<br />
-Enrichissez le à l'aide de vos cursus et de vos expériences passées. Celles-ci pourront être approuver sur le site par vos professeurs ou des professionnels afin de valider vos différentes compétences.
-<br />
-<br />
-Mais n'oubliez pas, l'expérience ne fait pas tout, apprenez à vous vendre !
-</p>
+	<h2>Bonjour et bienvenu sur le site portfolio de l'UPJV d'Amiens.</h2>
+	<br />
+	<br />
+	<p>
+		Ici vous allez pouvoir créer votre e-curiculumvitae dans le but de vous aidez dans votre recherche de stage, d'alternance ou encore de travail. <br />
+		Ce e-CV sera le moyen de vous faire connaître auprès des recruteurs, des entreprises, etc...<br />
+		Enrichissez le à l'aide de vos cursus et de vos expériences passées. Celles-ci pourront être approuver sur le site par vos professeurs ou des professionnels afin de valider vos différentes compétences.
+		<br />
+		<br />
+		Mais n'oubliez pas, l'expérience ne fait pas tout, apprenez à vous vendre !
+	</p>
+	<br />
+	<br />
+	<h2>Derniers profils enregistrés</h2>
+
+	{% for utilisateur in utilisateurs %}
+		<div class="media">
+            <a class="pull-left" href="{{ path ('profil', { 'id': utilisateur.id }) }}">
+            	<img  src="{{ utilisateur.url_photo }}">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">{{ utilisateur.prenom_utilisateur }} {{ utilisateur.nom_utilisateur }} </h4>
+                <hr style="margin:8px auto">
+
+                <a href="{{ path ('profil', { 'id': utilisateur.id }) }}"  class="btn btn-primary" role="button">Consulter le profil</a>
+            </div>
+        </div>
+    {% endfor %}
+
 {% endblock %}
 
 {% block script %}
