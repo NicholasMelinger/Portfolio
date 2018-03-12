@@ -85,6 +85,11 @@ class Utilisateurs implements UserInterface
     private $dateNaissance;
 
     /**
+     * @var string
+     */
+    private $urlPhoto;
+
+    /**
      * Get id
      *
      * @return int
@@ -104,6 +109,30 @@ class Utilisateurs implements UserInterface
     public function setNomUtilisateur($nomUtilisateur)
     {
         $this->nomUtilisateur = $nomUtilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get urlPhoto
+     *
+     * @return string
+     */
+    public function getUrlPhoto()
+    {
+        return $this->urlPhoto;
+    }
+
+        /**
+     * Set urlPhoto
+     *
+     * @param string $urlPhoto
+     *
+     * @return Utilisateurs
+     */
+    public function setUrlPhoto($urlPhoto)
+    {
+        $this->urlPhoto = $urlPhoto;
 
         return $this;
     }
@@ -730,6 +759,6 @@ class Utilisateurs implements UserInterface
 
     public function __toString()
     {
-        return $this->nomUtilisateur . ' ' . $this->prenomUtilisateur;
+        return $this->prenomUtilisateur . ' ' . $this->nomUtilisateur;
     }
 }

@@ -1,0 +1,54 @@
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
+
+{% block tete %}
+<h1>Modification du profil</h1>
+        <p>Sur cette page, vous pouvez modifier votre profil</p>
+{% endblock %}
+
+{% block titre_section %}
+{% endblock %}
+
+{% block page %}
+
+
+
+<div>
+    <div class="card hovercard">
+        <div class="card-background">
+            <img class="card-bkimg" src="../../{{ utilisateur.urlPhoto }}">
+        </div>
+        <div class="useravatar">
+            <img alt="" src="../../{{ utilisateur.urlPhoto }}">
+        </div>
+        <div class="card-info"> <span class="card-title">{{ utilisateur }} </span>
+
+        </div>
+    </div>
+    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+                <div class="hidden-xs">Informations personnelles</div>
+            </button>
+        </div>
+    </div>
+
+        <div class="well">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1">
+
+           <p>
+		 	<div>
+		    {{ form_start(edit_form) }}
+		        {{ form_widget(edit_form) }}
+		        <input type="submit"  class="btn btn-primary" value="Enregistrer les informations saisies" />
+		    {{ form_end(edit_form) }}
+		 	</div>
+		 </p>
+        </div>
+        
+      </div>
+    </div>
+    
+    </div>
+
+{% endblock %}

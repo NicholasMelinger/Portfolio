@@ -2,7 +2,7 @@
 
 {% block tete %}
 
-<p><a href="https://www.u-picardie.fr/universite-de-picardie-jules-verne-290591.kjsp"><img src="{{ asset('img/UPJVIcon.png') }}" style="float: left; margin-right: 50px; margin-left: -50px;" width="170px" height="170px"/></a><h1>Portefolio</h1><h3>Bienvenue sur le portefeuille de compétences de l'UPJV.</h3></p>
+<p><a href="https://www.u-picardie.fr/universite-de-picardie-jules-verne-290591.kjsp"><img src="{{ asset('img/UPJVIcon.png') }}" style="float: left; margin-right: 50px; margin-left: -50px;" width="170px" height="170px"/></a><h1>Portfolio</h1><h3>Bienvenue sur le portefeuille de compétences de l'UPJV.</h3></p>
 
 {% endblock %}
 
@@ -11,18 +11,47 @@
 {% endblock %}
 
 {% block page %}
-<h2>Bonjour et bienvenue sur le site portfolio de l'UPJV d'Amiens.</h2>
-<br />
-<p>
-Ici vous allez pouvoir créer votre e-curiculumvitae dans le but de vous aider dans votre recherche de stage, d'alternance ou encore de travail.<br />
-<br>
-Ce e-CV sera le moyen de vous faire connaître auprès des recruteurs, des entreprises, etc ...<br />
-<br>
-Enrichissez le à l'aide de vos cursus et de vos expériences passées. Celles-ci pourront ensuite être approuvées par vos professeurs ou des professionnels afin de valider vos différentes compétences.
-<br />
-<br />
-Mais n'oubliez pas que l'expérience ne fait pas tout, alors apprenez à vous vendre !
-</p>
+	<h2>Bonjour et bienvenue sur le site portfolio de l'UPJV d'Amiens.</h2>
+	<br />
+	<p>
+	Ici vous allez pouvoir créer votre e-curiculumvitae dans le but de vous aider dans votre recherche de stage, d'alternance ou encore de travail.<br />
+	<br>
+	Ce e-CV sera le moyen de vous faire connaître auprès des recruteurs, des entreprises, etc ...<br />
+	<br>
+	Enrichissez le à l'aide de vos cursus et de vos expériences passées. Celles-ci pourront ensuite être approuvées par vos professeurs ou des professionnels afin de valider vos différentes compétences.
+	<br />
+	<br />
+	Mais n'oubliez pas que l'expérience ne fait pas tout, alors apprenez à vous vendre !
+	</p>
+	<br />
+	<br />
+	<h2>Derniers profils enregistrés</h2>
+	<br />
+	<br />
+
+	{% for utilisateur in utilisateurs %}
+		
+
+        <div class="col-lg-5">
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object dp img-circle" src="{{ asset(''~utilisateur.url_photo) }}" style="width: 100px;height:100px;">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">{{ utilisateur.prenom_utilisateur }} {{ utilisateur.nom_utilisateur }}</h4>
+                <h5>Software Developer at <a href="http://gridle.in">Gridle.in</a></h5>
+                <hr style="margin:8px auto">
+
+                <span class="label label-default">HTML5/CSS3</span>
+                <span class="label label-default">jQuery</span>
+                <span class="label label-info">CakePHP</span>
+                <span class="label label-default">Android</span>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+
 {% endblock %}
 
 {% block script %}

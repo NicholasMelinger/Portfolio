@@ -1,0 +1,124 @@
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
+
+{% block tete %}
+<h2>Profil de {{ utilisateur }}</h2>
+{% endblock %}
+
+{% block titre_section %}
+{% endblock %}
+
+{% block page %}
+
+
+
+	<div>
+    <div class="card hovercard">
+        <div class="card-background">
+            <img class="card-bkimg" src="../../{{ utilisateur.urlPhoto }}">
+        </div>
+        <div class="useravatar">
+            <img alt="" src="../../{{ utilisateur.urlPhoto }}">
+        </div>
+        <div class="card-info"> <span class="card-title">{{ utilisateur }} </span>
+
+        </div>
+    </div>
+    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+                <div class="hidden-xs">Compétences</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+                <div class="hidden-xs">Cursus</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+                <div class="hidden-xs">Experiences</div>
+            </button>
+        </div>
+    </div>
+
+        <div class="well">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1">
+
+            {% for comp in competences %}
+                <p>
+                <div class="row">
+                    <div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><b><u>{{ comp.libelle_competence }}</u></b></h3>
+                            </div>
+                            <div class="panel-body">
+                            <table>
+                                <tr><b>Classification : </b> {{ comp.libelle_theme }} / {{ comp.libelle_sous_theme }} / {{ comp.libelle_sous_sous_theme }}</tr><hr/>
+                                <tr><b>Détail : </b> {{ comp.detail_competence }}</tr><hr/>
+                                <tr><b>Niveau : </b> {{ comp.niveau_competence }}</tr><hr/>
+                                <tr>Compétence acquise lors du cursus <b>{{ comp.libelle_formation }}</b></tr><hr/>
+                                </td>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </p>
+            {% endfor %}
+
+          
+        </div>
+        <div class="tab-pane fade in" id="tab2">
+            {% for cur in cursus %}
+                <p>
+                <div class="row">
+                    <div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><b><u>{{ cur.libelle_formation }}</u></b></h3>
+                            </div>
+                            <div class="panel-body">
+                            <table>
+                                <tr><b>Description : </b> {{ cur.description_formation }}</tr><hr/>
+                                <tr><b>Année : </b> {{ cur.annee }}</tr><hr/>
+                                <tr><b>Obtention du diplôme : </b> {{ cur.diplome }}</tr><hr/>
+                                </td>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </p>
+            {% endfor %}
+        </div>
+        <div class="tab-pane fade in" id="tab3">
+            {% for xp in experiences %}
+                <p>
+                <div class="row">
+                    <div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><b><u>{{ xp.type_experience }}</u></b></h3>
+                            </div>
+                            <div class="panel-body">
+                            <table>
+                                <tr><b>Description : </b> {{ xp.description_experience }}</tr><hr/>
+                                <tr><b>Durée experience : </b> {{ xp.dureeExperience }}</tr><hr/>
+                                <tr>{{ xp.cursus_libelle }}</tr><hr/>
+                                </td>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </p>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+    
+    </div>
+
+{% endblock %}
