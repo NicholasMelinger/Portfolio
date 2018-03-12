@@ -43,7 +43,7 @@ class CompetencesController extends Controller
             $em->persist($uc);
     		$em->persist($comp);
     		$em->flush();
-    		return $this->redirectToRoute('competences_defaut');
+    		return $this->redirectToRoute('modification_profil', array('id' => $user_id));
     	}
         return $this->render('PortfolioBundle:Competences:competences_add.html.twig', array('form_comp' => $form->createView(), 'matrice' => $matrice));
     }
