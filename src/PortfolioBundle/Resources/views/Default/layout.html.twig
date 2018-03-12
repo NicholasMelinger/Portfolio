@@ -48,12 +48,14 @@
 
             {% if (app.session.get('userID') is not null) %}
                 <li><a href="{{ path ('deconnexion') }}">Déconnexion ({{ app.session.get('userName') }})</a></li>
+                <li><a href="{{ path ('modification_profil', {'id': app.session.get('userID')}) }}">Mon profil</a></li>
             {% else %}
                 <li><a href="{{ path ('connexion') }}">Connexion</a></li>
+                <li><a href="{{ path ('creation_profil') }}">Création profil</a></li>
             {% endif %}
 
             
-            <li><a href="{{ path ('creation_profil') }}">Mon profil</a></li>
+            
             <li><a href="{{ path ('portfolio_contact') }}">Contact</a></li>
             <li><a href="{{ path ('admin_homepage') }}">Admin</a></li>
             <!--
