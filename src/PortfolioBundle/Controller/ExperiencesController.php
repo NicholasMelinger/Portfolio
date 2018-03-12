@@ -4,6 +4,7 @@ namespace PortfolioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PortfolioBundle\Entity\Experiences;
+use PortfolioBundle\Entity\Utilisateurs;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +21,16 @@ class ExperiencesController extends Controller
     
     public function experiences_addAction(Request $request)
     {
-    	$exp = new Experiences;
+        $session = $this->get('session');
+        $user_id = $session->get('userID');
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('PortfolioBundle:Utilisateurs')->findById($user_id);
+        $exp = new Experiences;
     	$form = $this->createForm(ExperienceType::class, $exp, array('action' => $this->generateUrl('experience_ajout')));
     	$form->handleRequest($request);
     	if ($form->isValid()) {
     		$em = $this->getDoctrine()->getManager();
-    		$em->persist($exp);
+    		$em->persist($exp->setUtilisateurs($user[0]));
     		$em->flush();
     		return $this->redirectToRoute('experience_defaut');
     	}

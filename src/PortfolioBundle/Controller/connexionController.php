@@ -82,10 +82,26 @@ class connexionController extends Controller
                 $session->set('userName', $resultat['username']);
                 sleep(3);
 
-                echo 'Connexion réussie. <a href="index">Retourner à l\'accueil.</a>';
-                exit(0);
+                try
+                {
+                    $bdd = new PDO('mysql:host=localhost;dbname=db_portfolio;charset=utf8', 'root', '');
+                }
+                catch(Exception $e)
+                {
+                    // En cas d'erreur, on affiche un message et on arrête tout.
+                    die('Erreur : '.$e->getMessage());
+                }
+
+                //Récupération des 5 derniers profils
+                $requeteUtilisateur = 'SELECT id, nom_utilisateur, prenom_utilisateur, url_photo 
+                                    FROM utilisateurs
+                                    LIMIT 5';
+                $utilisateurs = $bdd->query($requeteUtilisateur);
+
+                //echo 'Connexion réussie. <a href="index">Retourner à l\'accueil.</a>';
+                return $this->render('PortfolioBundle:Default:index.html.twig',array('utilisateurs' => $utilisateurs));
             }
-                //return $this->render('PortfolioBundle:Default:index.html.twig');
+                //
 
             else 
             {
