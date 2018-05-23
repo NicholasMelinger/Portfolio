@@ -10,7 +10,7 @@
 
 {% block page %}
 
-
+{% if (app.session.get('userRole') == '1') or (utilisateur.id == app.session.get('userID') ) %}
 
 <div>
     <div class="card hovercard">
@@ -136,5 +136,10 @@
     </div>
     
 </div>
+
+{% else %}
+Page non autorisée.
+<a href="{{ path ('portfolio_homepage') }}">Retour à l'accueil</a></li>
+{% endif %}
 
 {% endblock %}

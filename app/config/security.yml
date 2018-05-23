@@ -4,23 +4,26 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
-
+        main:
+            entity:
+                class:    PortfolioBundle:Utilisateurs
+                property: username
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_PROF, ROLE_RECRUTEUR, ROLE_ETUDIANT]
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         main:
-            anonymous: ~
-            # activate different ways to authenticate
+            pattern: ^/
+            anonymous: true
+            provider: main
+            form_login:
+                login_path: connexion
+                check_path: resConnex
 
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
 
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
     encoders:
         PortfolioBundle\Entity\Utilisateurs: sha512
