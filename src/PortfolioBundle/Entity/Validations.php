@@ -36,7 +36,6 @@ class Validations
      * @var int
      */
     private $idCompetenceValidee;
-
     /**
      * Get id
      *

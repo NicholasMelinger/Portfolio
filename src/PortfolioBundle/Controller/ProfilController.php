@@ -201,7 +201,12 @@ class ProfilController extends Controller
 
 
 
-        return $this->render('PortfolioBundle:Profil:profil.html.twig', array('utilisateur' => $utilisateur, 'competences' => $competences, 'cursus' => $cursus , 'experiences' => $experiences));
+        //Récupérer ses validations 
+        $requeteValidations = 'SELECT * FROM validations JOIN utilisateurs on idUtilisateurValidant = utilisateurs.id where idUtilisateurValide = ' . $id;
+        $validations = $bdd->query($requeteValidations);
+
+
+        return $this->render('PortfolioBundle:Profil:profil.html.twig', array('validations' => $validations, 'utilisateur' => $utilisateur, 'competences' => $competences, 'cursus' => $cursus , 'experiences' => $experiences));
     }
 
 }
