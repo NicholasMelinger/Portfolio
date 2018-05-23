@@ -149,3 +149,6 @@ matrice_modifier:
 matrice_supprimer:
     path:    /supprimer_matrice/{id}
     defaults: { _controller: PortfolioBundle:Matrice:matrice_supprimer} 
+validations:
+    path:    /validerCompetence
+    defaults: { _controller: PortfolioBundle:Validations:validation_ajouter}

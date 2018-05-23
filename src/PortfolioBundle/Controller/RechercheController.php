@@ -74,13 +74,17 @@ class RechercheController extends Controller
                             FROM utilisateurs_competences JOIN Competences ON Competences.id = utilisateurs_competences.competences_id';
         $resultatComp = $bdd->query($requeteComp);
 
-        
+        // Récupération des associations compétences/users.
+        $requeteValidations = 'SELECT * FROM validations';
+        $resultatValidations = $bdd->query($requeteValidations);
+
+
         $requeteExperience = 'SELECT * FROM `experiences` order by utilisateurs_id';
         $resultatExp = $bdd->query($requeteExperience);
         
 
         return $this->render('PortfolioBundle:Recherche:recherche.html.twig', 
-            array('resultatExp' => $resultatExp, 'resultatRequete' => $reponse, 'userRecherche' => $nomRecherche, 'resultatCursus' => $resultatCursus->fetchAll(), 'resultatComp' => $resultatComp->fetchAll()));
+            array('resultatValidations' => $resultatValidations->fetchAll(), 'resultatExp' => $resultatExp, 'resultatRequete' => $reponse, 'userRecherche' => $nomRecherche, 'resultatCursus' => $resultatCursus->fetchAll(), 'resultatComp' => $resultatComp->fetchAll()));
 
     }
 
@@ -101,6 +105,8 @@ class RechercheController extends Controller
         $requeteCursus = 'SELECT id, libelle_formation FROM Cursus ORDER BY libelle_formation';
         $resultatCursus = $bdd->query($requeteCursus);
 
+        $requeteValidations = 'SELECT * FROM validations';
+        $resultatValidations = $bdd->query($requeteValidations);
 
         // Récupération des thèmes et compétences. 
         $requeteCompetencesThemes = 'SELECT Competences.id, libelle_competence, Themes.libelle_theme, Themes.id as idTheme
@@ -109,7 +115,7 @@ class RechercheController extends Controller
         $resultatCompetencesThemes = $bdd->query($requeteCompetencesThemes);
 
         return $this->render('PortfolioBundle:Recherche:rechercheavancee.html.twig', 
-            array('resultatCursus' => $resultatCursus->fetchAll(), 
+            array('resultatValidations' => $resultatValidations->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll(), 
                     'resultatCompetencesThemes' => $resultatCompetencesThemes->fetchAll()));
 
     }
@@ -192,7 +198,7 @@ class RechercheController extends Controller
 
 
         // Récupération des associations compétences/users.
-        $requeteComp = 'SELECT utilisateurs_id, libelle_competence
+        $requeteComp = 'SELECT utilisateurs_id, libelle_competence, competences_id
                             FROM utilisateurs_competences JOIN Competences ON Competences.id = utilisateurs_competences.competences_id';
         $resultatComp = $bdd->query($requeteComp);
 
@@ -202,6 +208,8 @@ class RechercheController extends Controller
                             FROM experiences';
         $resultatExp = $bdd->query($requeteExperience);
 
+                $requeteValidations = 'SELECT * FROM validations';
+        $resultatValidations = $bdd->query($requeteValidations);
 
         if ($resultatRecherche == false)
             return $this->render('PortfolioBundle:Recherche:resultatrecherche.html.twig', array());
@@ -210,7 +218,8 @@ class RechercheController extends Controller
                 array('resultatRecherche' => $resultatRecherche->fetchAll(),
                     'resultatComp' => $resultatComp->fetchAll(),
                     'resultatExp' => $resultatExp->fetchAll(),
-                    'resultatCursus' => $resultatCursus->fetchAll()));
+                    'resultatCursus' => $resultatCursus->fetchAll(),
+                    'resultatValidations' => $resultatValidations->fetchAll()));
         
         echo $requeteRecherche;
         
