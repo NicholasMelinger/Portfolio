@@ -66,6 +66,10 @@
                                     {% endif %}
                                 {% endfor %}
                                 </td>
+                                <br/>
+                                <tr>
+                                    <a href="{{ path ('validerCompetence', { 'idComp': comp.id_competence, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Valider la compétence</a>
+                                </tr>
                             </table>
                             </div>
                         </div>
