@@ -82,13 +82,17 @@ function getXhr(){
 {% endblock %}
 
 {% block page %}
+
 <div class="form">
  <p>
- 	{{ form_start(form_comp) }}
- 		{{ form_errors(form_comp) }}
+ 	<form method = "post" action = "../../../script/insert_ajax.php">
  		<table>
  		<td>
- 			<tr>{{ form_row(form_comp.libelleCompetence) }}</tr>
+ 			<tr>
+ 				<label> Libellé: </label>
+				<input type = "text" name='libelle' id='libelle'>					
+ 			</tr>
+ 			<br/><br/>
  			<tr>
  				<label>Themes</label>
  				<select name='theme' id='theme' onchange='set_s_theme()'>*
@@ -97,14 +101,14 @@ function getXhr(){
  							<option value="{{ m.ThemeMatrice.id }}">{{ m.ThemeMatrice }}</option>
  						{% endfor %}
  				</select>
- 			</tr>
+ 			</tr><br/>
  			<tr>
  				<label> Sous themes </label>
 				<select name='s_theme' id='s_theme' onchange='set_s_s_theme()'>
 					<option value='-1'>Aucun</option>
 						</select>
  				</select>
- 			</tr>
+ 			</tr><br/>
  			<tr>
  				<label> Sous sous Themes </label>
 					<div id='s_s_theme' style='display:inline'>
@@ -113,11 +117,16 @@ function getXhr(){
 						</select>
 					</div>
  			</tr>
+ 			<tr>
+				<input type = "hidden" name='id' id='id' value = {{ app.session.get('userID') }}>					
+ 			</tr>
+ 			
  			<hr/>
  			<tr><button type="submit" class="btn btn-lg btn-success" >Valider</button></tr>
  		</td>
  	</table>
+ </form>
  </p>
 </div>
-{{ form_end(form_comp) }}
+
 {% endblock %}
