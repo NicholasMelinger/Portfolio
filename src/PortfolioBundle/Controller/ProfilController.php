@@ -128,7 +128,7 @@ class ProfilController extends Controller
         if ($form->isValid()) {
           $em = $this->getDoctrine()->getManager();
           $em->flush();
-          return $this->redirectToRoute('portfolio_homepage');
+          return $this->render('PortfolioBundle:Profil:modificationProfil.html.twig', array('edit_form' => $form->createView(),'utilisateur' => $exp, 'competences' => $competences, 'cursus' => $cursus, 'experiences' => $experiences));
         }
 
         
@@ -174,7 +174,6 @@ class ProfilController extends Controller
             LEFT JOIN sous_themes ON sous_themes.id = matrice.s_theme_matrice_id
             LEFT JOIN sous_sous_themes ON sous_sous_themes.id = matrice.s_s_theme_matrice_id
             WHERE utilisateurs.id = '. $id;
-            echo $requeteCompetence;
 
         $competences = $bdd->query($requeteCompetence);
 

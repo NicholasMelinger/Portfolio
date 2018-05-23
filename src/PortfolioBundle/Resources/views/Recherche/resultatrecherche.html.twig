@@ -85,7 +85,7 @@
 								{% if resExperience.utilisateurs_id == resRecherche.id %}
 									<h4 style="margin-top:0px;margin-bottom:15px;">
 										<span class="label label-danger" style="margin-bottom:15px;font-size:15px;font-weight:normal;">
-											{{ resExperience.type_experience ~ ' : ' ~ resExperience.description_experience ~ ' (' ~ resExperience.dureeExperience ~ ' mois)'}}
+											{{ resExperience.type_experience ~ ' (' ~ resExperience.dureeExperience ~ ')'}}
 										</span>
 									</h4>
 								{% endif %}
@@ -95,10 +95,7 @@
 
 
 						<br>	
-						<button type="submit" class="btn btn-primary" style="padding:7px;">
-							Consulter le profil 
-				            <span class="glyphicon glyphicon-user"></span>
-				        </button>
+						<a href="{{ path ('profil', { 'id': resRecherche.id }) }}"  class="btn btn-primary" role="button">Consulter le profil</a>
 				    </div>
 				</div>
 			{% endfor %}

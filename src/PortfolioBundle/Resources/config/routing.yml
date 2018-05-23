@@ -149,3 +149,7 @@ matrice_modifier:
 matrice_supprimer:
     path:    /supprimer_matrice/{id}
     defaults: { _controller: PortfolioBundle:Matrice:matrice_supprimer} 
+
+alertes_defaut:
+    path:    /alertes/{id}
+    defaults: { _controller: PortfolioBundle:Alertes:alertes_defaut} 
