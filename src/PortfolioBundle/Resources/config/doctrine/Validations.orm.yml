@@ -15,6 +15,15 @@ PortfolioBundle\Entity\Validations:
         commentaire:
             type: string
             length: 255
+        idUtilisateurValide:
+            type: integer
+            column: idUtilisateurValide
+        idUtilisateurValidant:
+            type: integer
+            column: idUtilisateurValidant
+        idCompetenceValidee:
+            type: integer
+            column: idCompetenceValidee
     lifecycleCallbacks: {  }
     
     oneToMany:

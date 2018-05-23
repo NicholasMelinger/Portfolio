@@ -22,7 +22,20 @@ class Validations
      */
     private $commentaire;
 
+    /**
+     * @var int
+     */
+    private $idUtilisateurValide;
 
+    /**
+     * @var int
+     */
+    private $idUtilisateurValidant;
+
+    /**
+     * @var int
+     */
+    private $idCompetenceValidee;
     /**
      * Get id
      *

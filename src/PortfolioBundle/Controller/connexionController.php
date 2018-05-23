@@ -51,7 +51,7 @@ class connexionController extends Controller
 
         echo '<br><br><br>';    
         //  Récupération de l'utilisateur et de son pass hashé
-        $req = $bdd->prepare('SELECT id, password, username FROM utilisateurs WHERE username = :pseudo');
+        $req = $bdd->prepare('SELECT id, password, username, type_utilisateur_id FROM utilisateurs WHERE username = :pseudo');
         $req->execute(array('pseudo' => $_POST['login']));
         $resultat = $req->fetch();
 
@@ -80,6 +80,7 @@ class connexionController extends Controller
                 $session = $this->get('session');
                 $session->set('userID', $resultat['id']);
                 $session->set('userName', $resultat['username']);
+                $session->set('userRole', $resultat['type_utilisateur_id']);
                 sleep(3);
 
                 try

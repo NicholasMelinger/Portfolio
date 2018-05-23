@@ -153,3 +153,8 @@ matrice_supprimer:
 alertes_defaut:
     path:    /alertes/{id}
     defaults: { _controller: PortfolioBundle:Alertes:alertes_defaut} 
+
+validations:
+    path:    /validerCompetence
+    defaults: { _controller: PortfolioBundle:Validations:validation_ajouter}
+
