@@ -57,16 +57,24 @@
                                 <tr><b>Détail : </b> {{ comp.detail_competence }}</tr><hr/>
                                 <tr><b>Niveau : </b> {{ comp.niveau_competence }}</tr><hr/>
                                 <tr>Compétence acquise lors du cursus <b>{{ comp.libelle_formation }}</b></tr><hr/>
-
+                                <span class="label label-success" style="font-size:15px;font-weight:bold;">Validations</span>
+                                </br></br>
                                 {% for resValid in validations %}
                                     {% if resValid.idCompetenceValidee == comp.id_competence %}
-                                        <tr><b>Validation de {{ resValid.prenom_utilisateur }} {{ resValid.nom_utilisateur }} ({{ resValid.date_validation }}) : </b>{{ resValid.commentaire }}</tr><br/>
+                                        {% if resValid.type_valid == 'comp' %}
+                                             <tr>
+                                                <b>{{ resValid.prenom_utilisateur }} {{ resValid.nom_utilisateur }} ({{ resValid.libelle }}), le {{ resValid.date_validation|date('d/m/Y') }}</b> : {{ resValid.commentaire }}
+                                             </tr>
+                                             <br/>
+                                         {% endif %}
                                     {% endif %}
                                 {% endfor %}
                                 </td>
                                 <br/>
                                 <tr>
-                                    <a href="{{ path ('validerCompetence', { 'idComp': comp.id_competence, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Valider la compétence</a>
+                                    {% if (app.session.get('userID') is not null) %}
+                                        <a href="{{ path ('validerCompetence', { 'idComp': comp.id_competence, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Valider la compétence</a>
+                                    {% endif %}
                                 </tr>
                             </table>
                             </div>
@@ -116,9 +124,16 @@
                                 <tr><b>Durée experience : </b> {{ xp.dureeExperience }}</tr><hr/>
                                 <tr>{{ xp.cursus_libelle }}</tr><hr/>
                                 </td>
+                                <tr>
+                            {% if (app.session.get('userID') is not null) %}
+                            <a href="" class="btn btn-primary" role="button" method="post" name="test">Valider l'expérience</a>
+                        {% endif %}
+                            </tr>
                             </table>
                             </div>
+
                         </div>
+
                     </div>
                 </div>
                 </p>

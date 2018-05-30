@@ -76,13 +76,15 @@
 											{% for resValidation in resultatValidations %}
 												{% if resRecherche.id == resValidation.idUtilisateurValide %}
 													{% if resComp.competences_id == resValidation.idCompetenceValidee %}
-														{% set nbValidations = nbValidations +1 %}				
+														{% if resValidation.type_valid == 'comp' %}
+															{% set nbValidations = nbValidations +1 %}
+														{% endif %}			
 													{% endif %}
 												{% endif %}
 											{% endfor %}
 										</span>
 										{% if nbValidations > 0 %}
-											  {{ nbValidations }} validation(s)
+											  <span class="badge">{{ nbValidations }} validation(s)</span>
 										{% endif %}
 									</h4>
 								{% endif %}
@@ -107,8 +109,8 @@
 
 						<br>	
 						
-							<a href="{{ path ('profil', { 'id': resRecherche.id }) }}"  class="btn btn-primary" role="button">Consulter le profil</a>
-				            <span class="glyphicon glyphicon-user"></span>
+							<a href="{{ path ('profil', { 'id': resRecherche.id }) }}"  class="btn btn-primary" role="button"><span class="glyphicon glyphicon-user"></span>  Consulter le profil</a>
+				            
 
 				    </div>
 				</div>

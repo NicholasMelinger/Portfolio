@@ -23,6 +23,11 @@ class Validations
     private $commentaire;
 
     /**
+     * @var string
+     */
+    private $typeValid;
+
+    /**
      * @var int
      */
     private $idUtilisateurValide;
