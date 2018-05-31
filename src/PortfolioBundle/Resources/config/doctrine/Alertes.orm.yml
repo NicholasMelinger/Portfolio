@@ -16,4 +16,16 @@ PortfolioBundle\Entity\Alertes:
             type: string
             nullable: true
             length: 255
+        flag_actif:
+            type: integer
+            nullable: false
     lifecycleCallbacks: {  }
+    manyToOne:
+        competence:
+            targetEntity: Competences
+            inversedBy: alertes
+            cascade: [ Persist ]
+        utilisateur:
+            targetEntity: Utilisateurs
+            inversedBy: alertes
+            cascade: [ Persist ]

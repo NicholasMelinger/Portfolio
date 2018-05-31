@@ -66,7 +66,7 @@ class CompetencesController extends Controller
         return $this->render('PortfolioBundle:Competences:competences_add.html.twig', array('form_comp' => $form->createView(),));
     }
 
-        public function competences_supprimerAction($id, Request $request)
+    public function competences_supprimerAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $comp = $em->getRepository('PortfolioBundle:Competences')->find($id);

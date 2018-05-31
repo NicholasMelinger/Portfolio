@@ -97,4 +97,9 @@ class Themes
     {
         return $this->matrice;
     }
+
+    public function __toString()
+    {
+        return $this->libelleTheme;
+    }
 }

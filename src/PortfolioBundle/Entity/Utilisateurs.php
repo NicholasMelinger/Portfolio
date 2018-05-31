@@ -761,4 +761,45 @@ class Utilisateurs implements UserInterface
     {
         return $this->prenomUtilisateur . ' ' . $this->nomUtilisateur;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $alertes;
+
+
+    /**
+     * Add alerte.
+     *
+     * @param \PortfolioBundle\Entity\Alertes $alerte
+     *
+     * @return Utilisateurs
+     */
+    public function addAlerte(\PortfolioBundle\Entity\Alertes $alerte)
+    {
+        $this->alertes[] = $alerte;
+
+        return $this;
+    }
+
+    /**
+     * Remove alerte.
+     *
+     * @param \PortfolioBundle\Entity\Alertes $alerte
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAlerte(\PortfolioBundle\Entity\Alertes $alerte)
+    {
+        return $this->alertes->removeElement($alerte);
+    }
+
+    /**
+     * Get alertes.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAlertes()
+    {
+        return $this->alertes;
+    }
 }

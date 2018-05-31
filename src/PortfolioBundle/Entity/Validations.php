@@ -144,4 +144,76 @@ class Validations
     {
         return $this->user_competences;
     }
+
+    /**
+     * Set idUtilisateurValide.
+     *
+     * @param int $idUtilisateurValide
+     *
+     * @return Validations
+     */
+    public function setIdUtilisateurValide($idUtilisateurValide)
+    {
+        $this->idUtilisateurValide = $idUtilisateurValide;
+
+        return $this;
+    }
+
+    /**
+     * Get idUtilisateurValide.
+     *
+     * @return int
+     */
+    public function getIdUtilisateurValide()
+    {
+        return $this->idUtilisateurValide;
+    }
+
+    /**
+     * Set idUtilisateurValidant.
+     *
+     * @param int $idUtilisateurValidant
+     *
+     * @return Validations
+     */
+    public function setIdUtilisateurValidant($idUtilisateurValidant)
+    {
+        $this->idUtilisateurValidant = $idUtilisateurValidant;
+
+        return $this;
+    }
+
+    /**
+     * Get idUtilisateurValidant.
+     *
+     * @return int
+     */
+    public function getIdUtilisateurValidant()
+    {
+        return $this->idUtilisateurValidant;
+    }
+
+    /**
+     * Set idCompetenceValidee.
+     *
+     * @param int $idCompetenceValidee
+     *
+     * @return Validations
+     */
+    public function setIdCompetenceValidee($idCompetenceValidee)
+    {
+        $this->idCompetenceValidee = $idCompetenceValidee;
+
+        return $this;
+    }
+
+    /**
+     * Get idCompetenceValidee.
+     *
+     * @return int
+     */
+    public function getIdCompetenceValidee()
+    {
+        return $this->idCompetenceValidee;
+    }
 }

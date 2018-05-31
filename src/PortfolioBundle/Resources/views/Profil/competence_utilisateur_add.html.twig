@@ -1,0 +1,203 @@
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
+
+{% block tete %}
+<h1>Alertes</h1>
+{% endblock %}
+
+{% block titre_section %}
+	<h1>Création d'une alerte</h1>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+			function getXhr(){
+                                var xhr = null; 
+				if(window.XMLHttpRequest) // Firefox et autres
+				   xhr = new XMLHttpRequest(); 
+				else if(window.ActiveXObject){ // Internet Explorer 
+				   try {
+			                xhr = new ActiveXObject("Msxml2.XMLHTTP");
+			            } catch (e) {
+			                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			            }
+				}
+				else { // XMLHttpRequest non supporté par le navigateur 
+				   alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest..."); 
+				   xhr = false; 
+				} 
+                                return xhr;
+			}
+ 
+			/**
+			* Méthode qui sera appelée sur le click du bouton
+			*/
+			function set_s_theme(){
+				var xhr = getXhr();
+				// On défini ce qu'on va faire quand on aura la réponse
+				xhr.onreadystatechange = function(){
+					// On ne fait quelque chose que si on a tout reçu et que le serveur est ok
+					if(xhr.readyState == 4 && xhr.status == 200){
+						leselect = xhr.responseText;
+						// On se sert de innerHTML pour rajouter les options a la liste
+						document.getElementById('s_theme').innerHTML = leselect;
+					}
+				}
+ 
+				// Ici on va voir comment faire du post
+				xhr.open("POST","../../../script/s_theme.php",true);
+				// ne pas oublier ça pour le post
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				// ne pas oublier de poster les arguments
+				// ici, l'id de l'auteur
+				sel = document.getElementById('theme');
+				idtheme = sel.options[sel.selectedIndex].value;
+				xhr.send("idTheme="+idtheme);
+			}
+
+			function set_s_s_theme(vide){
+				var xhr2 = getXhr();
+
+				// On défini ce qu'on va faire quand on aura la réponse
+				xhr2.onreadystatechange = function(){
+				// On ne fait quelque chose que si on a tout reçu et que le serveur est ok
+					if(xhr2.readyState == 4 && xhr2.status == 200){
+						leselect2 = xhr2.responseText;
+						// On se sert de innerHTML pour rajouter les options a la liste
+						document.getElementById('s_s_theme').innerHTML = leselect2;
+					}
+				}
+ 
+				// Ici on va voir comment faire du post
+				xhr2.open("POST","../../../script/s_s_theme.php",true);
+				// ne pas oublier ça pour le post
+				xhr2.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				// ne pas oublier de poster les arguments
+				// ici, l'id de l'auteur
+				sel2 = document.getElementById('s_theme');
+
+				if(vide == false){
+					id_s_theme = sel2.options[sel2.selectedIndex].value;
+				}
+				else{
+					id_s_theme = -1
+				}
+				
+				xhr2.send("id_s_theme="+id_s_theme+"&vide="+vide);
+			}
+
+			function set_competence(vide){
+				var xhr3 = getXhr();
+
+				// On défini ce qu'on va faire quand on aura la réponse
+				xhr3.onreadystatechange = function(){
+				// On ne fait quelque chose que si on a tout reçu et que le serveur est ok
+					if(xhr3.readyState == 4 && xhr3.status == 200){
+						leselect3 = xhr3.responseText;
+						// On se sert de innerHTML pour rajouter les options a la liste
+
+						//ICI je remplis le tableau de compétence
+						document.getElementById('competence_id').innerHTML = leselect3;
+						set_btn_ajout();	
+					}
+				}
+ 
+				// Ici on va voir comment faire du post
+				xhr3.open("POST","../../../script/competence.php",true);
+				// ne pas oublier ça pour le post
+				xhr3.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				// ne pas oublier de poster les arguments
+				// ici, l'id de l'auteur
+				sel = document.getElementById('theme');
+				id_theme = sel.options[sel.selectedIndex].value;
+				console.log("theme : " + id_theme);
+
+				id_s_s_theme = 0;
+
+
+
+				if(vide == false){
+					sel = document.getElementById('s_theme');
+					id_s_theme = sel.options[sel.selectedIndex].value;
+					console.log("sous_theme : " + id_s_theme);
+
+					s_s_theme = document.getElementById('s_s_theme');
+					id_s_s_theme = s_s_theme.options[s_s_theme.selectedIndex].value;
+					console.log("sous_sous_theme : " + id_s_s_theme);
+
+				}
+				else{
+					id_s_theme = -1;
+					id_s_s_theme = -1;
+				}
+				
+
+				xhr3.send("id_s_theme="+id_s_theme+"&id_theme="+id_theme+"&id_s_s_theme="+id_s_s_theme+"&vide="+vide);
+			}
+
+			function set_btn_ajout(){
+				sel = document.getElementById('competence_id');
+				competence_id = sel.options[sel.selectedIndex].value;
+				console.log("competence_id : " + competence_id);
+
+				if(competence_id != -1){
+					document.getElementById('btn_ajout').disabled = false;
+				}
+				else{
+					document.getElementById('btn_ajout').disabled = true;
+				}
+
+				console.log("---------------------------------");
+			}
+
+</script>
+{% endblock %}
+
+{% block page %}
+
+	<div class="form">
+		
+		</span><a class="btn btn-default" href="{{ path ('alertes_defaut', {'id': app.session.get('userID')}) }}" role="button" style="float: right;"><span class="glyphicon glyphicon-arrow-left">&nbsp;Retour</a></br></br>
+			<p>
+		 	<form id="form_add" method = "post" action = "../../../script/new_alerte_ajax.php">
+		 		<div class="form-group">
+		 					<input type = "hidden" name='id' id='id' value = {{ app.session.get('userID') }}>
+		 					<h3><label>Veuillez selectionner une compétences</label></h3></br></br>
+		 					<label>Themes</label>
+	 						<select class="form-control" name='theme' id='theme' onchange='set_s_theme(); set_s_s_theme(true); set_competence(true)'>
+	 							<option value='-1'>-- Choisir un thème --</option>
+	 							{% for m in matrice %}
+	 								<option value="{{ m.ThemeMatrice.id }}">{{ m.ThemeMatrice }}</option>
+	 							{% endfor %}
+	 						</select>
+	 						</br>
+		 					<label> Sous themes </label>
+							<select class="form-control" name='s_theme' id='s_theme' onchange='set_s_s_theme(false); set_competence(true)'>
+								<option value='-1'>-- Choisir un sous thème --</option>
+			 				</select>
+			 				</br>
+		 					<label> Sous sous Themes </label>
+							<select class="form-control" name='s_s_theme' id='s_s_theme' style='display:inline' onchange='set_competence(false)'>
+								<option value='-1'>-- Choisir un sous sous thème --</option>
+							</select>
+							</br>
+		 					<label> Compétences </label>
+							<select class="form-control" name='competence_id' id="competence_id" style='display:inline' onchange='set_btn_ajout()'>
+								<option value='-1'>-- Choisir une compétence --</option>
+							</select>
+							</br>			
+			 				<label> Commentaire : </label>
+			 				<textarea maxlength="255" class="form-control" rows="4" cols="50" name="comment" id="comment" form="form_add" required></textarea>
+			 				</br>
+				 			<button id="btn_ajout" type="submit" class="btn btn-sm btn-success" disabled>Créer l'alerte</button>
+		 		</table>
+		 		</div>
+		 		
+
+		 	</form>
+		</p>
+	</div>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,51 @@
+{% extends "PortfolioBundle:Default:layout2.html.twig" %}
+
+{% block tete %}
+{% endblock %}
+
+{% block titre_section %}
+	</br></br></br><h1>Mes alertes</h1>
+{% endblock %}
+
+
+{% block page %}
+
+<p>
+	Ici vous pouvez programmer des alertes sur les compétences qui vous intéressent.
+	</br>
+	Ces alertes vous seront envoyées par mail dès qu'un utilisateur ajoutera à son profil une des compétences concernées.
+</p>
+
+<div class="form table-responsive" >
+	<a class="btn btn-primary" href="{{ path ('alerte_ajout') }}" role="button" style="float: right;">Nouvelle alerte</a></br></br>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+			  <th scope="col">Nom</th>
+			  <th scope="col">Détail</th>
+			  <th scope="col">Commentaire</th>
+			  <th scope="col">Date de création</th>
+			  <th scope="col">Active</th>
+			  <th scope="col">Action</th>
+			</tr>
+		</thead>
+		{% for alerte in alertes %}
+		<tbody>
+			<tr>
+				<td><b>{{ alerte.libelle_competence }}</b></td>
+				<td>{{ alerte.libelle_theme }} / {{ alerte.libelle_sous_theme }} / {{ alerte.libelle_sous_sous_theme }}</td>
+				<td>{{ alerte.commentaire }}</td>
+				<td>{{ alerte.date_creation_alerte }}</td>
+				<td>{{ alerte.actif }} <a class="btn btn-warning btn-xs" href="{{ path ('activer_desactiver_alerte', { 'id': alerte.id }) }}" role="button">Activer/Desactiver</a></td>
+				<td><a class="btn btn-danger btn-xs" href="{{ path ('alerte_supprimer', { 'id': alerte.id }) }}" role="button">Supprimer</a></td>
+
+
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+	</br>
+	<a class="btn btn-primary" href="{{ path ('alerte_ajout') }}" role="button" style="float: right;">Nouvelle alerte</a>
+</div>                
+
+{% endblock %}
