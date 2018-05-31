@@ -15,6 +15,9 @@ PortfolioBundle\Entity\Validations:
         commentaire:
             type: string
             length: 255
+        typeValid:
+            type: string
+            length: 25
         idUtilisateurValide:
             type: integer
             column: idUtilisateurValide

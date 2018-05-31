@@ -174,3 +174,10 @@ validations:
     path:    /validerCompetence
     defaults: { _controller: PortfolioBundle:Validations:validation_ajouter}
 
+validerCompetence:
+    path:    /validerCompetence
+    defaults: { _controller: PortfolioBundle:Validations:index}
+validationCompetence:
+    path:    /validationCompetence
+    defaults: { _controller: PortfolioBundle:Validations:valider}
+

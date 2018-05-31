@@ -71,7 +71,20 @@
 									<h4 style="margin-top:0px;margin-bottom:15px;">
 										<span class="label label-primary" style="font-size:15px;font-weight:normal;">
 											{{ resComp.libelle_competence }}
+											{% set nbValidations = 0 %}
+											{% for resValidation in resultatValidations %}
+												{% if resultat.id == resValidation.idUtilisateurValide %}
+													{% if resComp.competences_id == resValidation.idCompetenceValidee %}
+														{% if resValidation.type_valid == 'comp' %}
+															{% set nbValidations = nbValidations +1 %}
+														{% endif %}		
+													{% endif %}
+												{% endif %}
+											{% endfor %}
 										</span>
+										{% if nbValidations > 0 %}
+											  <span class="badge">{{ nbValidations }} validation(s)</span>
+										{% endif %}
 									</h4>
 								{% endif %}
 							{% endfor %}

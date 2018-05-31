@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block page %}
+{% if (app.session.get('userRole') == '1') %}
 <div class="form">
  <p>
  	{{ form_start(form_theme) }}
@@ -24,4 +25,11 @@
  	{{ form_end(form_theme) }}
  </p>
 </div>
+{% else %}
+
+Page non autorisée.
+
+<a href="{{ path ('portfolio_homepage') }}">Retour à l'accueil</a></li>
+
+{% endif %}
 {% endblock %}

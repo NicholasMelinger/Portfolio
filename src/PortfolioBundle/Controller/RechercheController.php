@@ -70,7 +70,7 @@ class RechercheController extends Controller
 
 
         // Récupération des associations compétences/users.
-        $requeteComp = 'SELECT utilisateurs_id, libelle_competence
+        $requeteComp = 'SELECT competences_id, utilisateurs_id, libelle_competence
                             FROM utilisateurs_competences JOIN Competences ON Competences.id = utilisateurs_competences.competences_id';
         $resultatComp = $bdd->query($requeteComp);
 

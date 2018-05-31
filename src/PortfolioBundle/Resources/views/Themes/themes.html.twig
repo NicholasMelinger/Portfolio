@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block page %}
+{% if (app.session.get('userRole') == '1') %}
 <div class="row">
     <div class="col-sm-4">
  		<p>
@@ -30,4 +31,11 @@
 </div>
 </p>
 {% endfor %}
+{% else %}
+
+Page non autorisée.
+
+<a href="{{ path ('portfolio_homepage') }}">Retour à l'accueil</a></li>
+
+{% endif %}
 {% endblock %}
