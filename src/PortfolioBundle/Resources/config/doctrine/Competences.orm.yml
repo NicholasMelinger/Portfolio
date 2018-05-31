@@ -35,7 +35,7 @@ PortfolioBundle\Entity\Competences:
             targetEntity: Matrice
             inversedBy: competences
             cascade: [ Persist ]
-
+        
     oneToMany:
         user_competences:
             targetEntity: Utilisateurs_competences
@@ -43,3 +43,6 @@ PortfolioBundle\Entity\Competences:
         cup:
             targetEntity: Cursus_utilisateurs_competences
             mappedBy: competences
+        alertes:
+            targetEntity: Alertes
+            mappedBy: competence

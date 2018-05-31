@@ -1,123 +1,51 @@
 {% extends "PortfolioBundle:Default:layout2.html.twig" %}
 
 {% block tete %}
-<h1>Competences</h1>
-        <p>Administration des competences</p>
 {% endblock %}
 
 {% block titre_section %}
-	<h1>Ajout d'une competence</h1>
+	</br></br></br><h1>Mes alertes</h1>
 {% endblock %}
 
-{% block script %}
-<script type="text/javascript">
-function getXhr(){
-                                var xhr = null; 
-				if(window.XMLHttpRequest) // Firefox et autres
-				   xhr = new XMLHttpRequest(); 
-				else if(window.ActiveXObject){ // Internet Explorer 
-				   try {
-			                xhr = new ActiveXObject("Msxml2.XMLHTTP");
-			            } catch (e) {
-			                xhr = new ActiveXObject("Microsoft.XMLHTTP");
-			            }
-				}
-				else { // XMLHttpRequest non supporté par le navigateur 
-				   alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest..."); 
-				   xhr = false; 
-				} 
-                                return xhr;
-			}
- 
-			/**
-			* Méthode qui sera appelée sur le click du bouton
-			*/
-			function set_s_theme(){
-				var xhr = getXhr();
-				// On défini ce qu'on va faire quand on aura la réponse
-				xhr.onreadystatechange = function(){
-					// On ne fait quelque chose que si on a tout reçu et que le serveur est ok
-					if(xhr.readyState == 4 && xhr.status == 200){
-						leselect = xhr.responseText;
-						// On se sert de innerHTML pour rajouter les options a la liste
-						document.getElementById('s_theme').innerHTML = leselect;
-					}
-				}
- 
-				// Ici on va voir comment faire du post
-				xhr.open("POST","../../../script/s_theme.php",true);
-				// ne pas oublier ça pour le post
-				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-				// ne pas oublier de poster les arguments
-				// ici, l'id de l'auteur
-				sel = document.getElementById('theme');
-				idtheme = sel.options[sel.selectedIndex].value;
-				console.log(idtheme);
-				xhr.send("idTheme="+idtheme);
-			}
-			function set_s_s_theme(){
-				var xhr2 = getXhr();
-				// On défini ce qu'on va faire quand on aura la réponse
-				xhr2.onreadystatechange = function(){
-					// On ne fait quelque chose que si on a tout reçu et que le serveur est ok
-					if(xhr2.readyState == 4 && xhr2.status == 200){
-						leselect2 = xhr2.responseText;
-						// On se sert de innerHTML pour rajouter les options a la liste
-						document.getElementById('s_s_theme').innerHTML = leselect2;
-					}
-				}
- 
-				// Ici on va voir comment faire du post
-				xhr2.open("POST","../../../script/s_s_theme.php",true);
-				// ne pas oublier ça pour le post
-				xhr2.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-				// ne pas oublier de poster les arguments
-				// ici, l'id de l'auteur
-				sel2 = document.getElementById('s_theme');
-				id_s_theme = sel2.options[sel2.selectedIndex].value;
-				console.log(id_s_theme);
-				xhr2.send("id_s_theme="+id_s_theme);
-			}
-</script>
-{% endblock %}
 
 {% block page %}
-<div class="form">
- <p>
- 	{{ form_start(form_comp) }}
- 		{{ form_errors(form_comp) }}
- 		<table>
- 		<td>
- 			<tr>{{ form_row(form_comp.libelleCompetence) }}</tr>
- 			<tr>
- 				<label>Themes</label>
- 				<select name='theme' id='theme' onchange='set_s_theme()'>*
- 					<option value='-1'>Aucun</option>
- 						{% for m in matrice %}
- 							<option value="{{ m.ThemeMatrice.id }}">{{ m.ThemeMatrice }}</option>
- 						{% endfor %}
- 				</select>
- 			</tr>
- 			<tr>
- 				<label> Sous themes </label>
-				<select name='s_theme' id='s_theme' onchange='set_s_s_theme()'>
-					<option value='-1'>Aucun</option>
-						</select>
- 				</select>
- 			</tr>
- 			<tr>
- 				<label> Sous sous Themes </label>
-					<div id='s_s_theme' style='display:inline'>
-						<select name='s_s_theme'>
-							<option value='-1'>Aucun</option>
-						</select>
-					</div>
- 			</tr>
- 			<hr/>
- 			<tr><button type="submit" class="btn btn-lg btn-success" >Valider</button></tr>
- 		</td>
- 	</table>
- </p>
-</div>
-{{ form_end(form_comp) }}
+
+<p>
+	Ici vous pouvez programmer des alertes sur les compétences qui vous intéressent.
+	</br>
+	Ces alertes vous seront envoyées par mail dès qu'un utilisateur ajoutera à son profil une des compétences concernées.
+</p>
+
+<div class="form table-responsive" >
+	<a class="btn btn-primary" href="{{ path ('alerte_ajout') }}" role="button" style="float: right;">Nouvelle alerte</a></br></br>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+			  <th scope="col">Nom</th>
+			  <th scope="col">Détail</th>
+			  <th scope="col">Commentaire</th>
+			  <th scope="col">Date de création</th>
+			  <th scope="col">Active</th>
+			  <th scope="col">Action</th>
+			</tr>
+		</thead>
+		{% for alerte in alertes %}
+		<tbody>
+			<tr>
+				<td><b>{{ alerte.libelle_competence }}</b></td>
+				<td>{{ alerte.libelle_theme }} / {{ alerte.libelle_sous_theme }} / {{ alerte.libelle_sous_sous_theme }}</td>
+				<td>{{ alerte.commentaire }}</td>
+				<td>{{ alerte.date_creation_alerte }}</td>
+				<td>{{ alerte.actif }} <a class="btn btn-warning btn-xs" href="{{ path ('activer_desactiver_alerte', { 'id': alerte.id }) }}" role="button">Activer/Desactiver</a></td>
+				<td><a class="btn btn-danger btn-xs" href="{{ path ('alerte_supprimer', { 'id': alerte.id }) }}" role="button">Supprimer</a></td>
+
+
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+	</br>
+	<a class="btn btn-primary" href="{{ path ('alerte_ajout') }}" role="button" style="float: right;">Nouvelle alerte</a>
+</div>                
+
 {% endblock %}

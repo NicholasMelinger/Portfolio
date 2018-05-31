@@ -97,4 +97,9 @@ class Sous_themes
     {
         return $this->matrice;
     }
+
+    public function __toString()
+    {
+        return $this->libelleSousTheme;
+    }
 }

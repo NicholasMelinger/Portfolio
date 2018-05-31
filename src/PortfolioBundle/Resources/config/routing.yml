@@ -154,6 +154,22 @@ alertes_defaut:
     path:    /alertes/{id}
     defaults: { _controller: PortfolioBundle:Alertes:alertes_defaut} 
 
+alerte_ajout:
+    path:    /alertes_add/
+    defaults: { _controller: PortfolioBundle:Alertes:alerte_add} 
+
+alerte_supprimer:
+    path:    /supprimer_alerte/{id}
+    defaults: { _controller: PortfolioBundle:Alertes:alerte_supprimer} 
+
+activer_desactiver_alerte:
+    path:    /acti_desac_alerte/{id}
+    defaults: { _controller: PortfolioBundle:Alertes:acti_desac_alerte} 
+
+send_alerte:
+    path:    /send_alerte/{competence_id}
+    defaults: { _controller: PortfolioBundle:Alertes:send_alerte} 
+
 validations:
     path:    /validerCompetence
     defaults: { _controller: PortfolioBundle:Validations:validation_ajouter}

@@ -431,4 +431,59 @@ class Competences
     {
         return $this->libelleCompetence;
     }
+    /**
+     * @var \PortfolioBundle\Entity\Alertes
+     */
+    private $alertes;
+
+
+    /**
+     * Set alertes.
+     *
+     * @param \PortfolioBundle\Entity\Alertes|null $alertes
+     *
+     * @return Competences
+     */
+    public function setAlertes(\PortfolioBundle\Entity\Alertes $alertes = null)
+    {
+        $this->alertes = $alertes;
+
+        return $this;
+    }
+
+    /**
+     * Get alertes.
+     *
+     * @return \PortfolioBundle\Entity\Alertes|null
+     */
+    public function getAlertes()
+    {
+        return $this->alertes;
+    }
+
+    /**
+     * Add alerte.
+     *
+     * @param \PortfolioBundle\Entity\Alertes $alerte
+     *
+     * @return Competences
+     */
+    public function addAlerte(\PortfolioBundle\Entity\Alertes $alerte)
+    {
+        $this->alertes[] = $alerte;
+
+        return $this;
+    }
+
+    /**
+     * Remove alerte.
+     *
+     * @param \PortfolioBundle\Entity\Alertes $alerte
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAlerte(\PortfolioBundle\Entity\Alertes $alerte)
+    {
+        return $this->alertes->removeElement($alerte);
+    }
 }
