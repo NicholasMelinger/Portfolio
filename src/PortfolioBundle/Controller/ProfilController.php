@@ -190,7 +190,7 @@ class ProfilController extends Controller
 
 
         //Récupérer ses experiences 
-        $requeteExperience = 'SELECT experiences.type_experience, experiences.description_experience, experiences.dureeExperience, 
+        $requeteExperience = 'SELECT experiences.id, experiences.type_experience, experiences.description_experience, experiences.dureeExperience, 
                                 CASE cursus.libelle_formation WHEN NULL THEN \'\' ELSE CONCAT( \'Expérience effectués au cours du cursus \' ,cursus.libelle_formation )  END AS cursus_libelle
                                 FROM experiences, utilisateurs, cursus
                                 WHERE experiences.utilisateurs_id = utilisateurs.id

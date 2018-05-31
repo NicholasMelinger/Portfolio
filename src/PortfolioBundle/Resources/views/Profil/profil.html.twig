@@ -73,7 +73,7 @@
                                 <br/>
                                 <tr>
                                     {% if (app.session.get('userID') is not null) %}
-                                        <a href="{{ path ('validerCompetence', { 'idComp': comp.id_competence, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Valider la compétence</a>
+                                        <a href="{{ path ('validerCompetencee', { 'idComp': comp.id_competence, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Valider la compétence</a>
                                     {% endif %}
                                 </tr>
                             </table>
@@ -124,10 +124,23 @@
                                 <tr><b>Durée experience : </b> {{ xp.dureeExperience }}</tr><hr/>
                                 <tr>{{ xp.cursus_libelle }}</tr><hr/>
                                 </td>
+                                <span class="label label-success" style="font-size:15px;font-weight:bold;">Validations</span>
+                                </br></br>
+                                {% for resValid in validations %}
+                                    {% if resValid.idCompetenceValidee == xp.id %}
+                                        {% if resValid.type_valid == 'exp' %}
+                                             <tr>
+                                                <b>{{ resValid.prenom_utilisateur }} {{ resValid.nom_utilisateur }} ({{ resValid.libelle }}), le {{ resValid.date_validation|date('d/m/Y') }}</b> : {{ resValid.commentaire }}
+                                             </tr>
+                                             <br/>
+                                         {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </br>
                                 <tr>
-                            {% if (app.session.get('userID') is not null) %}
-                            <a href="" class="btn btn-primary" role="button" method="post" name="test">Valider l'expérience</a>
-                        {% endif %}
+                                    {% if (app.session.get('userID') is not null) %}
+                                        <a href="{{ path ('validerExperience', { 'idExp': xp.id, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Valider l'expérience</a>
+                                    {% endif %}
                             </tr>
                             </table>
                             </div>

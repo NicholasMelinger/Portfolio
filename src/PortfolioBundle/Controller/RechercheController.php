@@ -84,7 +84,7 @@ class RechercheController extends Controller
         
 
         return $this->render('PortfolioBundle:Recherche:recherche.html.twig', 
-            array('resultatValidations' => $resultatValidations->fetchAll(), 'resultatExp' => $resultatExp, 'resultatRequete' => $reponse, 'userRecherche' => $nomRecherche, 'resultatCursus' => $resultatCursus->fetchAll(), 'resultatComp' => $resultatComp->fetchAll()));
+            array('resultatValidations' => $resultatValidations->fetchAll(), 'resultatExp' => $resultatExp->fetchAll(), 'resultatRequete' => $reponse, 'userRecherche' => $nomRecherche, 'resultatCursus' => $resultatCursus->fetchAll(), 'resultatComp' => $resultatComp->fetchAll()));
 
     }
 
@@ -192,10 +192,13 @@ class RechercheController extends Controller
 
         // Récupération des cursus existant en BDD.
         $requeteCursus = 'SELECT distinct cursus_id, utilisateurs_id, Cursus.libelle_formation, annee 
-                            FROM cursus_utilisateurs_competences JOIN Cursus ON Cursus.id = cursus_utilisateurs_competences.cursus_id order by annee';
+                            FROM cursus_utilisateurs_competences left JOIN Cursus ON Cursus.id = cursus_utilisateurs_competences.cursus_id order by annee';
 
         $resultatCursus = $bdd->query($requeteCursus);
 
+        $requeteCursus = 'SELECT utilisateurs_id, libelle_formation, annee 
+                            FROM cursus_utilisateurs_competences JOIN Cursus ON Cursus.id = cursus_utilisateurs_competences.cursus_id';
+        $resultatCursus = $bdd->query($requeteCursus);
 
         // Récupération des associations compétences/users.
         $requeteComp = 'SELECT utilisateurs_id, libelle_competence, competences_id
@@ -204,7 +207,7 @@ class RechercheController extends Controller
 
 
         // Récupération des associations experiences/users.
-        $requeteExperience = 'SELECT utilisateurs_id, type_experience, description_experience, dureeExperience
+        $requeteExperience = 'SELECT id, utilisateurs_id, type_experience, description_experience, dureeExperience
                             FROM experiences';
         $resultatExp = $bdd->query($requeteExperience);
 
