@@ -64,7 +64,7 @@ class RechercheController extends Controller
         $reponse = $bdd->query($requeteNomUser);
 
         // Récupération des associations cursus/users.
-        $requeteCursus = 'SELECT utilisateurs_id, libelle_formation, annee 
+        $requeteCursus = 'SELECT distinct utilisateurs_id, libelle_formation, annee 
                             FROM cursus_utilisateurs_competences JOIN Cursus ON Cursus.id = cursus_utilisateurs_competences.cursus_id';
         $resultatCursus = $bdd->query($requeteCursus);
 
@@ -196,7 +196,7 @@ class RechercheController extends Controller
 
         $resultatCursus = $bdd->query($requeteCursus);
 
-        $requeteCursus = 'SELECT utilisateurs_id, libelle_formation, annee 
+        $requeteCursus = 'SELECT distinct utilisateurs_id, libelle_formation, annee 
                             FROM cursus_utilisateurs_competences JOIN Cursus ON Cursus.id = cursus_utilisateurs_competences.cursus_id';
         $resultatCursus = $bdd->query($requeteCursus);
 

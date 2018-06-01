@@ -96,9 +96,10 @@
 							<!-- Parcours de la table utilisateurs_comp_user afin de rechercher les cursus et comp de l'user actuel -->
 							{% for resExperience in resultatExp %}
 								{% if resExperience.utilisateurs_id == resultat.id %}
-									<h4 style="margin-top:0px;margin-bottom:15px;">
-										<span class="label label-danger" style="margin-bottom:15px;font-size:15px;font-weight:normal;">
-											 {{ resExperience.type_experience ~ ' : ' ~ resExperience.description_experience ~ ' (' ~ resExperience.dureeExperience ~ ' mois)'}}
+									<li>
+										<span class="label label-danger" style="margin-bottom:35px;font-size:15px;font-weight:normal;">{{ resExperience.type_experience ~ ' (' ~ resExperience.dureeExperience ~ ' mois)'}} </span>
+										
+											{{ '   ' ~ resExperience.description_experience }}
 										</span>
 											{% set nbValidations = 0 %}
 											{% for resValidation in resultatValidations %}
@@ -112,8 +113,10 @@
 											{% endfor %}
 										{% if nbValidations > 0 %}
 											  <span class="badge">{{ nbValidations }} validation(s)</span>
+										</li>
 										{% endif %}
-									</h4>
+									</br>
+									
 								{% endif %}
 							{% endfor %}
 						</ul>

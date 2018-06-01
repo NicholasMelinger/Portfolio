@@ -185,4 +185,7 @@ validationCompetence:
 validationExperience:
     path:    /validationExperience
     defaults: { _controller: PortfolioBundle:Validations:validerExperience}
+exportCV:
+    path:    /exporterCV
+    defaults: { _controller: PortfolioBundle:Validations:exportCV}
 
