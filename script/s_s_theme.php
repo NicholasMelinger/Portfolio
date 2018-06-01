@@ -1,5 +1,5 @@
 <?php
-	echo "<select name='s_s_theme'>";
+	echo "<select name='s_s_theme' id='s_s_theme' class='form-control'>";
 	if(isset($_POST["id_s_theme"]) && $_POST["id_s_theme"] != -1){
 		$link = mysqli_connect("localhost","db_portfolio","db_portfolio", "db_portfolio");
 		$query = "SELECT libelle_sous_sous_theme, s_s_theme_matrice_id FROM sous_sous_themes, matrice WHERE sous_sous_themes.id = matrice.s_s_theme_matrice_id AND matrice.s_theme_matrice_id=".$_POST["id_s_theme"];

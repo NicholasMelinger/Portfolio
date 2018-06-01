@@ -142,7 +142,7 @@ class AlertesController extends Controller
 		    	$this->get('mailer')->send($message);
 			}
 
-			return $this->redirectToRoute('portfolio_homepage2');
+			return $this->redirectToRoute('modification_profil' , array('id' => $profil_user_id));
         }
         catch(Exception $e)
         {

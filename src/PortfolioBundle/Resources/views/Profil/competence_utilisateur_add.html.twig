@@ -156,13 +156,15 @@
 
 	<div class="form">
 		
-		</span><a class="btn btn-default" href="{{ path ('alertes_defaut', {'id': app.session.get('userID')}) }}" role="button" style="float: right;"><span class="glyphicon glyphicon-arrow-left">&nbsp;Retour</a></br></br>
+		</span><a class="btn btn-default" href="{{ path ('modification_profil', {'id': app.session.get('userID')}) }}" role="button" style="float: right;"><span class="glyphicon glyphicon-arrow-left">&nbsp;Retour</a></br></br>
 			<p>
-		 	<form id="form_add" method = "post" action = "../../../script/new_alerte_ajax.php">
+		 	<form id="form_add" method = "post" action = "../../../script/insert_competence_utilisateur_ajax.php">
 		 		<div class="form-group">
 		 					<input type = "hidden" name='id' id='id' value = {{ app.session.get('userID') }}>
-		 					<h3><label>Veuillez selectionner une compétences</label></h3></br></br>
-		 					<label>Themes</label>
+		 					<h3><label>Veuillez selectionner une compétences</label></h3>
+		 					</br><i style="font-size: 11px; color:#848484;"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;Si vous ne trouvez pas la compétence adéquate, vous pouvez en créer une personnalisée en cliquant <a href="{{ path ('competences_ajout') }}" ><b style="font-size:15px">ici</b></a></i>
+		 					</br></br>
+		 					<label>Themes *</label>
 	 						<select class="form-control" name='theme' id='theme' onchange='set_s_theme(); set_s_s_theme(true); set_competence(true)'>
 	 							<option value='-1'>-- Choisir un thème --</option>
 	 							{% for m in matrice %}
@@ -170,7 +172,7 @@
 	 							{% endfor %}
 	 						</select>
 	 						</br>
-		 					<label> Sous themes </label>
+		 					<label> Sous themes *</label>
 							<select class="form-control" name='s_theme' id='s_theme' onchange='set_s_s_theme(false); set_competence(true)'>
 								<option value='-1'>-- Choisir un sous thème --</option>
 			 				</select>
@@ -179,17 +181,22 @@
 							<select class="form-control" name='s_s_theme' id='s_s_theme' style='display:inline' onchange='set_competence(false)'>
 								<option value='-1'>-- Choisir un sous sous thème --</option>
 							</select>
-							</br>
-		 					<label> Compétences </label>
+							</br></br>
+		 					<label> Compétences *</label>
 							<select class="form-control" name='competence_id' id="competence_id" style='display:inline' onchange='set_btn_ajout()'>
 								<option value='-1'>-- Choisir une compétence --</option>
 							</select>
-							</br>			
-			 				<label> Commentaire : </label>
-			 				<textarea maxlength="255" class="form-control" rows="4" cols="50" name="comment" id="comment" form="form_add" required></textarea>
+							</br>		
+							</br>	
+			 				<label> Commentaire : <i style="font-size: 11px; color:#848484;">N'hésitez pas à décrire ici les expériences qui pourraient justifier cette compétence</i></label>
+			 				<textarea maxlength="255" class="form-control" rows="4" cols="50" name="comment" id="comment" form="form_add" >-- Facultatif --</textarea>
 			 				</br>
-				 			<button id="btn_ajout" type="submit" class="btn btn-sm btn-success" disabled>Créer l'alerte</button>
-		 		</table>
+			 				<label> Année(s) d'expérience : </label>
+			 				<input class="form-control" type="number" name="niveau_comp" id="niveau_comp" max="100" value="0">
+		 					</br>
+		 					<i style="font-size: 11px; color:#848484;"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;Si vous ne trouvez pas la compétence adéquate, vous pouvez en créer une personnalisée en cliquant <a href="{{ path ('competences_ajout') }}" ><b style="font-size:15px">ici</b></a></i>
+			 				</br></br>
+				 			<button id="btn_ajout" type="submit" class="btn btn-sm btn-success" disabled>Ajouter la compétence</button>
 		 		</div>
 		 		
 

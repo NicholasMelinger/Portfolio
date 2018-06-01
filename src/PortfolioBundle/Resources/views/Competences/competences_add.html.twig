@@ -85,46 +85,47 @@ function getXhr(){
 
 <div class="form">
  <p>
- 	<form method = "post" action = "../../../script/insert_ajax.php">
- 		<table>
- 		<td>
- 			<tr>
- 				<label> Libellé: </label>
-				<input type = "text" name='libelle' id='libelle'>					
- 			</tr>
- 			<br/><br/>
- 			<tr>
- 				<label>Themes</label>
- 				<select name='theme' id='theme' onchange='set_s_theme()'>*
- 					<option value='-1'>Aucun</option>
- 						{% for m in matrice %}
- 							<option value="{{ m.ThemeMatrice.id }}">{{ m.ThemeMatrice }}</option>
- 						{% endfor %}
- 				</select>
- 			</tr><br/>
- 			<tr>
- 				<label> Sous themes </label>
-				<select name='s_theme' id='s_theme' onchange='set_s_s_theme()'>
-					<option value='-1'>Aucun</option>
-						</select>
- 				</select>
- 			</tr><br/>
- 			<tr>
- 				<label> Sous sous Themes </label>
-					<div id='s_s_theme' style='display:inline'>
-						<select name='s_s_theme'>
-							<option value='-1'>Aucun</option>
-						</select>
-					</div>
- 			</tr>
- 			<tr>
-				<input type = "hidden" name='id' id='id' value = {{ app.session.get('userID') }}>						
- 			</tr>
- 			
- 			<hr/>
- 			<tr><button type="submit" class="btn btn-lg btn-success" >Valider</button></tr>
- 		</td>
- 	</table>
+ 	<form id="form_add" method = "post" action = "../../../script/insert_ajax.php">
+ 		<div class="form-group">
+ 			<input type = "hidden" name='id' id='id' value = {{ app.session.get('userID') }}>	
+
+			<label>Themes *</label>
+			<select name='theme' id='theme' onchange='set_s_theme()' class="form-control">*
+			<option value='-1'>Aucun</option>
+			{% for m in matrice %}
+			<option value="{{ m.ThemeMatrice.id }}">{{ m.ThemeMatrice }}</option>
+			{% endfor %}
+			</select>
+			<br/>
+
+			<label> Sous themes *</label>
+			<select name='s_theme' id='s_theme' onchange='set_s_s_theme()' class="form-control">
+			<option value='-1'>Aucun</option>
+			</select>
+			</select>
+			<br/>
+
+			<label> Sous sous Themes *</label>
+			<div id='s_s_theme' style='display:inline'>
+				<select name='s_s_theme' class="form-control">
+				<option value='-1'>Aucun</option>
+				</select>
+			</div>
+			<br/>
+
+			<label> Libellé: </label>
+			<input type = "text" name='libelle' id='libelle' class="form-control">			
+			<br/>
+			<label> Commentaire : <i style="font-size: 11px; color:#848484;">N'hésitez pas à décrire ici les expériences qui pourraient justifier cette compétence</i></label>
+			<textarea maxlength="255" class="form-control" rows="4" cols="50" name="comment" form="form_add" >-- Facultatif --</textarea>
+			</br>
+
+			<label> Année(s) d'expérience : </label>
+			<input class="form-control" type="number" name="niveau_comp" id="niveau_comp" max="100" value="0">
+		 	</br>
+			
+			<button type="submit" class="btn btn-sm btn-success" class="form-control">Créer la compétence</button>
+ 		</div>
  </form>
  </p>
 </div>

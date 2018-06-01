@@ -1,5 +1,5 @@
 <?php
-	echo "<select name='competence_id'>";
+	echo "<select name='competence_id' class='form-control' id='competence_id'>";
 	if(isset($_POST["id_theme"],$_POST["id_s_theme"]) && $_POST["id_s_theme"] != -1){
 		$link = mysqli_connect("localhost","db_portfolio","db_portfolio", "db_portfolio");
 

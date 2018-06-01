@@ -1,5 +1,5 @@
 <?php
-	echo "<select name='s_theme'>";
+	echo "<select name='s_theme' id='s_theme' class='form-control'>";
 	if(isset($_POST["idTheme"]) && $_POST["idTheme"] != -1){
 		$link = mysqli_connect("localhost","db_portfolio","db_portfolio", "db_portfolio");
 		$query = "SELECT libelle_sous_theme, s_theme_matrice_id FROM sous_themes, matrice WHERE sous_themes.id = matrice.s_theme_matrice_id AND matrice.theme_matrice_id=".$_POST["idTheme"]." GROUP BY s_theme_matrice_id";

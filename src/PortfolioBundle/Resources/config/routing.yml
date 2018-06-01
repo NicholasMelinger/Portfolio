@@ -96,6 +96,9 @@ competences_modifier:
 competences_supprimer:
     path:    /supprimer_competences/{id}
     defaults: { _controller: PortfolioBundle:Competences:competences_supprimer }
+competence_utilisateur_ajout:
+    path:    /competence_utilisateur_add/
+    defaults: { _controller: PortfolioBundle:Profil:competence_utilisateur_add }
 
 themes_defaut:
     path:    /themes

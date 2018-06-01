@@ -20,8 +20,9 @@
         <div class="useravatar">
             <img alt="" src="../../{{ utilisateur.urlPhoto }}">
         </div>
-        <div class="card-info"> <span class="card-title">{{ utilisateur }} </span>
-
+        <div class="card-info"> 
+        	<span class="card-title">{{ utilisateur }} </span>
+        	</br>
         </div>
     </div>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -56,11 +57,21 @@
 				        {{ form_widget(edit_form) }}
 				        <input type="submit"  class="btn btn-primary" value="Enregistrer les informations saisies" />
 				    {{ form_end(edit_form) }}
+					</br>
+				    <form method="post" enctype="multipart/form-data" action = "../../../script/upload.php">
+				 		<div class="form-inline">
+				 			<label>Changer de photo de profil&nbsp;</label>
+				 			<input type = "hidden" name='id' id='id' value = {{ app.session.get('userID') }}>
+						 	<input class="form-control" type="file" name="fileToUpload" id="fileToUpload">&nbsp;
+		    				<input type="submit" value="Modifier" name="submit" class="btn btn-default" style="float: right; width:150px;">
+				 		</table>
+				 		</div>
+				 	</form>
 			 	</div>
 			 	</p>
 			</div>
-			<div class="tab-pane fade in active" id="tab2">
-				<a href="{{ path ('competences_ajout') }}">Ajouter une compétence</a>
+			<div class="tab-pane fade in" id="tab2">
+				<a href="{{ path ('competence_utilisateur_ajout') }}">Ajouter une compétence</a>
 	            {% for comp in competences %}
 	                <p>
 	                <div class="row">

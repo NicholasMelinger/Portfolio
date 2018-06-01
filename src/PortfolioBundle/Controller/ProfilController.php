@@ -82,7 +82,13 @@ class ProfilController extends Controller
         $exp = $em->getRepository('PortfolioBundle:Utilisateurs')->find($id);
 
 
-        $requeteCompetence = 'SELECT utilisateurs.id AS id_utilisateur, competences.id AS id_competence, competences.libelle_competence, utilisateurs_competences.niveau_competence, utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, sous_sous_themes.libelle_sous_sous_theme, cursus.libelle_formation 
+        $requeteCompetence = "SELECT utilisateurs.id AS id_utilisateur, competences.id AS id_competence, competences.libelle_competence,
+            CASE utilisateurs_competences.niveau_competence
+                WHEN niveau_competence <=3 THEN CONCAT('Junior (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')  
+                WHEN niveau_competence >= 3 AND niveau_competence <6 THEN CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')
+                ELSE CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')        
+            END AS niveau_competence,
+            utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, sous_sous_themes.libelle_sous_sous_theme, cursus.libelle_formation 
             FROM utilisateurs 
             LEFT JOIN utilisateurs_competences ON utilisateurs_competences.utilisateurs_id = utilisateurs.id 
             LEFT JOIN competences ON competences.id = utilisateurs_competences.competences_id 
@@ -92,7 +98,7 @@ class ProfilController extends Controller
             LEFT JOIN themes ON themes.id = matrice.theme_matrice_id
             LEFT JOIN sous_themes ON sous_themes.id = matrice.s_theme_matrice_id
             LEFT JOIN sous_sous_themes ON sous_sous_themes.id = matrice.s_s_theme_matrice_id
-            WHERE utilisateurs.id = '. $id;
+            WHERE utilisateurs.id = ". $id;
 
 
         $competences = $bdd->query($requeteCompetence);
@@ -163,7 +169,15 @@ class ProfilController extends Controller
         //Récupérer ses compétences
         //$competences = $utilisateur->getUserCompetences();
 
-        $requeteCompetence = 'SELECT utilisateurs.id AS id_utilisateur, competences.id AS id_competence, competences.libelle_competence, utilisateurs_competences.niveau_competence, utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, sous_sous_themes.libelle_sous_sous_theme, cursus.libelle_formation 
+        $requeteCompetence = "SELECT utilisateurs.id AS id_utilisateur, competences.id AS id_competence, competences.libelle_competence, 
+
+            utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, 
+            sous_sous_themes.libelle_sous_sous_theme, cursus.libelle_formation ,
+            CASE utilisateurs_competences.niveau_competence
+                WHEN niveau_competence <=3 THEN CONCAT('Junior (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')  
+                WHEN niveau_competence >= 3 AND niveau_competence <6 THEN CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')
+                ELSE CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')        
+            END AS niveau_competence
             FROM utilisateurs 
             LEFT JOIN utilisateurs_competences ON utilisateurs_competences.utilisateurs_id = utilisateurs.id 
             LEFT JOIN competences ON competences.id = utilisateurs_competences.competences_id 
@@ -173,7 +187,7 @@ class ProfilController extends Controller
             LEFT JOIN themes ON themes.id = matrice.theme_matrice_id
             LEFT JOIN sous_themes ON sous_themes.id = matrice.s_theme_matrice_id
             LEFT JOIN sous_sous_themes ON sous_sous_themes.id = matrice.s_s_theme_matrice_id
-            WHERE utilisateurs.id = '. $id;
+            WHERE utilisateurs.id = ". $id;
 
         $competences = $bdd->query($requeteCompetence);
 
@@ -205,7 +219,43 @@ class ProfilController extends Controller
         $validations = $bdd->query($requeteValidations);
 
 
-        return $this->render('PortfolioBundle:Profil:profil.html.twig', array('validations' => $validations->fetchAll(), 'utilisateur' => $utilisateur, 'competences' => $competences, 'cursus' => $cursus , 'experiences' => $experiences));
+        //Profils similaire
+
+        //1. Similarité calculées en fonction des compétences
+        $requete_similaire = "SELECT utilisateurs.id, 
+                            CONCAT(utilisateurs.prenom_utilisateur, ' ' , utilisateurs.nom_utilisateur) AS utilisateur,
+                            'Compétences en communs' AS similarite,
+                            utilisateurs.url_photo as photo
+                             FROM Utilisateurs, utilisateurs_competences, competences 
+                             WHERE utilisateurs.id = utilisateurs_competences.utilisateurs_id
+                             AND competences.id = utilisateurs_competences.competences_id
+                             AND utilisateurs.id = " . $id . " ORDER BY utilisateurs_competences.niveau_competence DESC
+                             LIMIT 5";
+
+        $profils_similaires = $bdd->query($requete_similaire);
+
+        if($profils_similaires->rowCount() == 0){
+            //2. Similarité calculées en fonction des cursus
+
+            //3. Aucune similarité, proposition de profils random
+        }
+
+        
+
+        /////////////////////////////////////////////////////
+
+
+        return $this->render('PortfolioBundle:Profil:profil.html.twig', array('validations' => $validations->fetchAll(), 'utilisateur' => $utilisateur, 'competences' => $competences, 'cursus' => $cursus , 'experiences' => $experiences, 'profils_similaires' => $profils_similaires));
     }
+
+
+    public function competence_utilisateur_addAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $matrice = $em->getRepository('PortfolioBundle:Matrice')->select_distinct();
+        return $this->render('PortfolioBundle:Profil:competence_utilisateur_add.html.twig', array('matrice' => $matrice));
+    }
+
+
 
 }
