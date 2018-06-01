@@ -25,6 +25,7 @@
         	</br>
         </div>
     </div>
+
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
         <div class="btn-group" role="group">
             <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -57,6 +58,7 @@
 				        {{ form_widget(edit_form) }}
 				        <input type="submit"  class="btn btn-primary" value="Enregistrer les informations saisies" />
 				    {{ form_end(edit_form) }}
+
 					</br>
 				    <form method="post" enctype="multipart/form-data" action = "../../../script/upload.php">
 				 		<div class="form-inline">
@@ -67,6 +69,13 @@
 				 		</table>
 				 		</div>
 				 	</form>
+
+					<br/>
+					<a href="{{ path ('exportCV', { 'id': app.session.get('userID') }) }}"  class="btn btn-primary" role="button">
+						<span class="glyphicon glyphicon-user"></span>
+						Exporter mon CV
+					</a>
+
 			 	</div>
 			 	</p>
 			</div>

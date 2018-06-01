@@ -96,19 +96,38 @@
 							<!-- Parcours de la table utilisateurs_comp_user afin de rechercher les cursus et comp de l'user actuel -->
 							{% for resExperience in resultatExp %}
 								{% if resExperience.utilisateurs_id == resultat.id %}
-									<h4 style="margin-top:0px;margin-bottom:15px;">
-										<span class="label label-danger" style="margin-bottom:15px;font-size:15px;font-weight:normal;">
-											{{ resExperience.type_experience ~ ' : (' ~ resExperience.dureeExperience ~ ')'}}
+									<li>
+										<span class="label label-danger" style="margin-bottom:35px;font-size:15px;font-weight:normal;">{{ resExperience.type_experience ~ ' (' ~ resExperience.dureeExperience ~ ' mois)'}} </span>
+										
+											{{ '   ' ~ resExperience.description_experience }}
 										</span>
-									</h4>
+											{% set nbValidations = 0 %}
+											{% for resValidation in resultatValidations %}
+												{% if resultat.id == resValidation.idUtilisateurValide %}
+													{% if resExperience.id == resValidation.idCompetenceValidee %}
+													{% if resValidation.type_valid == 'exp' %}
+															{% set nbValidations = nbValidations +1 %}
+														{% endif %}
+													{% endif %}			
+												{% endif %}
+											{% endfor %}
+										{% if nbValidations > 0 %}
+											  <span class="badge">{{ nbValidations }} validation(s)</span>
+										</li>
+										{% endif %}
+									</br>
+									
 								{% endif %}
 							{% endfor %}
 						</ul>
 
+						</ul>
+
+
 						<br/>
 
 
-					        <a href="{{ path ('profil', { 'id': resultat.id }) }}"  class="btn btn-primary" role="button">Consulter le profil</a>
+					        <a href="{{ path ('profil', { 'id': resultat.id }) }}"  class="btn btn-primary" role="button"><span class="glyphicon glyphicon-user"></span>  Consulter le profil</a>
 					    </div>
 					</div>
 				<!--</center>-->

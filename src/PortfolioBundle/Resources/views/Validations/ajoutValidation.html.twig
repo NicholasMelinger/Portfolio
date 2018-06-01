@@ -1,0 +1,26 @@
+
+
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+	<style style="text/css">
+		/* Define the hover highlight color for the table row */
+	    .table-hover tbody tr:hover{
+	          background-color: #cfd8dc;
+	    }
+	</style>
+	<h1>Valider la compétence</h1>
+	<p>Trouvez le candidat idéal !</p>
+{% endblock %}
+
+{% block titre_section %}
+{% endblock %}
+
+
+{% block page %}
+	<form action="{{ path ('validationCompetence', { 'idComp': idCompetenceValidee, 'idUser' : idUserValide }) }}" method="post" name ="commentaireValidation">
+		<input type="text" class="form-control" placeholder="Commentez la compétence" name="commentaireCompetence" method = "post"/>
+		</br>
+		<button type="submit" class="btn btn-primary"><b>Valider</b></button>
+	</form>
+{% endblock %}

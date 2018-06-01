@@ -84,7 +84,7 @@
 											{% endfor %}
 										</span>
 										{% if nbValidations > 0 %}
-											  <span class="badge">{{ nbValidations }} validation(s)</span>
+											  <span class="badge">{{ nbValidations }} validation(s)</span>
 										{% endif %}
 									</h4>
 								{% endif %}
@@ -96,11 +96,27 @@
 							<!-- Parcours de la table utilisateurs_comp_user afin de rechercher les cursus et comp de l'user actuel -->
 							{% for resExperience in resultatExp %}
 								{% if resExperience.utilisateurs_id == resRecherche.id %}
-									<h4 style="margin-top:0px;margin-bottom:15px;">
+								<li>
 										<span class="label label-danger" style="margin-bottom:15px;font-size:15px;font-weight:normal;">
-											{{ resExperience.type_experience ~ ' (' ~ resExperience.dureeExperience ~ ')'}}
+											{{ resExperience.type_experience ~ ' (' ~ resExperience.dureeExperience ~ ' mois)' }}
 										</span>
-									</h4>
+										{{ '   ' ~ resExperience.description_experience }}
+
+											{% set nbValidations = 0 %}
+											{% for resValidation in resultatValidations %}
+												{% if resRecherche.id == resValidation.idUtilisateurValide %}
+													{% if resExperience.id == resValidation.idCompetenceValidee %}
+													{% if resValidation.type_valid == 'exp' %}
+															{% set nbValidations = nbValidations +1 %}
+														{% endif %}
+													{% endif %}			
+												{% endif %}
+											{% endfor %}
+										{% if nbValidations > 0 %}
+											  <span class="badge">{{ nbValidations }} validation(s)</span>
+										{% endif %}
+									</li>
+								</br>
 								{% endif %}
 							{% endfor %}
 						</ul>
@@ -108,11 +124,7 @@
 
 
 						<br>	
-
-						<a href="{{ path ('profil', { 'id': resRecherche.id }) }}"  class="btn btn-primary" role="button">Consulter le profil</a>
-
-						
-							<a href="{{ path ('profil', { 'id': resRecherche.id }) }}"  class="btn btn-primary" role="button"><span class="glyphicon glyphicon-user"></span>  Consulter le profil</a>
+						<a href="{{ path ('profil', { 'id': resRecherche.id }) }}"  class="btn btn-primary" role="button"><span class="glyphicon glyphicon-user"></span>  Consulter le profil</a>
 				            
 
 				    </div>
