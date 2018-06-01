@@ -1,11 +1,11 @@
 {% extends "PortfolioBundle:Default:layout2.html.twig" %}
 
 {% block tete %}
-<h1>Alertes</h1>
+<h1>Ajout d'une compétence</h1>
 {% endblock %}
 
 {% block titre_section %}
-	<h1>Création d'une alerte</h1>
+	<h1>Ajout d'une compétence</h1>
 {% endblock %}
 
 {% block script %}
@@ -161,7 +161,7 @@
 		 	<form id="form_add" method = "post" action = "../../../script/insert_competence_utilisateur_ajax.php">
 		 		<div class="form-group">
 		 					<input type = "hidden" name='id' id='id' value = {{ app.session.get('userID') }}>
-		 					<h3><label>Veuillez selectionner une compétences</label></h3>
+		 					<h3><label>Veuillez selectionner une compétence</label></h3>
 		 					</br><i style="font-size: 11px; color:#848484;"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;Si vous ne trouvez pas la compétence adéquate, vous pouvez en créer une personnalisée en cliquant <a href="{{ path ('competences_ajout') }}" ><b style="font-size:15px">ici</b></a></i>
 		 					</br></br>
 		 					<label>Themes *</label>

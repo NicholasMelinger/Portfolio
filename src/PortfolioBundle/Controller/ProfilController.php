@@ -222,15 +222,56 @@ class ProfilController extends Controller
         //Profils similaire
 
         //1. Similarité calculées en fonction des compétences
-        $requete_similaire = "SELECT utilisateurs.id, 
-                            CONCAT(utilisateurs.prenom_utilisateur, ' ' , utilisateurs.nom_utilisateur) AS utilisateur,
-                            'Compétences en communs' AS similarite,
-                            utilisateurs.url_photo as photo
-                             FROM Utilisateurs, utilisateurs_competences, competences 
-                             WHERE utilisateurs.id = utilisateurs_competences.utilisateurs_id
-                             AND competences.id = utilisateurs_competences.competences_id
-                             AND utilisateurs.id = " . $id . " ORDER BY utilisateurs_competences.niveau_competence DESC
-                             LIMIT 5";
+        $requete_similaire = "SELECT DISTINCT * FROM (  
+                        
+                                    SELECT  utilisateurs.id, 
+                                            CONCAT(utilisateurs.prenom_utilisateur, ' ' , utilisateurs.nom_utilisateur) AS utilisateur,
+                                            'Compétences en communs' AS similarite,
+                                            utilisateurs.url_photo as photo
+                                     FROM Utilisateurs
+                                     WHERE id IN (
+                                        SELECT utilisateurs_competences.utilisateurs_id FROM utilisateurs_competences WHERE utilisateurs_competences.competences_id IN
+                                        (SELECT utilisateurs_competences.competences_id FROM utilisateurs_competences WHERE utilisateurs_competences.utilisateurs_id = " . $id . " ORDER BY utilisateurs_competences.niveau_competence DESC)
+                                     )
+                                     
+                                    UNION
+                                    
+                                    SELECT  utilisateurs.id, 
+                                            CONCAT(utilisateurs.prenom_utilisateur, ' ' , utilisateurs.nom_utilisateur) AS utilisateur,
+                                            'Cursus en communs' AS similarite,
+                                            utilisateurs.url_photo as photo
+                                     FROM Utilisateurs
+                                     WHERE id IN (
+                                        SELECT cursus_utilisateurs_competences.utilisateurs_id FROM cursus_utilisateurs_competences WHERE cursus_utilisateurs_competences.cursus_id IN
+                                        (SELECT cursus_utilisateurs_competences.cursus_id FROM cursus_utilisateurs_competences WHERE cursus_utilisateurs_competences.utilisateurs_id = " . $id . ")
+                                        AND cursus_utilisateurs_competences.utilisateurs_id NOT IN (
+                                            SELECT utilisateurs.id
+                                            FROM Utilisateurs
+                                            WHERE id IN (
+                                                SELECT utilisateurs_competences.utilisateurs_id FROM utilisateurs_competences WHERE utilisateurs_competences.competences_id IN
+                                                (SELECT utilisateurs_competences.competences_id FROM utilisateurs_competences WHERE utilisateurs_competences.utilisateurs_id = " . $id . " ORDER                                      BY utilisateurs_competences.niveau_competence DESC)
+                                            )
+                                         )
+                                     )
+                                     
+                                    UNION
+                                    
+                                    SELECT  utilisateurs.id, 
+                                            CONCAT(utilisateurs.prenom_utilisateur, ' ' , utilisateurs.nom_utilisateur) AS utilisateur,
+                                            'Profil récent' AS similarite,
+                                            utilisateurs.url_photo as photo
+                                    FROM Utilisateurs
+                                    WHERE id NOT IN (
+                                        SELECT utilisateurs_competences.utilisateurs_id FROM utilisateurs_competences WHERE utilisateurs_competences.competences_id IN
+                                        (SELECT utilisateurs_competences.competences_id FROM utilisateurs_competences WHERE utilisateurs_competences.utilisateurs_id = " . $id . " ORDER BY utilisateurs_competences.niveau_competence DESC)
+                                            UNION
+                                        SELECT cursus_utilisateurs_competences.utilisateurs_id FROM cursus_utilisateurs_competences WHERE cursus_utilisateurs_competences.cursus_id IN
+                                        (SELECT cursus_utilisateurs_competences.cursus_id FROM cursus_utilisateurs_competences WHERE cursus_utilisateurs_competences.utilisateurs_id = " . $id . ")
+                                    )
+                                    
+                                ) AS profil_similaire
+                                WHERE id != " . $id . " ORDER BY profil_similaire.similarite ASC
+                                LIMIT 6";
 
         $profils_similaires = $bdd->query($requete_similaire);
 
