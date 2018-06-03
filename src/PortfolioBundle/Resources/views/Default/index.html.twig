@@ -39,13 +39,19 @@
             </a>
             <div class="media-body">
                 <h4 class="media-heading">{{ utilisateur.prenom_utilisateur }} {{ utilisateur.nom_utilisateur }}</h4>
-                <h5>Software Developer at <a href="http://gridle.in">Gridle.in</a></h5>
-                <hr style="margin:8px auto">
+                {% for resCursus in resultatCursus %}
+                	{% if resCursus.utilisateurs_id == utilisateur.id %}
+						<span class="label label-success" style="">{{ resCursus.libelle_formation ~ ' (' ~ resCursus.annee ~ ')'}}</span>
+                	{% endif %}
+				{% endfor %}
 
-                <span class="label label-default">HTML5/CSS3</span>
-                <span class="label label-default">jQuery</span>
-                <span class="label label-info">CakePHP</span>
-                <span class="label label-default">Android</span>
+            </br>  
+
+                {% for resComp in resultatComp %}
+                	{% if resComp.utilisateurs_id == utilisateur.id %}
+                		<span class="label label-default">{{ resComp.libelle_competence }}</span>
+                	{% endif %}
+				{% endfor %}
             </div>
         </div>
 
