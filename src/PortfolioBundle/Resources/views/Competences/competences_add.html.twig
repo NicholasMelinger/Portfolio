@@ -2,11 +2,13 @@
 
 {% block tete %}
 <h1>Competences</h1>
-        <p>Administration des competences</p>
+        <p>Administration des compétences.</p>
+
 {% endblock %}
 
 {% block titre_section %}
-	<h1>Ajout d'une competence</h1>
+<br/>
+	<h1 style="color:rgb(255,255,255);">Ajout d'une compétence.</h1>
 {% endblock %}
 
 {% block script %}
@@ -89,7 +91,7 @@ function getXhr(){
  		<div class="form-group">
  			<input type = "hidden" name='id' id='id' value = {{ app.session.get('userID') }}>	
 
-			<label>Themes *</label>
+			<label>Thèmes *</label>
 			<select name='theme' id='theme' onchange='set_s_theme()' class="form-control">*
 			<option value='-1'>Aucun</option>
 			{% for m in matrice %}
@@ -98,14 +100,14 @@ function getXhr(){
 			</select>
 			<br/>
 
-			<label> Sous themes *</label>
+			<label> Sous thèmes *</label>
 			<select name='s_theme' id='s_theme' onchange='set_s_s_theme()' class="form-control">
 			<option value='-1'>Aucun</option>
 			</select>
 			</select>
 			<br/>
 
-			<label> Sous sous Themes *</label>
+			<label> Sous sous thèmes *</label>
 			<div id='s_s_theme' style='display:inline'>
 				<select name='s_s_theme' class="form-control">
 				<option value='-1'>Aucun</option>
@@ -113,11 +115,11 @@ function getXhr(){
 			</div>
 			<br/>
 
-			<label> Libellé: </label>
-			<input type = "text" name='libelle' id='libelle' class="form-control">			
+			<label > Libellé de la compétence : </label>
+			<input type = "text" name='libelle' id='libelle' class="form-control" >			
 			<br/>
-			<label> Commentaire : <i style="font-size: 11px; color:#848484;">N'hésitez pas à décrire ici les expériences qui pourraient justifier cette compétence</i></label>
-			<textarea maxlength="255" class="form-control" rows="4" cols="50" name="comment" form="form_add" >-- Facultatif --</textarea>
+			<label> Commentaire <i style="font-size: 11px; color:#848484;">(n'hésitez pas à décrire ici les expériences qui pourraient justifier cette compétence)</i></label>
+			<textarea maxlength="255" class="form-control" rows="4" cols="50" name="comment" form="form_add" placeholder="-- Facultatif --" ></textarea>
 			</br>
 
 			<label> Année(s) d'expérience : </label>
