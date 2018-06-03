@@ -23,12 +23,22 @@ class DefaultController extends Controller
 
         //Récupération des 5 derniers profils
         $requeteUtilisateur = 'SELECT id, nom_utilisateur, prenom_utilisateur, url_photo 
-                            FROM utilisateurs
-                            LIMIT 5';
+                            FROM utilisateurs';
         $utilisateurs = $bdd->query($requeteUtilisateur);
 
+        $requeteCursus = 'SELECT utilisateurs_id, libelle_formation, annee 
+                            FROM cursus_utilisateurs_competences JOIN Cursus ON Cursus.id = cursus_utilisateurs_competences.cursus_id
+                            LIMIT 10';
+        $resultatCursus = $bdd->query($requeteCursus);
 
-        return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs));
+        // Récupération des associations compétences/users.
+        $requeteComp = 'SELECT utilisateurs_id, libelle_competence
+                            FROM utilisateurs_competences JOIN Competences ON Competences.id = utilisateurs_competences.competences_id
+                            LIMIT 20';
+        $resultatComp = $bdd->query($requeteComp);
+
+
+        return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs, 'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
     }
     public function cssAction()
     {
