@@ -282,6 +282,9 @@ foreach ($utilisateurs as &$user)
         $resultatComp = $bdd->query($requeteComp);
         
         return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs,  'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
+
+        //return $this->redirectToRoute('profil', array('id' => 8));
+
     }
 
 

@@ -4,6 +4,9 @@ portfolio_homepage:
 portfolio_homepage2:
     path:     /index
     defaults: { _controller: PortfolioBundle:Default:index }
+portfolio_homepage3:
+    path:     /index2
+    defaults: { _controller: PortfolioBundle:Default:index2 }
 admin_homepage:
     path:     /admin
     defaults: { _controller: PortfolioBundle:Default:admin }

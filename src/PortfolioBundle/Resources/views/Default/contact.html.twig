@@ -1,0 +1,45 @@
+{% extends "PortfolioBundle:Default:layout.html.twig" %}
+
+{% block tete %}
+
+<p><a href="https://www.u-picardie.fr/universite-de-picardie-jules-verne-290591.kjsp"><img src="{{ asset('img/UPJVIcon.png') }}" style="float: left; margin-right: 50px; margin-left: -50px;" width="170px" height="170px"/></a><h1>Contact</h1><h3>Bienvenue sur la page contact.</h3></p>
+
+{% endblock %}
+
+{% block titre_section %}
+<h1>Un problème ? Contactez nous !</h1>
+{% endblock %}
+
+{% block page %}
+<br />
+<br />
+
+
+	<div class="form">
+		
+
+		 	<form id="form_add" method = "post" action = "../../../script/send_mail.php" >
+		 		<div class="form-group">
+		 					<input type = "hidden" name='id' id='id' value = {{ app.session.get('userID') }}>
+		 					<label> Votre adresse mail pour que nous puissions vous répondre </label>
+							<input class="form-control" type="text" name="mail" id="mail" max="100" placeholder="Votre adresse mail ..." required>
+							</br>		
+	
+			 				<label> Votre message :</label>
+			 				<textarea maxlength="255" class="form-control" rows="4" cols="50" name="comment" id="comment" form="form_add" placeholder="Votre message ..." required ></textarea>
+
+			 				</br>
+				 			<button id="btn_send" type="submit" class="btn btn-sm btn-success">Envoyer</button>
+		 		</div>
+		 		
+
+		 	</form>
+	</div>
+
+
+{% endblock %}
+
+{% block script %}
+
+
+{% endblock %}
