@@ -40,7 +40,7 @@ class ProfilController extends Controller
             //$password = $passwordEncoder->encodePassword($utilisateur, $utilisateur->getPlainPassword());
             $password = password_hash($utilisateur->getPlainPassword(), PASSWORD_DEFAULT);
             $utilisateur->setPassword($password);
-            $utilisateur->setDateInscription(new \DateTime(date("d-m-y")));    
+            $utilisateur->setDateInscription(new \DateTime(date("Y-m-d")));    
 
             $utilisateur->setUrlPhoto('img/default.jpg');
 

@@ -38,7 +38,7 @@ public function exportCVAction()
 
 
     $pdf = new FPDF();
-    $idUser = $_GET['id'];
+    $idUser = 2;//$_GET['id'];
 
     $pdf->AddPage();
 
