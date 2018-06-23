@@ -32,18 +32,25 @@ class CompetencesController extends Controller
     	$form->handleRequest($request);
     	if ($form->isValid()) {
     		$em = $this->getDoctrine()->getManager();
+
             $uc = new Utilisateurs_competences;
             $uc->setCompetences($comp);
+
             $session = $this->get('session');
             $user_id = $session->get('userID');
+
             $em = $this->getDoctrine()->getManager();
             $user = $em->getRepository('PortfolioBundle:Utilisateurs')->findById($user_id);
+
             $uc->setUtilisateurs($user[0]);
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($uc);
     		$em->persist($comp);
     		$em->flush();
-    		return $this->redirectToRoute('modification_profil', array('id' => $user_id));
+    		
+            //return $this->redirectToRoute('modification_profil', array('id' => $user_id));
+            return $this->redirectToRoute('competence_utilisateur_ajout');
     	}
         return $this->render('PortfolioBundle:Competences:competences_add.html.twig', array('form_comp' => $form->createView(), 'matrice' => $matrice));
     }

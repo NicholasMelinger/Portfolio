@@ -82,29 +82,30 @@
 			<div class="tab-pane fade in" id="tab2">
 				<a href="{{ path ('competence_utilisateur_ajout') }}">Ajouter une compétence</a>
 	            {% for comp in competences %}
-	                <p>
-	                <div class="row">
-	                    <div>
-	                        <div class="panel panel-default">
-	                            <div class="panel-heading">
-	                                <h3 class="panel-title"><b><u>{{ comp.libelle_competence }}</u></b></h3>
-	                            </div>
-	                            <div class="panel-body">
-	                            <table>
-	                                <tr><b>Classification : </b> {{ comp.libelle_theme }} / {{ comp.libelle_sous_theme }} / {{ comp.libelle_sous_sous_theme }}</tr><hr/>
-	                                <tr><b>Détail : </b> {{ comp.detail_competence }}</tr><hr/>
-	                                <tr><b>Niveau : </b> {{ comp.niveau_competence }}</tr><hr/>
+		            {% if comp.libelle_competence != "" %}
+		                <p>
+		                <div class="row">
+		                    <div>
+		                        <div class="panel panel-default">
+		                            <div class="panel-heading">
+		                                <h3 class="panel-title"><b><u>{{ comp.libelle_competence }}</u></b></h3>
+		                            </div>
+		                            <div class="panel-body">
+		                            <table>
+		                                <tr><b>Classification : </b> {{ comp.libelle_theme }} / {{ comp.libelle_sous_theme }} / {{ comp.libelle_sous_sous_theme }}</tr><hr/>
+		                                <tr><b>Détail : </b> {{ comp.detail_competence }}</tr><hr/>
+		                                <tr><b>Niveau : </b> {{ comp.niveau_competence }}</tr>
 
-	                                {% if comp.libelle_formation == "" %}
-	                                	<tr>Compétence acquise lors du cursus <b>{{ comp.libelle_formation }}</b></tr><hr/>
-	                                {% endif %}
-	                                </td>
-	                            </table>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	                </p>
+		                                {% if comp.libelle_formation != "" %}
+		                                	<hr/><tr>Compétence acquise lors du cursus <b>{{ comp.libelle_formation ~ "." }}</b></tr>
+		                                {% endif %}
+		                            </table>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		                </p>
+	                {% endif %}
 	            {% endfor %}
 	        </div>
         	<div class="tab-pane fade in" id="tab3">
@@ -121,7 +122,7 @@
 	                            <table>
 	                                <tr><b>Description : </b> {{ cur.description_formation }}</tr><hr/>
 	                                <tr><b>Année : </b> {{ cur.annee }}</tr><hr/>
-	                                <tr><b>Obtention du diplôme : </b> {{ cur.diplome }}</tr><hr/>
+	                                <tr><b>Obtention du diplôme : </b> {{ cur.diplome }}</tr>
 	                                </td>
 	                            </table>
 	                            </div>
@@ -132,7 +133,7 @@
 	            {% endfor %}
         	</div>
         	<div class="tab-pane fade in" id="tab4">
-        		<a href="{{ path ('experience_ajout') }}">Ajouter une experience</a>
+        		<a href="{{ path ('experience_ajout') }}">Ajouter une expérience</a>
 	            {% for xp in experiences %}
 	                <p>
 	                <div class="row">
@@ -145,7 +146,7 @@
 	                            <table>
 	                                <tr><b>Description : </b> {{ xp.description_experience }}</tr><hr/>
 	                                <tr><b>Durée experience : </b> {{ xp.dureeExperience }}</tr><hr/>
-	                                <tr>{{ xp.cursus_libelle }}</tr><hr/>
+	                                <tr>{{ xp.cursus_libelle }}</tr>
 	                                </td>
 	                            </table>
 	                            </div>

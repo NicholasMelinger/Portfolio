@@ -83,9 +83,9 @@ class ProfilController extends Controller
 
 
         $requeteCompetence = "SELECT utilisateurs.id AS id_utilisateur, competences.id AS id_competence, competences.libelle_competence,
-            CASE utilisateurs_competences.niveau_competence
-                WHEN niveau_competence <=3 THEN CONCAT('Junior (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')  
-                WHEN niveau_competence >= 3 AND niveau_competence <6 THEN CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')
+            CASE 
+                WHEN utilisateurs_competences.niveau_competence <=3 THEN CONCAT('Junior (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')  
+                WHEN utilisateurs_competences.niveau_competence >= 3 AND niveau_competence <6 THEN CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')
                 ELSE CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')        
             END AS niveau_competence,
             utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, sous_sous_themes.libelle_sous_sous_theme, cursus.libelle_formation 
@@ -117,7 +117,7 @@ class ProfilController extends Controller
 
         //Récupérer ses experiences 
         $requeteExperience = 'SELECT experiences.type_experience, experiences.description_experience, experiences.dureeExperience, 
-                                CASE cursus.libelle_formation WHEN NULL THEN \'\' ELSE CONCAT( \'Expérience effectués au cours du cursus \' ,cursus.libelle_formation )  END AS cursus_libelle
+                                CASE cursus.libelle_formation WHEN NULL THEN \'\' ELSE CONCAT( \'Expérience effectuée au cours du cursus \' ,cursus.libelle_formation, \'.\')  END AS cursus_libelle
                                 FROM experiences, utilisateurs, cursus
                                 WHERE experiences.utilisateurs_id = utilisateurs.id
                                 AND cursus.id = experiences.cursus_id
@@ -173,8 +173,8 @@ class ProfilController extends Controller
 
             utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, 
             sous_sous_themes.libelle_sous_sous_theme, cursus.libelle_formation ,
-            CASE utilisateurs_competences.niveau_competence
-                WHEN niveau_competence <=3 THEN CONCAT('Junior (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')  
+            CASE 
+                WHEN niveau_competence <= 3 THEN CONCAT('Junior (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')  
                 WHEN niveau_competence >= 3 AND niveau_competence <6 THEN CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')
                 ELSE CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')        
             END AS niveau_competence
@@ -194,7 +194,7 @@ class ProfilController extends Controller
 
 
         //Récupérer ses cursus
-        $requeteCursus = 'SELECT cursus.libelle_formation, cursus.description_formation, 
+        $requeteCursus = 'SELECT distinct cursus.libelle_formation, cursus.description_formation, 
                             CASE cursus_utilisateurs_competences.diplome WHEN 0 THEN \'Non\' ELSE \'Oui\' END AS diplome,
                             cursus_utilisateurs_competences.annee
                             FROM cursus, cursus_utilisateurs_competences 
@@ -205,7 +205,10 @@ class ProfilController extends Controller
 
         //Récupérer ses experiences 
         $requeteExperience = 'SELECT experiences.id, experiences.type_experience, experiences.description_experience, experiences.dureeExperience, 
-                                CASE cursus.libelle_formation WHEN NULL THEN \'\' ELSE CONCAT( \'Expérience effectués au cours du cursus \' ,cursus.libelle_formation )  END AS cursus_libelle
+                                CASE cursus.libelle_formation 
+                                    WHEN NULL THEN \'\' 
+                                    ELSE CONCAT( \'Expérience effectuée au cours du cursus \' ,cursus.libelle_formation, \'.\') 
+                                END AS cursus_libelle
                                 FROM experiences, utilisateurs, cursus
                                 WHERE experiences.utilisateurs_id = utilisateurs.id
                                 AND cursus.id = experiences.cursus_id

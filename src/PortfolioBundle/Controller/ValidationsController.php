@@ -38,7 +38,7 @@ public function exportCVAction()
 
 
     $pdf = new FPDF();
-    $idUser = 2;//$_GET['id'];
+    $idUser = $_GET['id'];
 
     $pdf->AddPage();
 
@@ -97,18 +97,34 @@ foreach ($utilisateurs as &$user)
     $pdf->Cell(187,8,"Cursus",1,1,'C',true);
     
 
-    $requeteFormationUser = "SELECT distinct libelle_formation, annee FROM 
+    $requeteFormationUser = "SELECT distinct cursus.id, libelle_formation, annee FROM 
     cursus_utilisateurs_competences JOIN cursus on cursus.id = cursus_utilisateurs_competences.cursus_id 
     WHERE utilisateurs_id = " .$idUser. " order by annee desc";
 
 
     $formations = $bdd->query($requeteFormationUser)->fetchAll();
     //echo $requeteFormationUser;
-    $pdf->SetFont('Arial','B',12);
-    $pdf->SetTextColor(50,50,50);
+
     foreach ($formations as &$forma)
     {
+        $pdf->SetFont('Arial','B',12);
+        $pdf->SetTextColor(50,50,50);
         $pdf->Cell(0,10, utf8_decode('- ' . $forma['libelle_formation']) . ' (' . $forma['annee']. ')',0,1);
+
+        // Recherche des compétences acquises dans le cursus.
+        $requeteCompetencesCursus = "SELECT libelle_competence
+        FROM cursus_utilisateurs_competences JOIN Competences ON cursus_utilisateurs_competences.competences_id = Competences.id
+        WHERE cursus_utilisateurs_competences.utilisateurs_id = " .$idUser. " AND cursus_utilisateurs_competences.cursus_id = " .$forma['id']. "";
+
+        //echo $requeteCompetencesCursus;
+        $competencesCursus = $bdd->query($requeteCompetencesCursus)->fetchAll();
+
+        foreach ($competencesCursus as &$compCursus)
+        {
+            $pdf->Cell(10);
+            $pdf->SetFont('Arial','I',10);
+            $pdf->MultiCell(0,5, utf8_decode($compCursus['libelle_competence']),0,1);
+        }
     }
 
     $pdf->SetFont('Arial','B',14);
@@ -189,7 +205,7 @@ foreach ($utilisateurs as &$user)
 
 
 
-        $pdf->Ln(6);
+        //$pdf->Ln(6);
 
         $validationsExperience = "SELECT * FROM validations join utilisateurs on utilisateurs.id = validations.idUtilisateurValidant join types_utilisateur on types_utilisateur.id = utilisateurs.type_utilisateur_id WHERE idCompetenceValidee = " . $exp['idExp'] . " AND idUtilisateurValide = " . $idUser . " AND type_valid ='exp'";
         $validExperiences = $bdd->query($validationsExperience)->fetchAll();
@@ -217,6 +233,8 @@ foreach ($utilisateurs as &$user)
 
     exit;
 }
+
+
     public function indexExperienceAction()
     {
         $idUserValide = $_GET['idUser'];
@@ -281,7 +299,11 @@ foreach ($utilisateurs as &$user)
                             LIMIT 20';
         $resultatComp = $bdd->query($requeteComp);
         
-        return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs,  'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
+        //return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs,  'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
+        //return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs, 'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
+        $route = 'profil';
+        
+        return $this->redirect($this->generateUrl($route, array('id' => $idUtilisateurValide)));
     }
 
 
