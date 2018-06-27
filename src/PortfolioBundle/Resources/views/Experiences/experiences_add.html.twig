@@ -11,28 +11,27 @@
 
 {% block page %}
 {% if (app.session.get('userRole') == '4') %}
-<div class="form">
- <p>
- 	{{ form_start(form_exp) }}
- 		{{ form_errors(form_exp) }}
- 		<table>
- 		<td>
- 			<tr>{{ form_row(form_exp.typeExperience) }}</tr>
- 			<tr>{{ form_row(form_exp.dureeExperience) }}</tr>
- 			<tr>{{ form_row(form_exp.descriptionExperience) }}</tr>
- 			<tr>{{ form_row(form_exp.cursus) }}</tr>
- 			<tr><button type="submit" class="btn btn-lg btn-success" >Valider</button></tr>
- 		</td>
- 	</table>
+	<div class="form">
+	 <p>
+	 	{{ form_start(form_exp) }}
+	 		{{ form_errors(form_exp) }}
+	 		<table>
+	 		<td>
+	 			<tr>{{ form_row(form_exp.typeExperience) }}</tr>
+	 			<tr>{{ form_row(form_exp.dureeExperience) }}</tr>
+	 			<tr>{{ form_row(form_exp.descriptionExperience) }}</tr>
+	 			<tr>{{ form_row(form_exp.cursus) }}</tr>
+	 			<tr><button type="submit" class="btn btn-lg btn-success" >Valider</button></tr>
+	 		</td>
+	 	</table>
 
- 	{{ form_end(form_exp) }}
- </p>
-</div>
- {% else %}
+	 	{{ form_end(form_exp) }}
+	 </p>
+	</div>
 
-Page non autorisée.
+{% else %}
+	Page non autorisée.
 
-<a href="{{ path ('portfolio_homepage') }}">Retour à l'accueil</a></li>
-
+	<a href="{{ path ('portfolio_homepage') }}">Retour à l'accueil</a></li>
 {% endif %}
 {% endblock %}

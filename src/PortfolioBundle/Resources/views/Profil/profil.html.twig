@@ -55,6 +55,7 @@
             <div class="tab-pane fade in active" id="tab1">
 
             {% for comp in competences %}
+            {% if comp.libelle_competence != "" %}
                 <p>
                 <div class="row">
                     <div>
@@ -68,14 +69,17 @@
                                 <tr><b>Détail : </b> {{ comp.detail_competence }}</tr><hr/>
                                 <tr><b>Niveau : </b> {{ comp.niveau_competence }}</tr><hr/>
 
-                                
-                                <tr>Compétence acquise lors du cursus <b>{{ comp.libelle_formation }}</b></tr><hr/>
-                            
+                                {% if comp.libelle_formation != "" %}
+                                    <tr>Compétence acquise lors du cursus <b>{{ comp.libelle_formation ~ "."}}</b></tr><hr/>
+                                {% endif %}
+
+
                                 <span class="label label-success" style="font-size:15px;font-weight:bold;">Validations</span>
-                                </br></br>
+                                
                                 {% for resValid in validations %}
                                     {% if resValid.idCompetenceValidee == comp.id_competence %}
                                         {% if resValid.type_valid == 'comp' %}
+                                            </br></br>
                                              <tr>
                                                 <b>{{ resValid.prenom_utilisateur }} {{ resValid.nom_utilisateur }} ({{ resValid.libelle }}), le {{ resValid.date_validation|date('d/m/Y') }}</b> : {{ resValid.commentaire }}
                                              </tr>
@@ -96,10 +100,12 @@
                     </div>
                 </div>
                 </p>
+            {% endif %}
             {% endfor %}
 
 
             </div>
+
             <div class="tab-pane fade in" id="tab2">
             {% for cur in cursus %}
                 <p>
@@ -113,7 +119,7 @@
                             <table>
                                 <tr><b>Description : </b> {{ cur.description_formation }}</tr><hr/>
                                 <tr><b>Année : </b> {{ cur.annee }}</tr><hr/>
-                                <tr><b>Obtention du diplôme : </b> {{ cur.diplome }}</tr><hr/>
+                                <tr><b>Obtention du diplôme : </b> {{ cur.diplome }}</tr>
                                 </td>
                             </table>
                             </div>
@@ -173,7 +179,7 @@
 
 
         <div class="panel panel-default" style=" margin-top: 20px;">
-            <div class="panel-heading"><b style="text-align: center; font-size: 20px; "><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;Profils similaires</b></div>
+            <div class="panel-heading"><b style="text-align: center; font-size: 18px; "><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Profils similaires</b></div>
             <div class="panel-body" style="padding: 0px;">
             </br>
                 {% for profil_similaire in profils_similaires %}
@@ -191,7 +197,7 @@
                                     <h4 class="media-heading">{{ profil_similaire.utilisateur }}</h4>
                                     <h5>{{ profil_similaire.similarite }}</h5>
                                     <hr style="margin:8px auto">
-                                    Acceder au profil en cliquant <a href="{{ path ('profil', { 'id': utilisateur.id }) }}" >ici</a>
+                                    Accéder au profil en cliquant <a href="{{ path ('profil', { 'id': utilisateur.id }) }}" >ici</a>
                                     </br>
                                 </div>
                             </div>

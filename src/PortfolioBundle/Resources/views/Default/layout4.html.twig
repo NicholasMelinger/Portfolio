@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
+  
+  <title>Portfolio UPJV</title>
+
+
+
+  <link rel="icon" type="image/png" href="{{ asset('img/UPJVIcon.png') }}" />
+  
+  <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+  <link rel="stylesheet" href="{{ asset('new_design/assets/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('new_design/assets/css/font-awesome.min.css') }}">
+
+  <!-- Custom styles for our template -->
+  <link rel="stylesheet" href="{{ asset('new_design/assets/css/bootstrap-theme.css') }}" media="screen" >
+  <link rel="stylesheet" href="{{ asset('new_design/assets/css/main.css') }}">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="assets/js/html5shiv.js"></script>
+  <script src="assets/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="home">
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-inverse navbar-fixed-top headroom" >
+    <div class="container">
+      <div class="navbar-header">
+        <!-- Button for smallest screens -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <a class="navbar-brand" href="index.html"><img src="{{ asset('img/UPJVIcon.png') }}" alt="PortFolioUPJV" style="height: 50px; width: 50px;"></a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav pull-right">
+          <li class="{{ app.request.attributes.get('_route') == 'portfolio_homepage' ? 'active' }}"><a href="{{ path ('portfolio_homepage') }}">Accueil</a></li>
+            <li class="{{ app.request.attributes.get('_route') == 'recherche' ? 'active' }}"><a href="{{ path ('rechercheAvancee') }}">Recherche</a></li>
+
+
+            {% if (app.session.get('userID') is not null) %}
+                <li><a href="{{ path ('deconnexion') }}">Déconnexion ({{ app.session.get('userName') }})</a></li>
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path ('modification_profil', {'id': app.session.get('userID')}) }}" >
+                      Mon profil&nbsp;
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{{ path ('modification_profil', {'id': app.session.get('userID')}) }}">Consulter mon profil&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-bell"></span></a></li>
+                      <li><a href="{{ path ('alertes_defaut', {'id': app.session.get('userID')}) }}">Mes alertes&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-bell"></span></a></li>
+                    </ul>
+                </li>
+            {% else %}
+                <li><a href="{{ path ('connexion') }}">Connexion</a></li>
+                <li><a href="{{ path ('creation_profil') }}">Création profil</a></li>
+            {% endif %}
+
+            
+            
+            <li><a href="{{ path ('portfolio_contact') }}">Contact</a></li>
+            {% if (app.session.get('userRole') == '1') %}
+            <li><a href="{{ path ('admin_homepage') }}">Admin</a></li>
+            {% endif %}
+            <!--
+            <li class="dropdown">
+              <a href="{{ path ('admin_homepage') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path ('experience_defaut') }}">Expérience</a></li>
+                <li><a href="{{ path ('cursus_defaut') }}"</a>Cursus</li>
+                <li><a href="{{ path ('competences_defaut') }}"</a>Compétences</li>
+                <li><a href="{{ path ('matrice_defaut') }}"</a>Matrices</li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>-->
+
+            <!-- Barre de recherche -->
+            <li>
+              <form class="navbar-form navbar-left" role="search" action="{{ path ('rechercheParNom') }}" method="post" name ="nomRecherche" >
+                <!--<div class="input-group">
+                      <input type="text" name ="nomRecherche" class="form-control" placeholder="Nom de la personne recherchée" size="25" style="margin-left:10px;border-top-right-radius:0px;border-bottom-right-radius:0px;">
+                  
+                  <button type="submit" class="btn" style="">
+                      <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </div>
+              -->
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                  </span>
+                </div><!-- /input-group -->
+              </form>
+            </li>
+          
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div> 
+  <!-- /.navbar -->
+
+
+
+    {% block tete %}
+    {% endblock %}
+    
+    {% block titre_section %}
+    {% endblock %}
+
+  {% block page %}
+  {% endblock %}
+
+
+    
+</div>  <!-- /container -->
+  
+
+
+
+  <footer id="footer" class="top-space">
+
+    <div class="footer1">
+      <div class="container">
+        <div class="row">
+          
+          <div class="col-md-3 widget">
+            <h3 class="widget-title">Contact</h3>
+            <div class="widget-body">
+              <p>07 86 XX XX XX<br>
+                <a href="mailto:#">devtoolbox@toolbox.fr</a><br>
+                <br>
+                234 Rue de la ToolBox, Développeurville, CP 00042
+              </p>  
+            </div>
+          </div>
+
+          <div class="col-md-3 widget">
+            <h3 class="widget-title">Suivez nous</h3>
+            <div class="widget-body">
+              <p class="follow-me-icons">
+                <a href=""><i class="fa fa-twitter fa-2"></i></a>
+                <a href=""><i class="fa fa-dribbble fa-2"></i></a>
+                <a href=""><i class="fa fa-github fa-2"></i></a>
+                <a href=""><i class="fa fa-facebook fa-2"></i></a>
+              </p>  
+            </div>
+          </div>
+
+          <div class="col-md-6 widget">
+            <h3 class="widget-title">Du texte</h3>
+            <div class="widget-body">
+              <p>Ici on ne sait pas trop quoi écrire mais on veut le laisser car ça fait beau.</p>
+              </div>
+          </div>
+
+        </div> <!-- /row of widgets -->
+      </div>
+    </div>
+
+    
+
+  </footer> 
+    
+
+  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="{{ asset('new_design/assets/js/headroom.min.js') }}"></script>
+  <script src="{{ asset('new_design/assets/js/jQuery.headroom.min.js') }}"></script>
+  <script src="{{ asset('new_design/assets/js/template.js') }}"></script>
+  {% block script %}
+  {% endblock %}
+</body>
+</html>

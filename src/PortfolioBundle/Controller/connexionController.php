@@ -96,7 +96,7 @@ class connexionController extends Controller
                 //Récupération des 5 derniers profils
                 $requeteUtilisateur = 'SELECT id, nom_utilisateur, prenom_utilisateur, url_photo 
                                     FROM utilisateurs
-                                    LIMIT 5';
+                                    ORDER BY id DESC LIMIT 5';
                 $utilisateurs = $bdd->query($requeteUtilisateur);
 
                 $requeteCursus = 'SELECT utilisateurs_id, libelle_formation, annee 

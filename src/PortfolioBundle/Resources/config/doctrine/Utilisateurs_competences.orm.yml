@@ -10,8 +10,7 @@ PortfolioBundle\Entity\Utilisateurs_competences:
                 strategy: AUTO
     fields:
         niveauCompetence:
-            type: string
-            length: 255
+            type: integer
             column: niveau_competence
         detailCompetence:
             type: string
