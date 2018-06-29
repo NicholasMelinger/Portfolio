@@ -13,7 +13,7 @@ $row1 = mysqli_fetch_assoc($res1);
 //var_dump($row1);
 //echo "</br>".$query;
 
-$query2 = "SELECT COUNT(*) as count FROM Competences WHERE matrice_comp_id = ".$row1['matrice_id'];
+$query2 = "SELECT COUNT(*) as count FROM Competences WHERE matrice_comp_id = ".$row1['matrice_id'] . " AND libelle_competence = '" . str_replace('\'','\'\'',$_POST["libelle"]) . "'";
 $res2= mysqli_query($link, $query2);
 $row2=mysqli_fetch_assoc($res2);
 
@@ -27,7 +27,7 @@ if($row2['count'] == '0'){
 	$res_new_competence= mysqli_query($link, $query_new_competence);
 
 	//Select competence_id
-	$query_get_competence_id ="SELECT id as competence_id FROM Competences WHERE matrice_comp_id = " . $row1['matrice_id'] . " LIMIT 1";
+	$query_get_competence_id ="SELECT id as competence_id FROM Competences WHERE matrice_comp_id = " . $row1['matrice_id'] . " AND libelle_competence = '" . str_replace('\'','\'\'',$_POST["libelle"]) . "' LIMIT 1";
 	$res_get_competence_id = mysqli_query($link, $query_get_competence_id);
 
 	//echo "</br>". $query_get_competence_id;

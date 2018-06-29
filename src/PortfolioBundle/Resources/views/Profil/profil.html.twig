@@ -73,14 +73,15 @@
                                     <tr>Compétence acquise lors du cursus <b>{{ comp.libelle_formation ~ "."}}</b></tr><hr/>
                                 {% endif %}
 
-                                <span class="label label-success" style="font-size:15px;font-weight:bold;">Validations</span>
+
+                                <span class="label label-success" style="font-size:15px;font-weight:bold;">Commentaires</span>
                                 
                                 {% for resValid in validations %}
                                     {% if resValid.idCompetenceValidee == comp.id_competence %}
                                         {% if resValid.type_valid == 'comp' %}
                                             </br></br>
                                              <tr>
-                                                <b>{{ resValid.prenom_utilisateur }} {{ resValid.nom_utilisateur }} ({{ resValid.libelle }}), le {{ resValid.date_validation|date('d/m/Y') }}</b> : {{ resValid.commentaire }}
+                                                <b>{{ resValid.prenom_utilisateur }} {{ resValid.nom_utilisateur }} ({{ resValid.libelle_validant }}), le {{ resValid.date_validation|date('d/m/Y') }}</b> : {{ resValid.commentaire }}
                                              </tr>
                                              <br/>
                                          {% endif %}
@@ -90,7 +91,7 @@
                                 <br/>
                                 <tr>
                                     {% if (app.session.get('userID') is not null) %}
-                                        <a href="{{ path ('validerCompetencee', { 'idComp': comp.id_competence, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Valider la compétence</a>
+                                        <a href="{{ path ('validerCompetencee', { 'idComp': comp.id_competence, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Commenter la compétence</a>
                                     {% endif %}
                                 </tr>
                             </table>
@@ -160,11 +161,11 @@
                                             {% endif %}
                                         {% endif %}
                                     {% endfor %}
-                                
+
                             </br>
                                 <tr>
                                     {% if (app.session.get('userID') is not null) %}
-                                        <a href="{{ path ('validerExperience', { 'idExp': xp.id, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Valider l'expérience</a>
+                                        <a href="{{ path ('validerExperience', { 'idExp': xp.id, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Commenter l'expérience</a>
                                     {% endif %}
                             </tr>
                             </table>
@@ -193,7 +194,7 @@
                     <div class="row">
                         <div class="media" style="padding: 5px;">
                             <div class="col-lg-4">
-                                <a class="pull-left" href="#">
+                                <a class="pull-left" href="{{ path ('profil', { 'id': profil_similaire.id }) }}">
                                     <img class="media-object dp img-circle align-self-start mr-3" src="{{ asset(''~profil_similaire.photo) }}" style="width: 60px;height:60px;">
                                 </a>
                             </div>
@@ -202,7 +203,7 @@
                                     <h4 class="media-heading">{{ profil_similaire.utilisateur }}</h4>
                                     <h5>{{ profil_similaire.similarite }}</h5>
                                     <hr style="margin:8px auto">
-                                    Accéder au profil en cliquant <a href="{{ path ('profil', { 'id': utilisateur.id }) }}" >ici</a>
+                                    Accéder au profil en cliquant <a href="{{ path ('profil', { 'id': profil_similaire.id }) }}" >ici</a>
                                     </br>
                                 </div>
                             </div>

@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UtilisateursType extends AbstractType
 {
@@ -41,8 +42,17 @@ class UtilisateursType extends AbstractType
                 ->add('type_utilisateur', EntityType::class, array(
                     'class'        => 'PortfolioBundle:Types_utilisateur',
                     'choice_label' => 'libelle',
-                    'label'=>'Vous êtes : * '
-                  ));
+                    'label'=>'Vous êtes : * ')
+                    );
+
+                /*->add('type_utilisateur', ChoiceType::class, array(
+                            'choices'  => array(
+                            'Selection' => null,
+                            'Enseignant' => 'Enseignant',
+                            'Professionnel' =>  'Enseignant',
+                            'Étudiant' =>  'Enseignant',
+                        ),
+                    ));*/
     }/**
      * {@inheritdoc}
      */

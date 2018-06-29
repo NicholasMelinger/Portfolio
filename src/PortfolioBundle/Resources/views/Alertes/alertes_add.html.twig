@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block titre_section %}
+	</br>
 	<h1>Création d'une alerte</h1>
 {% endblock %}
 
@@ -161,7 +162,7 @@
 		 	<form id="form_add" method = "post" action = "../../../script/new_alerte_ajax.php">
 		 		<div class="form-group">
 		 					<input type = "hidden" name='id' id='id' value = {{ app.session.get('userID') }}>
-		 					<h3><label>Veuillez selectionner une compétences</label></h3></br></br>
+		 					<h3><label>Veuillez sélectionner une compétence</label></h3></br></br>
 		 					<label>Themes</label>
 	 						<select class="form-control" name='theme' id='theme' onchange='set_s_theme(); set_s_s_theme(true); set_competence(true)'>
 	 							<option value='-1'>-- Choisir un thème --</option>
@@ -179,12 +180,12 @@
 							<select class="form-control" name='s_s_theme' id='s_s_theme' style='display:inline' onchange='set_competence(false)'>
 								<option value='-1'>-- Choisir un sous sous thème --</option>
 							</select>
-							</br>
+							</br></br>
 		 					<label> Compétences </label>
 							<select class="form-control" name='competence_id' id="competence_id" style='display:inline' onchange='set_btn_ajout()'>
 								<option value='-1'>-- Choisir une compétence --</option>
 							</select>
-							</br>			
+							</br>	</br>		
 			 				<label> Commentaire : </label>
 			 				<textarea maxlength="255" class="form-control" rows="4" cols="50" name="comment" id="comment" form="form_add"></textarea>
 			 				</br>

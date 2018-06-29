@@ -23,16 +23,16 @@ class ValidationsController extends Controller
     }
 
 public function exportCVAction()
-{
-    require('fpdf/fpdf.php');
-    try
     {
-        $bdd = new PDO('mysql:host=localhost;dbname=db_portfolio;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        // En cas d'erreur, on affiche un message et on arrête tout.
-            die('Erreur : '.$e->getMessage());
+        require('fpdf/fpdf.php');
+        try
+        {
+            $bdd = new PDO('mysql:host=localhost;dbname=db_portfolio;charset=utf8', 'root', '');
+        }
+        catch(Exception $e)
+        {
+            // En cas d'erreur, on affiche un message et on arrête tout.
+                die('Erreur : '.$e->getMessage());
     }
 
 
@@ -266,6 +266,7 @@ foreach ($utilisateurs as &$user)
         $idCompetenceValidee = $_GET['idComp'];
          $date = date("Y-m-d H:i:s");
 
+
          $session = $this->get('session');
         $sessionid = $session->get('userID');
 
@@ -299,11 +300,18 @@ foreach ($utilisateurs as &$user)
                             LIMIT 20';
         $resultatComp = $bdd->query($requeteComp);
         
+
+        return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs,  'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
+
+        //return $this->redirectToRoute('profil', array('id' => 8));
+
+
         //return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs,  'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
         //return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs, 'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
         $route = 'profil';
         
         return $this->redirect($this->generateUrl($route, array('id' => $idUtilisateurValide)));
+
     }
 
 

@@ -1,0 +1,88 @@
+{% extends "PortfolioBundle:Default:layout4.html.twig" %}
+
+{% block tete %}
+
+{% endblock %}
+
+{% block titre_section %}
+{% endblock %}
+
+{% block page %}
+
+	<!-- Header -->
+	<header id="head">
+	<div class="container">
+	  <div class="row">
+	    <h1 class=""><b>Portfolio</b></h1>
+	    <h3><p class="">Bienvenue sur le portefeuille de compétences de l'UPJV.</h3></p></h3></br>
+	    <p><a class="btn btn-action btn-lg" role="button">Trouver un profil</a></p>
+	  </div>
+	</div>
+	</header>
+	<!-- /Header -->
+
+	<!-- Intro -->
+	<div class="container">
+	<br> <br>
+	<p class="text-muted">
+		<h2>Bonjour et bienvenue sur le site portfolio de l'UPJV d'Amiens.</h2>
+		<br />
+		<p>
+			Ici vous allez pouvoir créer votre e-curiculumvitae dans le but de vous aider dans votre recherche de stage, d'alternance ou encore de travail.<br />
+			<br>
+			Ce e-CV sera le moyen de vous faire connaître auprès des recruteurs, des entreprises, etc ...<br />
+			<br>
+			Enrichissez le à l'aide de vos cursus et de vos expériences passées. Celles-ci pourront ensuite être approuvées par vos professeurs ou des professionnels afin de valider vos différentes compétences.
+			<br />
+			<br />
+			Mais n'oubliez pas que l'expérience ne fait pas tout, alors apprenez à vous vendre !
+		</p>
+	</p>
+
+		<br />
+		<br />
+		<h2>Derniers profils enregistrés</h2>
+		<br />
+		<br />
+		
+		{% for utilisateur in utilisateurs %}
+			
+
+	        <div class="col-lg-5">
+	        <div class="media">
+	            <a class="pull-left" href="{{ path ('profil', { 'id': utilisateur.id }) }}">
+	                <img class="media-object dp img-circle" src="{{ asset(''~utilisateur.url_photo) }}" style="width: 100px;height:100px;">
+	            </a>
+	            <div class="media-body">
+	                <h4 class="media-heading">{{ utilisateur.prenom_utilisateur }} {{ utilisateur.nom_utilisateur }}</h4>
+	                {% for resCursus in resultatCursus %}
+	                	{% if resCursus.utilisateurs_id == utilisateur.id %}
+							<span class="label label-success" style="">{{ resCursus.libelle_formation ~ ' (' ~ resCursus.annee ~ ')'}}</span>
+	                	{% endif %}
+					{% endfor %}
+
+	            </br>  
+
+	                {% for resComp in resultatComp %}
+	                	{% if resComp.utilisateurs_id == utilisateur.id %}
+	                		<span class="label label-default">{{ resComp.libelle_competence }}</span>
+	                	{% endif %}
+					{% endfor %}
+	            </div>
+	        </div>
+
+	    </div>
+	    {% endfor %}
+	</div>
+	<!-- /Intro-->
+
+
+
+
+
+{% endblock %}
+
+{% block script %}
+
+
+{% endblock %}
