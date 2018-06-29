@@ -9,15 +9,15 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use PortfolioBundle\Entity\Cursus;
+use \PDO;
 
 class ExperienceType extends AbstractType {
 
 	public function buildForm (FormBuilderInterface $builder, array $options) {
-
-		$builder->add('typeExperience', TextType::class, array('label' => 'Type experience :'))
-    			  ->add('dureeExperience', TextType::class, array('label' => 'Durée :'))
+		$builder->add('typeExperience', TextType::class, array('label' => 'Type d\'expérience :'))
+    			  ->add('dureeExperience', TextType::class, array('label' => 'Durée de l\'expérience (en mois) :'))
     			  ->add('descriptionExperience', TextareaType::class, array('label' => 'Description :'))
-    			  ->add('cursus', EntityType::class, array('class' => Cursus::class,'label' => 'Cursus :'))
+    			  ->add('cursus', EntityType::class, array('class' => Cursus::class,'label' => 'Cursus concerné par cette expérience :'))
     			  ->getForm();
 	}
 	public function configureOptions (OptionsResolver $resolver) {
