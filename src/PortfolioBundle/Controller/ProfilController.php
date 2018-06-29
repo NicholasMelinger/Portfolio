@@ -98,7 +98,8 @@ class ProfilController extends Controller
             LEFT JOIN themes ON themes.id = matrice.theme_matrice_id
             LEFT JOIN sous_themes ON sous_themes.id = matrice.s_theme_matrice_id
             LEFT JOIN sous_sous_themes ON sous_sous_themes.id = matrice.s_s_theme_matrice_id
-            WHERE utilisateurs.id = ". $id;
+            WHERE utilisateurs.id = ". $id
+            . " AND utilisateurs_competences.utilisateurs_id = " . $id;
 
 
         $competences = $bdd->query($requeteCompetence);
@@ -187,7 +188,8 @@ class ProfilController extends Controller
             LEFT JOIN themes ON themes.id = matrice.theme_matrice_id
             LEFT JOIN sous_themes ON sous_themes.id = matrice.s_theme_matrice_id
             LEFT JOIN sous_sous_themes ON sous_sous_themes.id = matrice.s_s_theme_matrice_id
-            WHERE utilisateurs.id = ". $id;
+            WHERE utilisateurs.id = ". $id
+            . " AND cursus_utilisateurs_competences.utilisateurs_id = " . $id;
 
         $competences = $bdd->query($requeteCompetence);
 
@@ -218,7 +220,18 @@ class ProfilController extends Controller
 
 
         //Récupérer ses validations 
-        $requeteValidations = 'SELECT * FROM validations JOIN utilisateurs on idUtilisateurValidant = utilisateurs.id JOIN types_utilisateur on types_utilisateur.id = utilisateurs.type_utilisateur_id where idUtilisateurValide = ' . $id . ' ORDER BY date_validation DESC';
+        $requeteValidations = "SELECT *,
+                                    CASE WHEN types_utilisateur.libelle = 'ROLE_PROF' THEN 'Enseignant à l''UPJV'
+                                        WHEN types_utilisateur.libelle =  'ROLE_RECRUTEUR' THEN 'Professionnel'
+                                        WHEN types_utilisateur.libelle = 'ROLE_ELEVE' THEN 'Étudiant'
+                                        ELSE 'Administrateur'
+                                    END AS libelle_validant
+                                    FROM validations 
+                                    JOIN utilisateurs on idUtilisateurValidant = utilisateurs.id 
+                                    JOIN types_utilisateur on types_utilisateur.id = utilisateurs.type_utilisateur_id
+                                    where idUtilisateurValide = " . $id . "
+                                    ORDER BY date_validation DESC";
+
         $validations = $bdd->query($requeteValidations);
 
 

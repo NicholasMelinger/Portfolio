@@ -23,16 +23,16 @@ class ValidationsController extends Controller
     }
 
 public function exportCVAction()
-{
-    require('fpdf/fpdf.php');
-    try
     {
-        $bdd = new PDO('mysql:host=localhost;dbname=db_portfolio;charset=utf8', 'root', '');
-    }
-    catch(Exception $e)
-    {
-        // En cas d'erreur, on affiche un message et on arrête tout.
-            die('Erreur : '.$e->getMessage());
+        require('fpdf/fpdf.php');
+        try
+        {
+            $bdd = new PDO('mysql:host=localhost;dbname=db_portfolio;charset=utf8', 'root', '');
+        }
+        catch(Exception $e)
+        {
+            // En cas d'erreur, on affiche un message et on arrête tout.
+                die('Erreur : '.$e->getMessage());
     }
 
 
@@ -265,6 +265,7 @@ foreach ($utilisateurs as &$user)
         $idUtilisateurValide = $_GET['idUser'];
         $idCompetenceValidee = $_GET['idComp'];
          $date = date("Y-m-d H:i:s");
+
 
          $session = $this->get('session');
         $sessionid = $session->get('userID');
