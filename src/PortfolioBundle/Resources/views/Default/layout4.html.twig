@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="{{ asset('new_design/assets/css/bootstrap-theme.css') }}" media="screen" >
   <link rel="stylesheet" href="{{ asset('new_design/assets/css/main.css') }}">
 
+      <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="assets/js/html5shiv.js"></script>
@@ -83,15 +85,16 @@
             <!-- Barre de recherche -->
             <li>
               <form class="navbar-form navbar-left" role="search" action="{{ path ('rechercheParNom') }}" method="post" name ="nomRecherche" >
-                <!--<div class="input-group">
-                      <input type="text" name ="nomRecherche" class="form-control" placeholder="Nom de la personne recherchée" required size="25" style="margin-left:10px;border-top-right-radius:0px;border-bottom-right-radius:0px;">
-                  
-                  <button type="submit" class="btn" style="">
-                      <span class="glyphicon glyphicon-search"></span>
-                  </button>
+                <div class="form-group">
+                    <input type="text" name ="nomRecherche" class="form-control" placeholder="Nom de la personne recherchée" size="25" required style="margin-left:10px;border-top-right-radius:0px;border-bottom-right-radius:0px;">
                 </div>
-              -->
-                <div class="input-group">
+                
+                <button type="submit" class="btn btn-primary" style="margin-left:-5px; margin-top: -1px; border-top-left-radius:0px;border-bottom-left-radius:0px; height: 34px;">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+
+              
+                <!--<div class="input-group">
                   <input type="text" class="form-control" placeholder="Search for...">
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="button">Go!</button>
