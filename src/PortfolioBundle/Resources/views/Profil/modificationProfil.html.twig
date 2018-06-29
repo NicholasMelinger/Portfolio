@@ -120,9 +120,9 @@
 	                            </div>
 	                            <div class="panel-body">
 	                            <table>
-	                                <tr><b>Description : </b> {{ cur.description_formation }}</tr><hr/>
+	                                <tr><b>Description de la formation : </b> {{ cur.description_formation }}</tr><hr/>
 	                                <tr><b>Année : </b> {{ cur.annee }}</tr><hr/>
-	                                <tr><b>Obtention du diplôme : </b> {{ cur.diplome }}</tr>
+	                                <tr><b>Diplôme obtenu ? </b> {{ cur.diplome }}</tr>
 	                                </td>
 	                            </table>
 	                            </div>
@@ -145,7 +145,7 @@
 	                            <div class="panel-body">
 	                            <table>
 	                                <tr><b>Description : </b> {{ xp.description_experience }}</tr><hr/>
-	                                <tr><b>Durée experience : </b> {{ xp.dureeExperience }}</tr><hr/>
+	                                <tr><b>Durée de l'expérience : </b> {{ xp.dureeExperience ~ " mois" }}</tr><hr/>
 	                                <tr>{{ xp.cursus_libelle }}</tr>
 	                                </td>
 	                            </table>

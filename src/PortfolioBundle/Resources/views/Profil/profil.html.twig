@@ -141,21 +141,27 @@
                             <div class="panel-body">
                             <table>
                                 <tr><b>Description : </b> {{ xp.description_experience }}</tr><hr/>
-                                <tr><b>Durée experience : </b> {{ xp.dureeExperience }}</tr><hr/>
-                                <tr>{{ xp.cursus_libelle }}</tr><hr/>
-                                </td>
-                                <span class="label label-success" style="font-size:15px;font-weight:bold;">Commentaires</span>
-                                </br></br>
-                                {% for resValid in validations %}
-                                    {% if resValid.idCompetenceValidee == xp.id %}
-                                        {% if resValid.type_valid == 'exp' %}
-                                             <tr>
-                                                <b>{{ resValid.prenom_utilisateur }} {{ resValid.nom_utilisateur }} ({{ resValid.libelle }}), le {{ resValid.date_validation|date('d/m/Y') }}</b> : {{ resValid.commentaire }}
-                                             </tr>
-                                             <br/>
-                                         {% endif %}
-                                    {% endif %}
-                                {% endfor %}
+                                <tr><b>Durée de l'expérience : </b> {{ xp.dureeExperience ~ " mois" }}</tr><hr/>
+                                <tr>{{ xp.cursus_libelle }}</tr>
+                                <hr/>
+                                {% set valid = false %}
+                                    
+                                    {% for resValid in validations %}
+                                        {% if resValid.idCompetenceValidee == xp.id %}
+                                            {% if resValid.type_valid == 'exp' %}
+                                                {% if valid == false %}
+                                                    {% set valid = true %}
+                                                    <span class="label label-success" style="font-size:15px;font-weight:bold;">Validations</span>
+                                                    </br></br>
+                                                {% endif %}    
+                                                 <tr>
+                                                    <b>{{ resValid.prenom_utilisateur }} {{ resValid.nom_utilisateur }} ({{ resValid.libelle }}), le {{ resValid.date_validation|date('d/m/Y') }}</b> : {{ resValid.commentaire }}
+                                                 </tr>
+                                                 <br/>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+
                             </br>
                                 <tr>
                                     {% if (app.session.get('userID') is not null) %}
