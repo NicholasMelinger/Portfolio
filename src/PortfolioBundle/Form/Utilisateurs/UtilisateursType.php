@@ -45,14 +45,7 @@ class UtilisateursType extends AbstractType
                     'label'=>'Vous êtes : * ')
                     );
 
-                /*->add('type_utilisateur', ChoiceType::class, array(
-                            'choices'  => array(
-                            'Selection' => null,
-                            'Enseignant' => 'Enseignant',
-                            'Professionnel' =>  'Enseignant',
-                            'Étudiant' =>  'Enseignant',
-                        ),
-                    ));*/
+                //$builder->remove('type_utilisateur');
     }/**
      * {@inheritdoc}
      */

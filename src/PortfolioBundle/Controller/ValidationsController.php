@@ -196,8 +196,8 @@ foreach ($utilisateurs as &$user)
             $libelleExperience = utf8_decode('- ' . $exp['type_experience'] . ' (' . $exp['dureeExperience'] . ' mois).');
         }
 
-        $pdf->Cell(170,8, $libelleExperience);
-        $pdf->Ln(8);
+        $pdf->MultiCell(170,8, $libelleExperience);
+        //$pdf->Ln(8);
 
         $pdf->SetFont('Arial','',12);
         $pdf->multiCell(170, 8, utf8_decode($exp['description_experience']));

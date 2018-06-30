@@ -170,7 +170,7 @@ class ProfilController extends Controller
         //Récupérer ses compétences
         //$competences = $utilisateur->getUserCompetences();
 
-        $requeteCompetence = "SELECT utilisateurs.id AS id_utilisateur, competences.id AS id_competence, competences.libelle_competence, 
+        $requeteCompetence = "SELECT utilisateurs.id AS id_utilisateur, utilisateurs_competences.id AS id_competence, competences.libelle_competence, 
 
             utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, 
             sous_sous_themes.libelle_sous_sous_theme, cursus.libelle_formation ,
@@ -188,8 +188,8 @@ class ProfilController extends Controller
             LEFT JOIN themes ON themes.id = matrice.theme_matrice_id
             LEFT JOIN sous_themes ON sous_themes.id = matrice.s_theme_matrice_id
             LEFT JOIN sous_sous_themes ON sous_sous_themes.id = matrice.s_s_theme_matrice_id
-            WHERE utilisateurs.id = ". $id
-            . " AND cursus_utilisateurs_competences.utilisateurs_id = " . $id;
+            WHERE utilisateurs.id = ". $id;
+            //. " AND cursus_utilisateurs_competences.utilisateurs_id = " . $id;
 
         $competences = $bdd->query($requeteCompetence);
 
