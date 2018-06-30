@@ -32,6 +32,7 @@
                 <div class="hidden-xs">Informations personnelles</div>
             </button>
         </div>
+        {% if ((app.session.get('userRole') == '1') or (app.session.get('userRole') == '4')) %}
         <div class="btn-group" role="group">
             <button type="button" id="stars" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
                 <div class="hidden-xs">Compétences</div>
@@ -47,7 +48,9 @@
                 <div class="hidden-xs">Expériences</div>
             </button>
         </div>
+        {% endif %}
     </div>
+    
 
     <div class="well">
 		<div class="tab-content">
@@ -69,13 +72,13 @@
 				 		</table>
 				 		</div>
 				 	</form>
-
+                    {% if ((app.session.get('userRole') == '1') or (app.session.get('userRole') == '4')) %}
 					<br/>
 					<a href="{{ path ('exportCV', { 'id': app.session.get('userID') }) }}"  class="btn btn-primary" role="button">
 						<span class="glyphicon glyphicon-user"></span>
 						Exporter mon CV
 					</a>
-
+                   {% endif %}
 			 	</div>
 			 	</p>
 			</div>
