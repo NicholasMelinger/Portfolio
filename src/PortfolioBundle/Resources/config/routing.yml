@@ -55,6 +55,10 @@ profil_default:
     path:     /profil
     defaults: { _controller: PortfolioBundle:Profil:profilIndex }
 
+profil_delete_utilisateurs_competences:
+    path:     /delete_uc/{id_utilisateur}/{id_competence}
+    defaults: { _controller: PortfolioBundle:Profil:delete_competence_utilisateur }
+
 recherche:
     path:     /recherche
     defaults: { _controller: PortfolioBundle:Recherche:recherche }

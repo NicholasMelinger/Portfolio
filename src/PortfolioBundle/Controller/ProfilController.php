@@ -1,7 +1,5 @@
 <?php
-
 namespace PortfolioBundle\Controller;
-
 use PortfolioBundle\Form\Utilisateurs\UtilisateursType;
 use PortfolioBundle\Form\Utilisateurs\EditUtilisateursType;
 use PortfolioBundle\Entity\Utilisateurs;
@@ -12,14 +10,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use \PDO;
-
 class ProfilController extends Controller
 {
     public function profilIndexAction()
     {
         return $this->render('PortfolioBundle:Profil:test.html.twig');
     }
-
     /**
      * @Route("/register", name="user_registration")
      */
@@ -88,21 +84,26 @@ class ProfilController extends Controller
                 WHEN utilisateurs_competences.niveau_competence >= 3 AND niveau_competence <6 THEN CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')
                 ELSE CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')        
             END AS niveau_competence,
-            utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, sous_sous_themes.libelle_sous_sous_theme, cursus.libelle_formation 
+            utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, sous_sous_themes.libelle_sous_sous_theme 
             FROM utilisateurs 
             LEFT JOIN utilisateurs_competences ON utilisateurs_competences.utilisateurs_id = utilisateurs.id 
             LEFT JOIN competences ON competences.id = utilisateurs_competences.competences_id 
-            LEFT JOIN cursus_utilisateurs_competences ON cursus_utilisateurs_competences.competences_id = competences.id 
-            LEFT JOIN cursus ON cursus.id = cursus_utilisateurs_competences.cursus_id
             LEFT JOIN matrice ON matrice.id = competences.matrice_comp_id
             LEFT JOIN themes ON themes.id = matrice.theme_matrice_id
             LEFT JOIN sous_themes ON sous_themes.id = matrice.s_theme_matrice_id
             LEFT JOIN sous_sous_themes ON sous_sous_themes.id = matrice.s_s_theme_matrice_id
-            WHERE utilisateurs.id = ". $id
-            . " AND utilisateurs_competences.utilisateurs_id = " . $id;
+            WHERE utilisateurs.id = ". $id;
 
 
         $competences = $bdd->query($requeteCompetence);
+
+        $requete_cursus_utilisateurs_competences = "SELECT * FROM cursus_utilisateurs_competences
+                                                    LEFT JOIN cursus ON cursus.id = cursus_utilisateurs_competences.cursus_id
+                                                    WHERE cursus_utilisateurs_competences.utilisateurs_id = " . $id;
+
+
+        $cursus_utilisateurs_competences = $bdd->query($requete_cursus_utilisateurs_competences);
+
 
 
 
@@ -135,12 +136,12 @@ class ProfilController extends Controller
         if ($form->isValid()) {
           $em = $this->getDoctrine()->getManager();
           $em->flush();
-          return $this->render('PortfolioBundle:Profil:modificationProfil.html.twig', array('edit_form' => $form->createView(),'utilisateur' => $exp, 'competences' => $competences, 'cursus' => $cursus, 'experiences' => $experiences));
+          return $this->render('PortfolioBundle:Profil:modificationProfil.html.twig', array('edit_form' => $form->createView(),'utilisateur' => $exp, 'competences' => $competences, 'cursus' => $cursus, 'experiences' => $experiences, 'cucs' => $cursus_utilisateurs_competences));
         }
 
         
 
-        return $this->render('PortfolioBundle:Profil:modificationProfil.html.twig', array('edit_form' => $form->createView(),'utilisateur' => $exp, 'competences' => $competences, 'cursus' => $cursus, 'experiences' => $experiences));
+        return $this->render('PortfolioBundle:Profil:modificationProfil.html.twig', array('edit_form' => $form->createView(),'utilisateur' => $exp, 'competences' => $competences, 'cursus' => $cursus, 'experiences' => $experiences, 'cucs' => $cursus_utilisateurs_competences));
     }
 
     public function profilAction($id)
@@ -170,30 +171,40 @@ class ProfilController extends Controller
         //Récupérer ses compétences
         //$competences = $utilisateur->getUserCompetences();
 
-        $requeteCompetence = "SELECT utilisateurs.id AS id_utilisateur, utilisateurs_competences.id AS id_competence, competences.libelle_competence, 
+// <<<<<<< HEAD
+//         $requeteCompetence = "SELECT utilisateurs.id AS id_utilisateur, utilisateurs_competences.id AS id_competence, competences.libelle_competence, 
 
-            utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, 
-            sous_sous_themes.libelle_sous_sous_theme, cursus.libelle_formation ,
+//             utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, 
+//             sous_sous_themes.libelle_sous_sous_theme, cursus.libelle_formation ,
+        $requeteCompetence = "SELECT utilisateurs.id AS id_utilisateur, competences.id AS id_competence, competences.libelle_competence,
             CASE 
-                WHEN niveau_competence <= 3 THEN CONCAT('Junior (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')  
-                WHEN niveau_competence >= 3 AND niveau_competence <6 THEN CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')
+                WHEN utilisateurs_competences.niveau_competence <=3 THEN CONCAT('Junior (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')  
+                WHEN utilisateurs_competences.niveau_competence >= 3 AND niveau_competence <6 THEN CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')
                 ELSE CONCAT('Expérimenté (', utilisateurs_competences.niveau_competence, ' année(s) d''expérience)')        
-            END AS niveau_competence
+            END AS niveau_competence,
+            utilisateurs_competences.detail_competence, themes.libelle_theme, sous_themes.libelle_sous_theme, sous_sous_themes.libelle_sous_sous_theme 
             FROM utilisateurs 
             LEFT JOIN utilisateurs_competences ON utilisateurs_competences.utilisateurs_id = utilisateurs.id 
             LEFT JOIN competences ON competences.id = utilisateurs_competences.competences_id 
-            LEFT JOIN cursus_utilisateurs_competences ON cursus_utilisateurs_competences.competences_id = competences.id 
-            LEFT JOIN cursus ON cursus.id = cursus_utilisateurs_competences.cursus_id
             LEFT JOIN matrice ON matrice.id = competences.matrice_comp_id
             LEFT JOIN themes ON themes.id = matrice.theme_matrice_id
             LEFT JOIN sous_themes ON sous_themes.id = matrice.s_theme_matrice_id
             LEFT JOIN sous_sous_themes ON sous_sous_themes.id = matrice.s_s_theme_matrice_id
             WHERE utilisateurs.id = ". $id;
+
             //. " AND cursus_utilisateurs_competences.utilisateurs_id = " . $id;
+
+
+
 
         $competences = $bdd->query($requeteCompetence);
 
+        $requete_cursus_utilisateurs_competences = "SELECT * FROM cursus_utilisateurs_competences
+                                                    LEFT JOIN cursus ON cursus.id = cursus_utilisateurs_competences.cursus_id
+                                                    WHERE cursus_utilisateurs_competences.utilisateurs_id = " . $id;
 
+
+        $cursus_utilisateurs_competences = $bdd->query($requete_cursus_utilisateurs_competences);
 
         //Récupérer ses cursus
         $requeteCursus = 'SELECT distinct cursus.libelle_formation, cursus.description_formation, 
@@ -302,7 +313,7 @@ class ProfilController extends Controller
         /////////////////////////////////////////////////////
 
 
-        return $this->render('PortfolioBundle:Profil:profil.html.twig', array('validations' => $validations->fetchAll(), 'utilisateur' => $utilisateur, 'competences' => $competences, 'cursus' => $cursus , 'experiences' => $experiences, 'profils_similaires' => $profils_similaires));
+        return $this->render('PortfolioBundle:Profil:profil.html.twig', array('validations' => $validations->fetchAll(), 'utilisateur' => $utilisateur, 'competences' => $competences, 'cursus' => $cursus , 'experiences' => $experiences, 'profils_similaires' => $profils_similaires, 'cucs' => $cursus_utilisateurs_competences));
     }
 
 
@@ -313,6 +324,24 @@ class ProfilController extends Controller
         return $this->render('PortfolioBundle:Profil:competence_utilisateur_add.html.twig', array('matrice' => $matrice));
     }
 
+    public function delete_competence_utilisateurAction($id_competence, $id_utilisateur )
+    {
+        // Connexion à la BDD.
+        try
+        {
+            $bdd = new PDO('mysql:host=localhost;dbname=db_portfolio;charset=utf8', 'root', '');
+        }
+        catch(Exception $e)
+        {
+            // En cas d'erreur, on affiche un message et on arrête tout.
+            die('Erreur : '.$e->getMessage());
+        }
 
+        $query_delete = "DELETE FROM utilisateurs_competences WHERE competences_id = " . $id_competence . " AND utilisateurs_id = " . $id_utilisateur;
+
+        $bdd->query($query_delete);
+
+        return $this->redirectToRoute('modification_profil', array('id' => $id_utilisateur));
+    }
 
 }

@@ -32,6 +32,7 @@
                 <div class="hidden-xs">Informations personnelles</div>
             </button>
         </div>
+        {% if ((app.session.get('userRole') == '1') or (app.session.get('userRole') == '4')) %}
         <div class="btn-group" role="group">
             <button type="button" id="stars" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
                 <div class="hidden-xs">Compétences</div>
@@ -47,7 +48,9 @@
                 <div class="hidden-xs">Expériences</div>
             </button>
         </div>
+        {% endif %}
     </div>
+    
 
     <div class="well">
 		<div class="tab-content">
@@ -69,13 +72,13 @@
 				 		</table>
 				 		</div>
 				 	</form>
-
+                    {% if ((app.session.get('userRole') == '1') or (app.session.get('userRole') == '4')) %}
 					<br/>
 					<a href="{{ path ('exportCV', { 'id': app.session.get('userID') }) }}"  class="btn btn-primary" role="button" target=_blank>
 						<span class="glyphicon glyphicon-user"></span>
 						Exporter mon CV
 					</a>
-
+                   {% endif %}
 			 	</div>
 			 	</p>
 			</div>
@@ -88,7 +91,12 @@
 		                    <div>
 		                        <div class="panel panel-default">
 		                            <div class="panel-heading">
-		                                <h3 class="panel-title"><b><u>{{ comp.libelle_competence }}</u></b></h3>
+		                                <h3 class="panel-title"><b><u>{{ comp.libelle_competence }}</u></b>
+		                                <a href="{{ path ('profil_delete_utilisateurs_competences', { 'id_competence': comp.id_competence, 'id_utilisateur': comp.id_utilisateur }) }}"  style="float: right;" class="btn btn-sm" role="button" title="Supprimer cette compétence">
+											<span class="glyphicon glyphicon-remove" style="color: red;"></span>
+										</a>
+										
+										</h3>
 		                            </div>
 		                            <div class="panel-body">
 		                            <table>
@@ -96,9 +104,11 @@
 		                                <tr><b>Détail : </b> {{ comp.detail_competence }}</tr><hr/>
 		                                <tr><b>Niveau : </b> {{ comp.niveau_competence }}</tr>
 
-		                                {% if comp.libelle_formation != "" %}
-		                                	<hr/><tr>Compétence acquise lors du cursus <b>{{ comp.libelle_formation ~ "." }}</b></tr>
-		                                {% endif %}
+		                                {% for cuc in cucs %}
+		                                    {% if comp.id_competence == cuc.competences_id %}
+		                                        <tr>Compétence acquise lors du cursus <b>{{ cuc.libelle_formation ~ "."}}</b></tr><hr/>
+		                                    {% endif %}
+		                                {% endfor %}
 		                            </table>
 		                            </div>
 		                        </div>
