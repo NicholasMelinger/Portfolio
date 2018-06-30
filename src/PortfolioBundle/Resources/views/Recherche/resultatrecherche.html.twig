@@ -100,7 +100,8 @@
 										<span class="label label-danger" style="margin-bottom:15px;font-size:15px;font-weight:normal;">
 											{{ resExperience.type_experience ~ ' (' ~ resExperience.dureeExperience ~ ' mois)' }}
 										</span>
-										{{ '   ' ~ resExperience.description_experience }}
+										<br/>
+											<p style="padding-top:5px;">{{resExperience.description_experience }} </p>
 
 											{% set nbValidations = 0 %}
 											{% for resValidation in resultatValidations %}

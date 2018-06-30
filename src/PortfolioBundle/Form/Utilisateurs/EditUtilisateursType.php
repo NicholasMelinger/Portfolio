@@ -20,10 +20,10 @@ class EditUtilisateursType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('mailUtilisateur', EmailType::class,array('label'=>'Adresse email : *'))
-                ->add('numeroMobile',TextType::class,array('label'=>'Numéro de mobile : '))
-                ->add('numeroFixe', TextType::class,array('label'=>'Numéro de fixe : '))
-                ->add('adressePostale', TextType::class,array('label'=>'Numéro de nom de rue : '))
+        $builder->add('mailUtilisateur', EmailType::class,array('label'=>'Adresse e-mail : *'))
+                ->add('numeroMobile',TextType::class,array('label'=>'Numéro de téléphone mobile : '))
+                ->add('numeroFixe', TextType::class,array('label'=>'Numéro de téléphone fixe : '))
+                ->add('adressePostale', TextType::class,array('label'=>'Numéro et nom de rue : '))
                 ->add('ville', TextType::class,array('label'=>'Ville : '))
                 ->add('codePostal', TextType::class,array('label'=>'Code postal : '));
     }/**
