@@ -106,7 +106,7 @@
 
 		                                {% for cuc in cucs %}
 		                                    {% if comp.id_competence == cuc.competences_id %}
-		                                        <tr>Compétence acquise lors du cursus <b>{{ cuc.libelle_formation ~ "."}}</b></tr><hr/>
+		                                        <hr/><tr>Compétence acquise lors du cursus <b>{{ cuc.libelle_formation ~ "."}}</b></tr><hr/>
 		                                    {% endif %}
 		                                {% endfor %}
 		                            </table>

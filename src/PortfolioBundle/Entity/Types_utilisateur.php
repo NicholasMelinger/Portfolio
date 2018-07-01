@@ -10,17 +10,17 @@ class Types_utilisateur
     /**
      * @var int
      */
-    private $id;
+    public $id;
 
     /**
      * @var string
      */
-    private $libelle;
+    public $libelle;
 
     /**
      * @var string
      */
-    private $description;
+    public $description;
 
 
     /**
@@ -125,5 +125,10 @@ class Types_utilisateur
     public function getUtilisateurs()
     {
         return $this->utilisateurs;
+    }
+
+    public function __toString()
+    {
+        return $this->libelle;
     }
 }

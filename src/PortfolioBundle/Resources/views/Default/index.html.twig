@@ -26,8 +26,7 @@
 	<br />
 	<br />
 	<h2>Derniers profils enregistrés</h2>
-	<br />
-	<br />
+	<hr/>
 	
 	{% for utilisateur in utilisateurs %}
 		
@@ -50,6 +49,7 @@
                 {% for resComp in resultatComp %}
                 	{% if resComp.utilisateurs_id == utilisateur.id %}
                 		<span class="label label-default">{{ resComp.libelle_competence }}</span>
+                		<br/>
                 	{% endif %}
 				{% endfor %}
             </div>

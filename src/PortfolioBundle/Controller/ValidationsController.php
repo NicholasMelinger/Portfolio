@@ -262,6 +262,7 @@ foreach ($utilisateurs as &$user)
         }
 
         $comm = $_POST['commentaireCompetence'];
+        $comm = str_replace("'", "''", $comm);
         $idUtilisateurValide = $_GET['idUser'];
         $idCompetenceValidee = $_GET['idComp'];
          $date = date("Y-m-d H:i:s");
@@ -301,7 +302,7 @@ foreach ($utilisateurs as &$user)
         $resultatComp = $bdd->query($requeteComp);
         
 
-        return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs,  'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
+        //return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs,  'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
 
         //return $this->redirectToRoute('profil', array('id' => 8));
 
@@ -329,6 +330,7 @@ foreach ($utilisateurs as &$user)
         }
 
         $comm = $_POST['commentaireExperience'];
+        $comm = str_replace("'", "''", $comm);
         $idUtilisateurValide = $_GET['idUser'];
         $idExperienceValidee = $_GET['idExp'];
          $date = date("Y-m-d H:i:s");
@@ -366,6 +368,9 @@ foreach ($utilisateurs as &$user)
                             LIMIT 20';
         $resultatComp = $bdd->query($requeteComp);
 
-        return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs, 'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
+        //return $this->render('PortfolioBundle:Default:index.html.twig', array('utilisateurs' => $utilisateurs, 'resultatComp' => $resultatComp->fetchAll(), 'resultatCursus' => $resultatCursus->fetchAll()));
+        $route = 'profil';
+        
+        return $this->redirect($this->generateUrl($route, array('id' => $idUtilisateurValide)));
     }
 }

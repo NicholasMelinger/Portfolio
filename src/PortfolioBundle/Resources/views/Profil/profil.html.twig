@@ -76,20 +76,19 @@
                                 {% endfor %}
 
                                 <span class="label label-success" style="font-size:15px;font-weight:bold;">Commentaires</span>
-                                
+                                <br/><br/>
                                 {% for resValid in validations %}
                                     {% if resValid.idCompetenceValidee == comp.id_competence %}
                                         {% if resValid.type_valid == 'comp' %}
-                                            </br></br>
                                              <tr>
                                                 <b>{{ resValid.prenom_utilisateur }} {{ resValid.nom_utilisateur }} ({{ resValid.libelle_validant }}), le {{ resValid.date_validation|date('d/m/Y') }}</b> : {{ resValid.commentaire }}
                                              </tr>
-                                             <br/>
+                                             <hr/>
                                          {% endif %}
                                     {% endif %}
                                 {% endfor %}
                                 </td>
-                                <br/>
+                                
                                 <tr>
                                     {% if (app.session.get('userID') is not null) %}
                                         <a href="{{ path ('validerCompetencee', { 'idComp': comp.id_competence, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Commenter la compétence</a>
@@ -152,18 +151,18 @@
                                             {% if resValid.type_valid == 'exp' %}
                                                 {% if valid == false %}
                                                     {% set valid = true %}
-                                                    <span class="label label-success" style="font-size:15px;font-weight:bold;">Validations</span>
-                                                    </br></br>
+                                                    <span class="label label-success" style="font-size:15px;font-weight:bold;">Commentaires</span>
+                                                    </br><br/>
                                                 {% endif %}    
                                                  <tr>
                                                     <b>{{ resValid.prenom_utilisateur }} {{ resValid.nom_utilisateur }} ({{ resValid.libelle }}), le {{ resValid.date_validation|date('d/m/Y') }}</b> : {{ resValid.commentaire }}
                                                  </tr>
-                                                 <br/>
+                                                 <hr/>
                                             {% endif %}
                                         {% endif %}
                                     {% endfor %}
 
-                            </br>
+                            </hr>
                                 <tr>
                                     {% if (app.session.get('userID') is not null) %}
                                         <a href="{{ path ('validerExperience', { 'idExp': xp.id, 'idUser' : utilisateur.id }) }}" class="btn btn-primary" role="button" method="post" name="test">Commenter l'expérience</a>

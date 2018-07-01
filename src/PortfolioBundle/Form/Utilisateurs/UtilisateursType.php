@@ -13,7 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
+use PortfolioBundle\Entity\Types_utilisateur;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 class UtilisateursType extends AbstractType
 {
     /**
@@ -21,6 +23,11 @@ class UtilisateursType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        //$object = (types_utilisateur) array('id' => 3);
+        //'id' => '3'];
+        //$em = $this->getEntityManager()->getRepository(PortfolioBundle::types_utilisateur)
+        //-/>find(3);
+$idTag= $builder->getData()->getId();
         $builder->add('nomUtilisateur',TextType::class,array('label'=>'Nom : *'))
                 ->add('prenomUtilisateur',TextType::class,array('label'=>'Prénom : *'))
                 ->add('mailUtilisateur', EmailType::class,array('label'=>'Adresse e-mail : *'))
@@ -41,9 +48,24 @@ class UtilisateursType extends AbstractType
                     )
                 ->add('type_utilisateur', EntityType::class, array(
                     'class'        => 'PortfolioBundle:Types_utilisateur',
-                    'choice_label' => 'libelle',
-                    'label'=>'Vous êtes : * ')
-                    );
+                    'query_builder' => function(EntityRepository $er) use ($idTag)
+                    {
+                            $qb = $er->createQueryBuilder('t')
+                            ->where('t.id != 1');
+                            return $qb->orderBy('t.id', 'ASC');
+                    }));
+                    //'label'=>'Vous êtes : * ')
+                    //);
+                // ->add('type_utilisateur', ChoiceType::class, array(
+                //         'choices'  => array(
+                //         'Elève' => $object,
+                //         'Professionnel' => $object,
+                //         'Recruteur' => $object), 'label'=>'Vous êtes :'));
+                // ->add('type_utilisateur', EntityType::class, array(
+                //     'class'        => 'PortfolioBundle:Types_utilisateur',
+                //     'choice_label' => 'libelle',
+                //     'label'=>'Vous êtes : * ')
+                //     );
 
                 //$builder->remove('type_utilisateur');
     }/**

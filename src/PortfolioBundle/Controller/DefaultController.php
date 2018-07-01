@@ -23,19 +23,19 @@ class DefaultController extends Controller
 
         //Récupération des 5 derniers profils
         $requeteUtilisateur = 'SELECT id, nom_utilisateur, prenom_utilisateur, url_photo 
-                            FROM utilisateurs
+                            FROM utilisateurs WHERE type_utilisateur_id = 4
                             ORDER BY id DESC LIMIT 5';
         $utilisateurs = $bdd->query($requeteUtilisateur);
 
         $requeteCursus = 'SELECT utilisateurs_id, libelle_formation, annee 
                             FROM cursus_utilisateurs_competences JOIN Cursus ON Cursus.id = cursus_utilisateurs_competences.cursus_id
-                            LIMIT 10';
+                            LIMIT 1000';
         $resultatCursus = $bdd->query($requeteCursus);
 
         // Récupération des associations compétences/users.
         $requeteComp = 'SELECT utilisateurs_id, libelle_competence
                             FROM utilisateurs_competences JOIN Competences ON Competences.id = utilisateurs_competences.competences_id
-                            LIMIT 20';
+                            LIMIT 200';
         $resultatComp = $bdd->query($requeteComp);
 
 
@@ -58,19 +58,19 @@ class DefaultController extends Controller
 
         //Récupération des 5 derniers profils
         $requeteUtilisateur = 'SELECT id, nom_utilisateur, prenom_utilisateur, url_photo 
-                            FROM utilisateurs
+                            FROM utilisateurs WHERE type_utilisateur_id = 4
                             ORDER BY id DESC LIMIT 5';
         $utilisateurs = $bdd->query($requeteUtilisateur);
 
         $requeteCursus = 'SELECT utilisateurs_id, libelle_formation, annee 
                             FROM cursus_utilisateurs_competences JOIN Cursus ON Cursus.id = cursus_utilisateurs_competences.cursus_id
-                            LIMIT 10';
+                            LIMIT 1000';
         $resultatCursus = $bdd->query($requeteCursus);
 
         // Récupération des associations compétences/users.
         $requeteComp = 'SELECT utilisateurs_id, libelle_competence
                             FROM utilisateurs_competences JOIN Competences ON Competences.id = utilisateurs_competences.competences_id
-                            LIMIT 20';
+                            LIMIT 200';
         $resultatComp = $bdd->query($requeteComp);
 
 

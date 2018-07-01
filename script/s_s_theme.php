@@ -14,5 +14,5 @@
 		echo "<option value='-1'>-- Choisir un sous sous thème --</option>";
 	}
 	echo "</select>";
-echo $query;
+//echo $query;
 ?>
